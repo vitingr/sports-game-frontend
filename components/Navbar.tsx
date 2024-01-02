@@ -15,11 +15,16 @@ import { VscSignOut } from "react-icons/vsc";
 import { AiOutlineHeart } from "react-icons/ai";
 import { infoUser } from "@/contexts/UserContext";
 import { MdNewReleases } from "react-icons/md";
+import Image from "next/image";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
-  const { data } = infoUser();
+  const userInfo = infoUser();
+  const { data, user } =
+    userInfo.user && userInfo.user.id !== undefined
+      ? userInfo
+      : { data: null, user: null };
 
   return (
     <header className="fixed bg-white w-full flex flex-col items-center z-50">
@@ -29,44 +34,95 @@ const Navbar = () => {
         </h1>
         <ul className="list-none flex gap-10 items-center w-full justify-around">
           <Link
-            href={"/"}
+            href={"/home"}
             className="transition-all duration-300 hover:text-indigo-700"
           >
             Início
           </Link>
           <Link
-            href={"/"}
+            href={"/friends"}
+            className="transition-all duration-300 hover:text-indigo-700"
+          >
+            Amigos
+          </Link>
+          <Link
+            href={"/shop"}
             className="transition-all duration-300 hover:text-indigo-700"
           >
             Loja
           </Link>
           <Link
-            href={"/"}
+            href={"/market"}
             className="transition-all duration-300 hover:text-indigo-700"
           >
             Mercado
           </Link>
           <Link
-            href={"/"}
+            href={"/lineups"}
             className="transition-all duration-300 hover:text-indigo-700"
           >
             Elencos
           </Link>
           <Link
-            href={"/"}
+            href={"/my-club"}
             className="transition-all duration-300 hover:text-indigo-700"
           >
             Meu Clube
           </Link>
         </ul>
+
         <div className="w-full flex justify-center items-center gap-6">
-          <GoSearch size={22.5} className="cursor-pointer gray-icon" />
-          <IoMenuOutline
-            size={22.5}
-            className="cursor-pointer gray-icon"
-            onClick={() => setShowMenu(!showMenu)}
-          />
-          <UserButton afterSignOutUrl="/" />
+          {user ? (
+            <>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-2 justify-between">
+                  <span className="text-[#717171] text-xs w-full justify-end flex">
+                    {user.currency}
+                  </span>
+                  <Image
+                    src={"/assets/coins.png"}
+                    alt="Currency Icon"
+                    width={15}
+                    height={15}
+                  />
+                </div>
+                <div className="flex items-center gap-2 justify-between">
+                  <span className="text-[#717171] text-xs w-full justify-end flex">
+                    {user.futpoints}
+                  </span>
+                  <Image
+                    src={"/assets/points.png"}
+                    alt="Currency Icon"
+                    width={15}
+                    height={15}
+                  />
+                </div>
+              </div>
+
+              <UserButton afterSignOutUrl="/" />
+              <GoSearch size={22.5} className="cursor-pointer gray-icon" />
+              <IoMenuOutline
+                size={22.5}
+                className="cursor-pointer gray-icon"
+                onClick={() => setShowMenu(!showMenu)}
+              />
+            </>
+          ) : (
+            <>
+              <Link
+                href={"/sign-in"}
+                className="w-[100px] px-4 py-2 text-sm cursor-pointer rounded-xl bg-indigo-600 text-white text-center"
+              >
+                Login
+              </Link>
+              <Link
+                href={"/sign-up"}
+                className="w-[100px] px-4 py-2 text-sm cursor-pointer rounded-xl border border-indigo-600 text-indigo-600 text-center"
+              >
+                Cadastro
+              </Link>
+            </>
+          )}
         </div>
 
         {showMenu && (
@@ -160,7 +216,9 @@ const Navbar = () => {
         )}
       </div>
       <div className="w-full text-white p-4 bg-indigo-500 h-[50px] gap-4 flex items-center justify-center cursor-pointer">
-        <span className="text-white tracking-wider">Confira as novidades da nossa Loja</span>
+        <span className="text-white tracking-wider">
+          Confira as novidades da nossa Loja
+        </span>
         <MdNewReleases className="white-icon" size={20} />
       </div>
     </header>

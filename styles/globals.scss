@@ -430,3 +430,203 @@
     stroke-dashoffset: -440;
   }
 }
+
+.cta {
+  position: relative;
+  margin: auto;
+  padding: 9px 18px;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.cta:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 50px;
+  background: #b1dae7;
+  width: 35px;
+  height: 35px;
+  transition: all 0.3s ease;
+}
+
+.cta span {
+  position: relative;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #234567;
+}
+
+.cta svg {
+  position: relative;
+  top: 0;
+  margin-left: 10px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #234567;
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover:before {
+  width: 100%;
+  background: #b1dae7;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active {
+  transform: scale(0.95);
+}
+
+.popup-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  left: 0;
+  top: 0;
+}
+
+.glassmorphism {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  box-shadow: 0 0px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.card {
+  cursor: pointer;
+  position: relative;
+  width: 275px;
+  height: 375px;
+  background: #122936;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.card:before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  width: 100%;
+  height: 100%;
+  transform: skewY(345deg);
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.5s;
+}
+
+#especial:before {
+  background: linear-gradient(50deg, #09061b, #1f1a3f, #5E53A6, #8911D9, #9913F2);
+}
+
+#gold:before {
+  background: linear-gradient(50deg, #ddb74e, #f3d688, #f8e5b2);
+}
+
+#silver:before {
+  background: linear-gradient(50deg, #868686, #BBBBBB, #EAEAEA);
+}
+
+#bronze:before {
+  background: linear-gradient(50deg, #925d3e, #A66641, #BF834E);
+}
+
+.card:hover::before {
+  transform: skewY(390deg);
+  top: -70%;
+}
+
+.card .img-box {
+  position: relative;
+  width: 55%;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  z-index: 1;
+}
+
+.card .img-box img {
+  max-width: 100%;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.5s;
+}
+
+.card:hover .img-box img {
+  max-width: 60%;
+}
+
+.card .content-box {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.card .content-box .titulo-produto-loja {
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.card .content-box .preco-produto-loja {
+  font-size: 24px;
+  color: white;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.card .content-box .descricao-produto-loja {
+  color: white;
+  font-size: 13.5px;
+  font-weight: lighter;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.card .content-box .comprar-produto {
+  cursor: pointer;
+  position: relative;
+  top: 0px;
+  opacity: 0;
+  padding: 10px 20px;
+  margin-top: 25px;
+  color: white;
+  background: linear-gradient(50deg, #d6af45, #d1b874, #b6a371);
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition-timing-function: ease-in-out;
+  transition-duration: 0.5s;
+}
+
+.card:hover .content-box .comprar-produto {
+  top: 0px;
+  opacity: 1;
+}

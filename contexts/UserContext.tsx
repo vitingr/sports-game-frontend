@@ -4,12 +4,19 @@ import Loader from "@/components/config/Loader";
 import { CREATE_PLAYER } from "@/graphql/mutations";
 import { GET_PLAYER } from "@/graphql/queries";
 import { UserContextProps, UserProps } from "@/types";
+import { checkIsPublicRoute } from "@/utils/check-route";
 import { useMutation, useQuery } from "@apollo/client";
+import { usePathname } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const UserContext = createContext<UserContextProps | any>(undefined);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
+
+  const path = usePathname();
+
+  const isPublic = checkIsPublicRoute(path);
+
   // Data Hooks Providers
   const [data, setData] = useState<any>([]);
   const [user, setUser] = useState<UserProps[]>([]);
@@ -30,7 +37,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Get User Data Function
   const getSessionInfo = async () => {
-    try {
+    try {  
       const requisition = await fetch("/api/getUserInfo");
       const response = await requisition.json();
       setData(response);
@@ -41,7 +48,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   const getUserInfo = async () => {
     try {
-      if (playerData === undefined && data.id) {
+      if (playerData === undefined && data.id && playerDataLoading === false) {
         await createUser({
           variables: {
             uuid: data.id as string,
@@ -55,7 +62,10 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         });
         await refetchPlayerData();
       } else {
-        setUser(playerData.getUser);
+        await refetchPlayerData().then(content => {
+          console.log(content.data.getUser)
+          setUser(content.data.getUser);
+        })
       }
     } catch (error) {
       console.log(`ERROR: ${error}`);
@@ -72,7 +82,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, [playerDataLoading, data.id]);
 
-  return data.id && user ? (
+  return isPublic || data.id && user ? (
     <UserContext.Provider
       value={{ data, setData, user, setUser, getSessionInfo, getUserInfo }}
     >

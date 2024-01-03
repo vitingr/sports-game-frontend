@@ -8,18 +8,14 @@ import Image from "next/image";
 import React from "react";
 import ToastMessage from "../config/ToastMessage";
 import { toast } from "react-toastify";
-import { socket } from "@/contexts/WebSocketContext";
+import { socket, socketProvider } from "@/contexts/WebSocketContext";
 
 const SearchFriends = () => {
-  // Configurações GraphQL
-  const {
-    data: playersData,
-    loading: playersDataLoading,
-    refetch: refetchPlayersData,
-  } = useQuery(GET_ALL_PLAYERS);
 
   const { user } = infoUser();
 
+  const {playersData, refetchPlayersData} = socketProvider()
+  
   // Configurações Sockets
   const handleInviteFriend = async (friend: UserProps) => {
     if (
@@ -29,6 +25,7 @@ const SearchFriends = () => {
       socket.emit("inviteUser", {
         userId: user.id as string,
         friendId: friend.id as string,
+        socketId: socket.id
       });
       await refetchPlayersData();
       toast.success("Convite de amizade enviado com successo!");
@@ -37,9 +34,7 @@ const SearchFriends = () => {
     }
   };
 
-  return playersDataLoading === false &&
-    playersData &&
-    playersData?.getAllUsers ? (
+  return playersData ? (
     <>
       <ToastMessage />
       <h1 className="text-2xl font-bold mb-10 transition-all duration-300 hover:text-indigo-600 cursor-default">Encontrar Amigos</h1>

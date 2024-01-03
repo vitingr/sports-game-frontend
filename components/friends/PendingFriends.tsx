@@ -1,7 +1,7 @@
 "use client";
 
 import { infoUser } from "@/contexts/UserContext";
-import { socket } from "@/contexts/WebSocketContext";
+import { socket, socketProvider } from "@/contexts/WebSocketContext";
 import { GET_USER_PENDING_FRIENDS } from "@/graphql/queries";
 import { UserProps } from "@/types";
 import { useQuery } from "@apollo/client";
@@ -12,17 +12,7 @@ import { toast } from "react-toastify";
 
 const PendingFriends = () => {
   const { user } = infoUser();
-
-  const {
-    data: pendingFriends,
-    loading: pendingFriendsLoading,
-    refetch: refetchPendingFriends,
-  } = useQuery(GET_USER_PENDING_FRIENDS, {
-    variables: {
-      playersId: user.pendingFriends,
-    },
-    skip: !user.pendingFriends,
-  });
+  const { pendingFriends, refetchPendingFriends } = socketProvider();
 
   const handleAcceptInvite = async (friend: UserProps) => {
     if (!friend.friends.includes(user.id)) {
@@ -31,7 +21,7 @@ const PendingFriends = () => {
           userId: user.id as string,
           friendId: friend.id as string,
         });
-        toast.success("O convite de amizade foi aceito com sucesso!")
+        toast.success("O convite de amizade foi aceito com sucesso!");
         await refetchPendingFriends();
       } catch (error) {
         throw new Error("Não foi possível aceitar o convite de amizade");
@@ -48,7 +38,7 @@ const PendingFriends = () => {
           userId: user.id as string,
           friendId: friend.id as string,
         });
-        toast.success("O convite de amizade foi removido com sucesso!")
+        toast.success("O convite de amizade foi removido com sucesso!");
         await refetchPendingFriends();
       } catch (error) {
         throw new Error("Não foi possível cancelar o convite de amizade");
@@ -58,13 +48,13 @@ const PendingFriends = () => {
     }
   };
 
-  return pendingFriendsLoading === false &&
-    pendingFriends &&
-    pendingFriends?.getUserPendingFriends &&
-    pendingFriends?.getUserPendingFriends.length > 0 ? (
+  return pendingFriends &&
+    pendingFriends?.getUserPendingFriends ? (
     <>
       <ToastMessage />
-      <h1 className="text-2xl font-bold mb-10 transition-all duration-300 hover:text-indigo-600 cursor-default">Amigos Pendentes</h1>
+      <h1 className="text-2xl font-bold mb-10 transition-all duration-300 hover:text-indigo-600 cursor-default">
+        Amigos Pendentes
+      </h1>
       <div className="flex flex-wrap w-full gap-10">
         {pendingFriends.getUserPendingFriends.map(
           (player: UserProps, index: number) => (

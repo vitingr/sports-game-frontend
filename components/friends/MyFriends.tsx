@@ -1,6 +1,7 @@
 "use client";
 
 import { infoUser } from "@/contexts/UserContext";
+import { socketProvider } from "@/contexts/WebSocketContext";
 import { GET_USER_FRIENDS } from "@/graphql/queries";
 import { UserProps } from "@/types";
 import { useQuery } from "@apollo/client";
@@ -10,22 +11,9 @@ import React, { useEffect } from "react";
 const MyFriends = () => {
   const { user } = infoUser();
 
-  const { data: myFriendsData, loading: myFriendsDataLoading } = useQuery(
-    GET_USER_FRIENDS,
-    {
-      variables: {
-        friends: user.friends,
-      },
-      skip: !user.friends,
-    }
-  );
+  const {myFriendsData} = socketProvider()
 
-  useEffect(() =>{ 
-    console.log(myFriendsData?.getUserFriends)
-  }, [myFriendsData])
-
-  return myFriendsDataLoading === false &&
-    myFriendsData &&
+  return myFriendsData &&
     myFriendsData?.getUserFriends  ? (
     <>
       <h1 className="text-2xl font-bold mb-10 transition-all duration-300 hover:text-indigo-600 cursor-default">Meus Amigos</h1>

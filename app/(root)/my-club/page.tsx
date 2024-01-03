@@ -1,11 +1,14 @@
 "use client";
 
+import EditClubName from "@/components/personalization/EditClubName";
 import { infoUser } from "@/contexts/UserContext";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 const page = () => {
   const { user } = infoUser();
+
+  const [showChangeClubName, setShowChangeClubname] = useState<boolean>(false)
 
   return (
     <div className="flex justify-center gap-6 w-full max-w-[1600px] mt-[3em]">
@@ -172,7 +175,7 @@ const page = () => {
               <span className="text-[#717171] text-sm">Brasil</span>
             </div>
           </div>
-          <div className="justify-end flex flex-col mt-16 rounded-full bg-indigo-600 text-white px-4 py-2 text-center cursor-pointer transition-all duration-300 hover:bg-indigo-800">
+          <div className="justify-end flex flex-col mt-16 rounded-full bg-indigo-600 text-white px-4 py-2 text-center cursor-pointer transition-all duration-300 hover:bg-indigo-800" onClick={() => setShowChangeClubname(!showChangeClubName)}>
             Renomear meu Clube
           </div>
           <div className="justify-end flex flex-col mt-4 rounded-full text-indigo-600 border border-indigo-600 px-4 py-2 text-center cursor-pointer">
@@ -180,6 +183,10 @@ const page = () => {
           </div>
         </div>
       </div>
+
+      {showChangeClubName && (
+        <EditClubName state={setShowChangeClubname} />
+      )}
     </div>
   );
 };

@@ -111,3 +111,26 @@ export const GET_USER_PENDING_FRIENDS = gql`
     }
   }
 `;
+
+export const GET_USER_LINEUPS = gql`
+  query getUserLineups($userId: String!) {
+    getUserLineups(id: $userId) {
+      id
+      name
+      overall
+      totalOverall
+      owner
+      player1
+      player2
+      player3
+      player4
+      player5
+      player6
+      player7
+      player8
+      player9
+      player10
+      player11
+    }
+  }
+`

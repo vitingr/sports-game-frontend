@@ -19,12 +19,8 @@ import Image from "next/image";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
-
-  const userInfo = infoUser();
-  const { data, user } =
-    userInfo.user && userInfo.user.id !== undefined
-      ? userInfo
-      : { data: null, user: null };
+  
+  const {data, user} = infoUser()
 
   return (
     <header className="fixed bg-white w-full flex flex-col items-center z-50">

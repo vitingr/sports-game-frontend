@@ -2,7 +2,7 @@
 
 import type { Metadata } from "next";
 import "../../styles/globals.scss";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, SignedIn, SignedOut } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { checkIsPublicRoute } from "@/utils/check-route";
 import Navbar from "@/components/Navbar";
@@ -35,7 +35,12 @@ export default function RootLayout({
           <ApolloContext>
             {isPublic && (
               <UserProvider>
-                <Navbar />
+                <SignedIn>
+                  <Navbar />
+                </SignedIn>
+                <SignedOut>
+                  <Header />
+                </SignedOut>
                 <main className="bg-[#f6f6f6] w-full min-h-[62vh] sm:pt-[150px] flex justify-center">
                   {children}
                 </main>
@@ -46,11 +51,13 @@ export default function RootLayout({
             {!isPublic && (
               <UserProvider>
                 <WebSocketProvider>
-                  <Navbar />
-                  <main className="bg-[#f6f6f6] w-full min-h-[62vh] p-[2%] sm:pt-[150px] sm:p-[5%] flex justify-center">
-                    {children}
-                  </main>
-                  <Footer />
+                  <SignedIn>
+                    <Navbar />
+                    <main className="bg-[#f6f6f6] w-full min-h-[62vh] p-[2%] sm:pt-[150px] sm:p-[5%] flex justify-center">
+                      {children}
+                    </main>
+                    <Footer />
+                  </SignedIn>
                 </WebSocketProvider>
               </UserProvider>
             )}

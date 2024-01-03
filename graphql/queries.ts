@@ -133,4 +133,57 @@ export const GET_USER_LINEUPS = gql`
       player11
     }
   }
-`
+`;
+
+export const GET_USER_CARDS = gql`
+  query findUserCards($userId: String!) {
+    findUserCards(id: $userId) {
+      id
+      cardImage
+      owner
+      selling
+      playerId
+      name
+      club
+      league
+      type
+      overall
+      pace
+      finalization
+      pass
+      drible
+      defense
+      physic
+      minValue
+      maxValue
+      quickSellValue
+    }
+  }
+`;
+
+export const GET_SELLING_CARDS = gql`
+  query findSellingCards {
+    findSellingCards {
+      id
+      cardImage
+      owner
+      selling
+      playerId
+      name
+      club
+      league
+      type
+      overall
+      pace   
+      finalization
+      pass
+      drible
+      defense
+      physic
+      minValue
+      maxValue
+      quickSellValue
+      price
+    }
+  }
+`;

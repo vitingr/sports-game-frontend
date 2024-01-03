@@ -12,6 +12,9 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')]
   },
+  images: {
+    domains: ['lh3.googleusercontent.com', 'res.cloudinary.com'],
+  },
   webpack(config) {
       config.experiments = {
           ...config.experiments,

@@ -25,9 +25,9 @@ const Navbar = () => {
   return (
     <header className="fixed bg-white w-full flex flex-col items-center z-50">
       <div className="max-w-[1600px] flex justify-between gap-6 w-full p-6">
-        <h1 className="font-extrabold text-3xl w-full flex justify-center">
+        <Link href={"/"} className="font-extrabold text-3xl w-full flex justify-center cursor-pointer">
           FUT24
-        </h1>
+        </Link>
         <ul className="list-none flex gap-10 items-center w-full justify-around">
           <Link
             href={"/home"}

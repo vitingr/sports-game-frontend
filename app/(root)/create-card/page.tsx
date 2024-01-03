@@ -42,6 +42,7 @@ const page = () => {
       if (imageUpload.ok) {
         photoDatabase = await imageUpload.json();
         try {
+          console.log(cardInfo)
           await createCard({
             variables: {
               cardImage: photoDatabase.url as string,
@@ -49,16 +50,16 @@ const page = () => {
               club: cardInfo.club,
               league: cardInfo.league,
               type: cardInfo.type,
-              overall: cardInfo.overall,
-              pace: cardInfo.pace,
-              finalization: cardInfo.finalization,
-              pass: cardInfo.pass,
-              drible: cardInfo.drible,
-              defense: cardInfo.defense,
-              physic: cardInfo.physic,
-              minValue: 150,
-              maxValue: 10000,
-              quickSellValue: 150,
+              overall:  Number(cardInfo.overall),
+              pace:  Number(cardInfo.pace),
+              finalization:  Number(cardInfo.finalization),
+              pass:  Number(cardInfo.pass),
+              drible:  Number(cardInfo.drible),   
+              defense:  Number(cardInfo.defense),
+              physic: Number(cardInfo.physic),
+              minValue: Number(150),
+              maxValue: Number(10000),
+              quickSellValue: Number(150),
             },
           }).then(() => {
             setCardInfo({
@@ -184,9 +185,7 @@ const page = () => {
             name="pace"
             id="pace"
             className="outline-none px-2 py-1 border border-neutral-200"
-            onChange={(e) =>
-              setCardInfo({ ...cardInfo, pace: e.target.value })
-            }
+            onChange={(e) => setCardInfo({ ...cardInfo, pace: e.target.value })}
           />
         </div>
         <div>
@@ -208,9 +207,7 @@ const page = () => {
             name="pass"
             id="pass"
             className="outline-none px-2 py-1 border border-neutral-200"
-            onChange={(e) =>
-              setCardInfo({ ...cardInfo, pass: e.target.value })
-            }
+            onChange={(e) => setCardInfo({ ...cardInfo, pass: e.target.value })}
           />
         </div>
         <div>

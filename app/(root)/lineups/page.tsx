@@ -19,7 +19,7 @@ const page = () => {
     refetch: refetchUserLineups,
   } = useQuery(GET_USER_LINEUPS, {
     variables: {
-      id: user.id,
+      userId: user.id,
     },
     skip: !user.id,
   });
@@ -30,10 +30,15 @@ const page = () => {
         <h1 className="text-3xl font-bold transition-all duration-300 hover:text-indigo-600 cursor-default w-full mt-4">
           Minhas Escalações
         </h1>
-        <p className="text-[#717171]">Aqui estão as suas lineups. Lineups são formações que você pode criar, depois você terá de escolher 11 jogadores para ela, para futuramente utilizar esses times durante batalhas competitivas, crie quantas formações você quiser!</p>
+        <p className="text-[#717171]">
+          Aqui estão as suas lineups. Lineups são formações que você pode criar,
+          depois você terá de escolher 11 jogadores para ela, para futuramente
+          utilizar esses times durante batalhas competitivas, crie quantas
+          formações você quiser!
+        </p>
 
         {userLineups && userLineups.getUserLineups ? (
-          <div className="flex gap-8 mt-12">
+          <div className="flex gap-8 mt-16 py-6">
             {userLineups.getUserLineups.map(
               (lineup: LineupProps, index: number) => (
                 <Lineup key={index} lineupData={lineup} />
@@ -41,12 +46,14 @@ const page = () => {
             )}
           </div>
         ) : (
-          <span className="w-full text-lg text-[#717171] p-10 text-center mt-20">Você ainda não criou nenhuma formação até o momento!</span>
+          <span className="w-full text-lg text-[#717171] p-10 text-center mt-20">
+            Você ainda não criou nenhuma formação até o momento!
+          </span>
         )}
 
         {!showCreateLineup && (
           <div
-            className="w-full mt-20 flex justify-center items-center"
+            className="w-full mt-24 flex justify-center items-center"
             onClick={() => setShowCreateLineup(!showCreateLineup)}
           >
             <button className="cta">

@@ -116,3 +116,55 @@ export const CREATE_LINEUP = gql`
     }
   }
 `
+
+export const OPEN_PLAYERS_PACK = gql`
+  mutation (
+    $userId: String!
+  ) {
+    openPlayersPack(
+      id: $userId
+    ) {
+      name
+    }
+  }
+`
+
+export const SELL_CARD = gql `
+  mutation (
+    $ownerId: String!
+    $newOwnerId: String!
+    $playerId: String!
+    $price: Float!
+  ) {
+    sellCard(
+      sellCard: {
+        ownerId: $ownerId
+        newOwnerId: $newOwnerId
+        playerId: $playerId
+        price: $price
+      }
+    ) {
+      name
+    }
+  }
+`
+
+export const BUY_CARD = gql `
+  mutation (
+    $ownerId: String!
+    $newOwnerId: String!
+    $playerId: String!
+    $price: Float!
+  ) {
+    buyCard(
+      sellCard: {
+        ownerId: $ownerId
+        newOwnerId: $newOwnerId
+        playerId: $playerId
+        price: $price
+      }
+    ) {
+      name
+    }
+  }
+`

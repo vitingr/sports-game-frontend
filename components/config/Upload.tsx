@@ -23,9 +23,8 @@ const UploadImage = ({ setState, currentFoto, text, show }: UploadProps) => {
     reader.readAsDataURL(file);
     reader.onload = () => {
       const result = reader.result as string;
-      // State vai armazar o valor da variável
+
       setState(result);
-      // Show vai armazenar a propriedade de mostrar o Popup na tela do usuário
       show(false);
     };
   };
@@ -33,7 +32,7 @@ const UploadImage = ({ setState, currentFoto, text, show }: UploadProps) => {
   return (
     <Popup title="Enviar Imagem" state={show}>
       <div className="w-full h-[300px] border border-dashed border-neutral-300 p-6 mt-10 flex flex-col items-center justify-center">
-        {!currentFoto  ? (
+        {!currentFoto ? (
           <label htmlFor="image">{text}</label>
         ) : (
           <Image

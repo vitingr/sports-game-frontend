@@ -1,7 +1,12 @@
+"use client"
+
 import Image from "next/image";
 import React from "react";
 
 const page = () => {
+  
+  
+  
   return (
     <div className="flex flex-col items-center gap-6 w-full max-w-[1250px] bg-white p-10 rounded-xl shadow-md shadow-neutral-200 border border-neutral-100">
       <h1 className="font-bold text-3xl w-full transition-all duration-300 hover:text-indigo-600 cursor-default mt-4">
@@ -35,6 +40,15 @@ const page = () => {
               />
               35.000
             </h2>
+            <h2 className="preco-produto-loja flex items-center gap-2">
+              <Image
+                src={"/assets/points.png"}
+                alt="Price Icon"
+                width={25}
+                height={25}
+              />
+              350
+            </h2>
             <form action="/jogador/playersPack" method="POST">
               <button className="comprar-produto">Comprar Pacote</button>
             </form>
@@ -64,6 +78,15 @@ const page = () => {
                 height={25}
               />
               15.000
+            </h2>
+            <h2 className="preco-produto-loja flex items-center gap-2">
+              <Image
+                src={"/assets/points.png"}
+                alt="Price Icon"
+                width={25}
+                height={25}
+              />
+              150
             </h2>
             <form action="/jogador/rareGoldPack" method="POST">
               <button className="comprar-produto">Comprar Pacote</button>
@@ -95,6 +118,15 @@ const page = () => {
               />
               10.000
             </h2>
+            <h2 className="preco-produto-loja flex items-center gap-2">
+              <Image
+                src={"/assets/points.png"}
+                alt="Price Icon"
+                width={25}
+                height={25}
+              />
+              100
+            </h2>
             <form action="/jogador/goldPack" method="POST">
               <button className="comprar-produto">Comprar Pacote</button>
             </form>
@@ -124,6 +156,15 @@ const page = () => {
                 height={25}
               />
               5.000
+            </h2>
+            <h2 className="preco-produto-loja flex items-center gap-2">
+              <Image
+                src={"/assets/points.png"}
+                alt="Price Icon"
+                width={25}
+                height={25}
+              />
+              75
             </h2>
             <form action="/jogador/rareSilverPack" method="POST">
               <button className="comprar-produto">Comprar Pacote</button>
@@ -155,6 +196,15 @@ const page = () => {
               />
               2.500
             </h2>
+            <h2 className="preco-produto-loja flex items-center gap-2">
+              <Image
+                src={"/assets/points.png"}
+                alt="Price Icon"
+                width={25}
+                height={25}
+              />
+              50
+            </h2>
             <form action="/jogador/silverPack" method="POST">
               <button className="comprar-produto">Comprar Pacote</button>
             </form>
@@ -184,6 +234,15 @@ const page = () => {
                 height={25}
               />
               500
+            </h2>
+            <h2 className="preco-produto-loja flex items-center gap-2">
+              <Image
+                src={"/assets/points.png"}
+                alt="Price Icon"
+                width={25}
+                height={25}
+              />
+              25
             </h2>
             <form action="/jogador/bronzePack" method="POST">
               <button className="comprar-produto">Comprar Pacote</button>

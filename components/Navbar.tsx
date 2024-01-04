@@ -31,37 +31,37 @@ const Navbar = () => {
         <ul className="list-none flex gap-10 items-center w-full justify-around">
           <Link
             href={"/home"}
-            className="transition-all duration-300 hover:text-indigo-700"
+            className="transition-all duration-300 hover:text-indigo-700 text-sm text-center"
           >
             Início
           </Link>
           <Link
             href={"/friends"}
-            className="transition-all duration-300 hover:text-indigo-700"
+            className="transition-all duration-300 hover:text-indigo-700 text-sm text-center"
           >
             Amigos
           </Link>
           <Link
             href={"/shop"}
-            className="transition-all duration-300 hover:text-indigo-700"
+            className="transition-all duration-300 hover:text-indigo-700 text-sm text-center"
           >
             Loja
           </Link>
           <Link
             href={"/market"}
-            className="transition-all duration-300 hover:text-indigo-700"
+            className="transition-all duration-300 hover:text-indigo-700 text-sm text-center"
           >
             Mercado
           </Link>
           <Link
             href={"/lineups"}
-            className="transition-all duration-300 hover:text-indigo-700"
+            className="transition-all duration-300 hover:text-indigo-700 text-sm text-center"
           >
             Elencos
           </Link>
           <Link
             href={"/my-club"}
-            className="transition-all duration-300 hover:text-indigo-700"
+            className="transition-all duration-300 hover:text-indigo-700 text-sm text-center"
           >
             Meu Clube
           </Link>
@@ -211,7 +211,7 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      <div className="w-full text-white p-4 bg-indigo-500 h-[50px] gap-4 flex items-center justify-center cursor-pointer">
+      <div className="w-full text-white p-4 bg-[#333] h-[50px] gap-4 flex items-center justify-center cursor-pointer">
         <span className="text-white tracking-wider">
           Confira as novidades da nossa Loja
         </span>

@@ -71,6 +71,7 @@ export interface PlayerCardProps {
   maxValue: number;
   minValue: number;
   quickSellValue: number;
+  position: string;
 }
 
 export interface UploadProps {
@@ -121,4 +122,5 @@ export interface GeneratedCardProps {
   maxValue: number;
   minValue: number;
   quickSellValue: number;
+  position: string;
 }

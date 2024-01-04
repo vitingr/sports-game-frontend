@@ -14,6 +14,7 @@ const page = () => {
     club: "",
     league: "",
     type: "",
+    position: "",
     overall: 0,
     pace: 0,
     finalization: 0,
@@ -42,7 +43,7 @@ const page = () => {
       if (imageUpload.ok) {
         photoDatabase = await imageUpload.json();
         try {
-          console.log(cardInfo)
+          console.log(cardInfo);
           await createCard({
             variables: {
               cardImage: photoDatabase.url as string,
@@ -50,12 +51,13 @@ const page = () => {
               club: cardInfo.club,
               league: cardInfo.league,
               type: cardInfo.type,
-              overall:  Number(cardInfo.overall),
-              pace:  Number(cardInfo.pace),
-              finalization:  Number(cardInfo.finalization),
-              pass:  Number(cardInfo.pass),
-              drible:  Number(cardInfo.drible),   
-              defense:  Number(cardInfo.defense),
+              position: cardInfo.position,
+              overall: Number(cardInfo.overall),
+              pace: Number(cardInfo.pace),
+              finalization: Number(cardInfo.finalization),
+              pass: Number(cardInfo.pass),
+              drible: Number(cardInfo.drible),
+              defense: Number(cardInfo.defense),
               physic: Number(cardInfo.physic),
               minValue: Number(150),
               maxValue: Number(10000),
@@ -164,6 +166,28 @@ const page = () => {
           <option value="Idolo">Idolo</option>
           <option value="TOTW">TOTW</option>
           <option value="Ones to Watch">Ones to Watch</option>
+        </select>
+
+        <select
+          name="position"
+          id="position"
+          onChange={(e) =>
+            setCardInfo({ ...cardInfo, position: e.target.value })
+          }
+          autoComplete="off"
+          className="outline-none px-2 py-1 border border-neutral-200 w-full"
+        >
+          <option value=""></option>
+          <option value="Goleiro">Goleiro</option>
+          <option value="Zagueiro">Zagueiro</option>
+          <option value="Lateral Esquerdo">Lateral Esquerdo</option>
+          <option value="Lateral Direito">Lateral Direito</option>
+          <option value="Volante">Volante</option>
+          <option value="Meio Campo">Meio Campo</option>
+          <option value="Meia Armador">Meia Armador</option>
+          <option value="Ponta Esquerda">Ponta Esquerda</option>
+          <option value="Ponta Direita">Ponta Direita</option>
+          <option value="Atacante">Atacante</option>
         </select>
 
         <div>

@@ -8,13 +8,12 @@ import Image from "next/image";
 const CardActions = ({
   cardData,
   showState,
-  showSellingOptions
+  showSellingOptions,
 }: {
   cardData: GeneratedCardProps;
   showState: any;
   showSellingOptions: any;
 }) => {
-
   return (
     <Popup
       state={showState}
@@ -41,6 +40,9 @@ const CardActions = ({
           </h2>
           <h2 className="text-[#717171]">
             Liga: <span>{cardData.league}</span>
+          </h2>
+          <h2 className="text-[#717171]">
+            Raridade: <span>{cardData.type}</span>
           </h2>
 
           <h1 className="font-bold mb-2 mt-6">Habilidades</h1>
@@ -111,10 +113,13 @@ const CardActions = ({
           </h2>
         </div>
       </div>
-      <div className="bg-indigo-600 text-white rounded-xl py-3 px-4 text-center cursor-pointer mt-10" onClick={() => {
-        showState(false)
-        showSellingOptions(true)
-      }}>
+      <div
+        className="bg-indigo-600 text-white rounded-xl py-3 px-4 text-center cursor-pointer mt-10"
+        onClick={() => {
+          showState(false);
+          showSellingOptions(true);
+        }}
+      >
         Vender Jogador no Mercado
       </div>
       <div className="text-indigo-600 border border-indigo-600 rounded-xl py-3 px-4 text-center cursor-pointer mt-6">

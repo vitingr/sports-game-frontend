@@ -41,7 +41,7 @@ const page = () => {
           <div className="flex gap-8 mt-16 py-6">
             {userLineups.getUserLineups.map(
               (lineup: LineupProps, index: number) => (
-                <Lineup key={index} lineupData={lineup} />
+                <Lineup key={index} lineupData={lineup} refetch={refetchUserLineups} />
               )
             )}
           </div>

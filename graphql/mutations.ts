@@ -49,6 +49,7 @@ export const CREATE_CARD = gql `
     $club: String!
     $league: String!
     $type: String!
+    $position: String!
     $overall: Int!
     $pace: Int!
     $finalization: Int!
@@ -67,6 +68,7 @@ export const CREATE_CARD = gql `
         club: $club
         league: $league
         type: $type
+        position: $position
         overall: $overall
         pace: $pace
         finalization: $finalization
@@ -163,6 +165,18 @@ export const BUY_CARD = gql `
         playerId: $playerId
         price: $price
       }
+    ) {
+      name
+    }
+  }
+`
+
+export const DELETE_USER_LINEUP = gql `
+  mutation (
+    $id: String!
+  ) {
+    deleteUserLineup(
+      id: $id
     ) {
       name
     }

@@ -1,14 +1,15 @@
 import { gql } from "@apollo/client";
+import { GeneratedCardProps } from "@/types";
 
-export const CREATE_PLAYER = gql `
+export const CREATE_PLAYER = gql`
   mutation (
-      $uuid: String!
-      $name: String!
-      $firstname: String!
-      $lastname: String!
-      $clubname: String!
-      $email: String!
-      $password: String!
+    $uuid: String!
+    $name: String!
+    $firstname: String!
+    $lastname: String!
+    $clubname: String!
+    $email: String!
+    $password: String!
   ) {
     createNewUser(
       createUser: {
@@ -24,25 +25,19 @@ export const CREATE_PLAYER = gql `
       id
     }
   }
-`
+`;
 
-export const SEND_FRIEND_INVITE  = gql`
-  mutation (
-    $userId: String!
-    $friendId: String!
-  ) {
+export const SEND_FRIEND_INVITE = gql`
+  mutation ($userId: String!, $friendId: String!) {
     sendFriendInvite(
-      sendFriendInvite: {
-        userId: $userId
-        friendId: $friendId
-      }
+      sendFriendInvite: { userId: $userId, friendId: $friendId }
     ) {
       id
     }
   }
-`
+`;
 
-export const CREATE_CARD = gql `
+export const CREATE_CARD = gql`
   mutation (
     $cardImage: String!
     $name: String!
@@ -84,54 +79,34 @@ export const CREATE_CARD = gql `
       id
     }
   }
-`
+`;
 
 export const EDIT_CLUB_NAME = gql`
-  mutation (
-    $userId: String!
-    $clubname: String!
-  ) {
-    changeClubName(
-      changeClubName: {
-        userId: $userId
-        clubname: $clubname
-      }
-    ) {
+  mutation ($userId: String!, $clubname: String!) {
+    changeClubName(changeClubName: { userId: $userId, clubname: $clubname }) {
       id
       clubname
     }
   }
-`
+`;
 
 export const CREATE_LINEUP = gql`
-  mutation (
-    $name: String!
-    $owner: String!
-  ) {
-    createLineup(
-      createLineupInput: {
-        name: $name
-        owner: $owner
-      }
-    ) {
+  mutation ($name: String!, $owner: String!) {
+    createLineup(createLineupInput: { name: $name, owner: $owner }) {
       id
     }
   }
-`
+`;
 
 export const OPEN_PLAYERS_PACK = gql`
-  mutation (
-    $userId: String!
-  ) {
-    openPlayersPack(
-      id: $userId
-    ) {
+  mutation ($userId: String!) {
+    openPlayersPack(id: $userId) {
       name
     }
   }
-`
+`;
 
-export const SELL_CARD = gql `
+export const SELL_CARD = gql`
   mutation (
     $ownerId: String!
     $newOwnerId: String!
@@ -149,9 +124,9 @@ export const SELL_CARD = gql `
       name
     }
   }
-`
+`;
 
-export const BUY_CARD = gql `
+export const BUY_CARD = gql`
   mutation (
     $ownerId: String!
     $newOwnerId: String!
@@ -169,16 +144,32 @@ export const BUY_CARD = gql `
       name
     }
   }
-`
+`;
 
-export const DELETE_USER_LINEUP = gql `
-  mutation (
-    $id: String!
-  ) {
-    deleteUserLineup(
-      id: $id
-    ) {
+export const DELETE_USER_LINEUP = gql`
+  mutation ($id: String!) {
+    deleteUserLineup(id: $id) {
       name
     }
   }
-`
+`;
+
+export const UPDATE_LINEUP_CARD = gql`
+  mutation (
+    $lineupId: String!
+    $playerId: String!
+    $playerData: String!
+    $index: Int!
+  ) {
+    updateLineupCard(
+      updateLineupCard: {
+        lineupId: $lineupId
+        playerId: $playerId
+        playerData: $playerData
+        index: $index
+      }
+    ) {
+      id
+    }
+  }
+`;

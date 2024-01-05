@@ -1,19 +1,25 @@
 "use client";
 
-import { PlayerCardProps } from "@/types";
 import Image from "next/image";
 import React, { useState } from "react";
 import ChangePlayer from "./ChangePlayer";
+import { GeneratedCardProps } from "@/types";
 
-const LineupCard = ({ cardData }: { cardData: string[] }) => {
+type LineupCardProps = {
+  cardData: GeneratedCardProps;
+  lineupIndex: number;
+  lineupId: string;
+}
+
+const LineupCard = ({ cardData, lineupIndex, lineupId }: LineupCardProps) => {
   const [showChangePlayer, setShowChangePlayer] = useState<boolean>(false);
 
   return (
     <>
       {showChangePlayer && (
-        <ChangePlayer state={setShowChangePlayer} />
+        <ChangePlayer state={setShowChangePlayer} lineupIndex={lineupIndex} indexData={cardData} lineupId={lineupId} />
       )}
-      {cardData ? (
+      {!cardData ? (
         <Image
           src={"/assets/empty-card.webp"}
           alt="Lineup Card"
@@ -24,7 +30,7 @@ const LineupCard = ({ cardData }: { cardData: string[] }) => {
         />
       ) : (
         <Image
-          src={cardData[0]}
+          src={cardData.cardImage}
           alt="Lineup Card"
           width={125}
           height={125}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Popup from "../config/Popup";
 import { infoUser } from "@/contexts/UserContext";
 import { useQuery } from "@apollo/client";
@@ -6,7 +6,17 @@ import { GET_USER_CARDS } from "@/graphql/queries";
 import { GeneratedCardProps } from "@/types";
 import ChangeLineupCard from "./ChangeLineupCard";
 
-const ChangePlayer = ({ state }: { state: any }) => {
+const ChangePlayer = ({
+  state,
+  lineupIndex,
+  indexData,
+  lineupId
+}: {
+  state: any;
+  lineupIndex: number;
+  indexData: GeneratedCardProps;
+  lineupId: string;
+}) => {
   const { user } = infoUser();
 
   const {
@@ -20,6 +30,46 @@ const ChangePlayer = ({ state }: { state: any }) => {
     skip: !user.id,
   });
 
+  const [position, setPosition] = useState<string[]>([]);
+
+  useEffect(() => {
+    switch (lineupIndex) {
+      case 1:
+        setPosition(["Goleiro"]);
+        break;
+      case 2:
+        setPosition(["Lateral Direito", "Lateral Direito", "Zagueiro"]);
+        break;
+      case 3:
+        setPosition(["Lateral Direito", "Lateral Direito", "Zagueiro"]);
+        break;
+      case 4:
+        setPosition(["Lateral Direito", "Lateral Direito", "Zagueiro"]);
+        break;
+      case 5:
+        setPosition(["Lateral Direito", "Lateral Direito", "Zagueiro"]);
+        break;
+      case 6:
+        setPosition(["Meio-Campo", "Volante", "Meia Armador"]);
+        break;
+      case 7:
+        setPosition(["Meio-Campo", "Volante", "Meia Armador"]);
+        break;
+      case 8:
+        setPosition(["Meio-Campo", "Volante", "Meia Armador"]);
+        break;
+      case 9:
+        setPosition(["Ponta Direita", "Ponta Esquerda", "Atacante"]);
+        break;
+      case 10:
+        setPosition(["Ponta Direita", "Ponta Esquerda", "Atacante"]);
+        break;
+      case 11:
+        setPosition(["Ponta Direita", "Ponta Esquerda", "Atacante"]);
+        break;
+    }
+  }, []);
+
   return (
     myCardsLoading === false && (
       <Popup
@@ -28,10 +78,18 @@ const ChangePlayer = ({ state }: { state: any }) => {
         description="Escolha um jogador para ocupar essa posição na sua formação atual"
       >
         {myCards && myCards.findUserCards ? (
-          <div className="flex flex-wrap gap-4 mt-8 w-full">
+          <div className="flex flex-wrap gap-4 py-8 w-full">
             {myCards.findUserCards.map(
               (card: GeneratedCardProps, index: number) => (
-                <ChangeLineupCard key={index}  />
+                <ChangeLineupCard
+                  key={index}
+                  lineupIndex={lineupIndex}
+                  cardData={card}
+                  positions={position}
+                  showState={state}
+                  indexData={indexData}
+                  lineupId={lineupId}
+                />
               )
             )}
           </div>

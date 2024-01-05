@@ -12,7 +12,7 @@ const Popup = ({
   return (
     <div className="popup-wrapper">
       <div className="glassmorphism">
-        <div className="max-w-[600px] w-full p-10 bg-white rounded-xl">
+        <div className="max-w-[800px] w-full p-10 bg-white rounded-xl">
           <div className="flex justify-between items-center">
             <h1 className="w-full text-3xl font-bold">{title}</h1>
             {handleSubmit ? (

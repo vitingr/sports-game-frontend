@@ -9,15 +9,16 @@ type LineupCardProps = {
   cardData: GeneratedCardProps;
   lineupIndex: number;
   lineupId: string;
+  handleRefetch: any
 }
 
-const LineupCard = ({ cardData, lineupIndex, lineupId }: LineupCardProps) => {
+const LineupCard = ({ cardData, lineupIndex, lineupId, handleRefetch }: LineupCardProps) => {
   const [showChangePlayer, setShowChangePlayer] = useState<boolean>(false);
 
   return (
     <>
       {showChangePlayer && (
-        <ChangePlayer state={setShowChangePlayer} lineupIndex={lineupIndex} indexData={cardData} lineupId={lineupId} />
+        <ChangePlayer handleRefetch={handleRefetch} state={setShowChangePlayer} lineupIndex={lineupIndex} indexData={cardData} lineupId={lineupId} />
       )}
       {!cardData ? (
         <Image

@@ -63,7 +63,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         await refetchPlayerData();
       } else {
         await refetchPlayerData().then(content => {
-          console.log(content.data.getUser)
           setUser(content.data.getUser);
         })
       }

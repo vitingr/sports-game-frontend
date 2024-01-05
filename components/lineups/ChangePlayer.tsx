@@ -10,12 +10,14 @@ const ChangePlayer = ({
   state,
   lineupIndex,
   indexData,
-  lineupId
+  lineupId,
+  handleRefetch
 }: {
   state: any;
   lineupIndex: number;
   indexData: GeneratedCardProps;
   lineupId: string;
+  handleRefetch: any
 }) => {
   const { user } = infoUser();
 
@@ -89,6 +91,7 @@ const ChangePlayer = ({
                   showState={state}
                   indexData={indexData}
                   lineupId={lineupId}
+                  handleRefetch={handleRefetch}
                 />
               )
             )}

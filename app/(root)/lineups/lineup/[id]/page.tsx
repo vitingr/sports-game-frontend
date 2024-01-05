@@ -35,7 +35,6 @@ const page = () => {
         <h1 className="text-4xl font-bold transition-all duration-300 hover:text-indigo-600 cursor-default w-full text-center py-6">
           Minha Escalação
         </h1>
-        {JSON.stringify(lineupData)}
         <Image
           src={"/assets/lineup.png"}
           alt="Lineup Image"
@@ -50,16 +49,19 @@ const page = () => {
                 cardData={JSON.parse(lineupData.findLineup.player11)}
                 lineupIndex={11}
                 lineupId={query}
+                handleRefetch={refetchLineupData}
               />
               <LineupCard
                 cardData={JSON.parse(lineupData.findLineup.player10)}
                 lineupIndex={10}
                 lineupId={query}
+                handleRefetch={refetchLineupData}
               />
               <LineupCard
                 cardData={JSON.parse(lineupData.findLineup.player9)}
                 lineupIndex={9}
                 lineupId={query}
+                handleRefetch={refetchLineupData}
               />
             </div>
             <div className="w-full flex justify-around items-center">
@@ -67,16 +69,19 @@ const page = () => {
                 cardData={JSON.parse(lineupData.findLineup.player8)}
                 lineupIndex={8}
                 lineupId={query}
+                handleRefetch={refetchLineupData}
               />
               <LineupCard
                 cardData={JSON.parse(lineupData.findLineup.player7)}
                 lineupIndex={7}
                 lineupId={query}
+                handleRefetch={refetchLineupData}
               />
               <LineupCard
                 cardData={JSON.parse(lineupData.findLineup.player6)}
                 lineupIndex={6}
                 lineupId={query}
+                handleRefetch={refetchLineupData}
               />
             </div>
             <div className="w-full flex justify-around items-center">
@@ -84,21 +89,25 @@ const page = () => {
                 cardData={JSON.parse(lineupData.findLineup.player5)}
                 lineupIndex={5}
                 lineupId={query}
+                handleRefetch={refetchLineupData}
               />
               <LineupCard
                 cardData={JSON.parse(lineupData.findLineup.player4)}
                 lineupIndex={4}
                 lineupId={query}
+                handleRefetch={refetchLineupData}
               />
               <LineupCard
                 cardData={JSON.parse(lineupData.findLineup.player3)}
                 lineupIndex={3}
                 lineupId={query}
+                handleRefetch={refetchLineupData}
               />
               <LineupCard
                 cardData={JSON.parse(lineupData.findLineup.player2)}
                 lineupIndex={2}
                 lineupId={query}
+                handleRefetch={refetchLineupData}
               />
             </div>
             <div className="w-full flex justify-around items-center">
@@ -106,6 +115,7 @@ const page = () => {
                 cardData={JSON.parse(lineupData.findLineup.player1)}
                 lineupIndex={1}
                 lineupId={query}
+                handleRefetch={refetchLineupData}
               />
             </div>
           </div>

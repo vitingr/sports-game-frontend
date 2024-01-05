@@ -34,18 +34,25 @@ export default function RootLayout({
         <body className="selection:text-[white] selection:bg-indigo-400">
           <ApolloContext>
             {isPublic && (
-              <UserProvider>
+              <>
                 <SignedIn>
-                  <Navbar />
+                  <UserProvider>
+                    <Navbar />
+                    <Header />
+                    <main className="bg-[#f6f6f6] w-full min-h-[62vh] sm:pt-[150px] flex justify-center">
+                      {children}
+                    </main>
+                    <Footer />
+                  </UserProvider>
                 </SignedIn>
                 <SignedOut>
-                  <Header />
+                    <Header />
+                    <main className="bg-[#f6f6f6] w-full min-h-[62vh] sm:pt-[150px] flex justify-center">
+                      {children}
+                    </main>
+                    <Footer />
                 </SignedOut>
-                <main className="bg-[#f6f6f6] w-full min-h-[62vh] sm:pt-[150px] flex justify-center">
-                  {children}
-                </main>
-                <Footer />
-              </UserProvider>
+              </>
             )}
 
             {!isPublic && (

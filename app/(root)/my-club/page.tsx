@@ -28,9 +28,9 @@ const page = () => {
 
   return (
     myCardsLoading === false && (
-      <div className="flex justify-center gap-6 w-full max-w-[1600px] mt-[3em]">
+      <div className="flex justify-center gap-6 w-full max-w-[1600px] mt-[3em] flex-wrap h-full">
         <div className="w-full flex flex-col gap-4 h-full">
-          <div className="w-full bg-white p-10 rounded-lg border border-neutral-100 shadow-md shadow-neutral-200 h-full">
+          <div className="w-full bg-white p-6 sm:p-10 rounded-lg border border-neutral-100 shadow-md shadow-neutral-200 h-full">
             <h1 className="font-semibold text-2xl">Minhas Cartas</h1>
             <p className="text-[#717171]">
               Abra Pacotes ou faça compras no mercado de transferências para
@@ -61,10 +61,10 @@ const page = () => {
               </Link>
             </div>
           </div>
-          <div className="w-full bg-white p-10 rounded-lg border border-neutral-100 shadow-md shadow-neutral-200 h-full">
+          <div className="w-full bg-white p-6 sm:p-10 rounded-lg border border-neutral-100 shadow-md shadow-neutral-200 h-full">
             <h1 className="font-semibold text-2xl">Minha Classificação</h1>
             <div className="flex flex-col w-full gap-2 mt-10">
-              <div className="w-full flex gap-6 justify-between">
+              <div className="w-full flex gap-6 justify-between flex-wrap">
                 <div className="flex flex-col w-full gap-2">
                   <div className="flex items-center gap-1">
                     <span className="text-base">Partidas Jogadas: </span>
@@ -203,7 +203,7 @@ const page = () => {
               </h1>
               <h3 className="text-[#717171]">{user.name}</h3>
             </div>
-            <div className="flex h-full mt-6 w-full gap-10 justify-between ml-4">
+            <div className="flex h-full mt-6 w-full gap-10 justify-between ml-4 flex-wrap">
               <section className="mt-6 flex justify-center flex-col w-full gap-2 h-full">
                 <h1 className="font-semibold">Informações da Conta</h1>
                 <div className="flex items-center gap-1">
@@ -269,7 +269,7 @@ const page = () => {
                 </div>
               </section>
             </div>
-            <div className="h-full flex flex-col justify-end mb-[115px]">
+            <div className="h-full flex flex-col justify-end mb-[115px] mt-20 sm:mt-0">
               <div
                 className="rounded-full bg-indigo-600 text-white px-4 py-2 text-center cursor-pointer transition-all duration-300 hover:bg-indigo-800"
                 onClick={() => setShowChangeClubname(!showChangeClubName)}

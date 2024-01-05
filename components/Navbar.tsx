@@ -25,43 +25,43 @@ const Navbar = () => {
   return (
     <header className="fixed bg-white w-full flex flex-col items-center z-50">
       <div className="max-w-[1600px] flex justify-between gap-6 w-full p-6">
-        <Link href={"/"} className="font-extrabold text-3xl w-full flex justify-center cursor-pointer">
+        <Link href={"/"} className="font-extrabold text-3xl w-full flex justify-left sm:justify-center cursor-pointer">
           FUT24
         </Link>
-        <ul className="list-none flex gap-10 items-center w-full justify-around">
+        <ul className="list-none hidden sm:flex gap-10 items-center w-full justify-around">
           <Link
             href={"/home"}
-            className="transition-all duration-300 hover:text-indigo-700 text-sm text-center"
+            className="transition-all duration-300 hover:text-indigo-700 text-sm lg:text-base text-center"
           >
             Início
           </Link>
           <Link
             href={"/friends"}
-            className="transition-all duration-300 hover:text-indigo-700 text-sm text-center"
+            className="transition-all duration-300 hover:text-indigo-700 text-sm lg:text-base text-center"
           >
             Amigos
           </Link>
           <Link
             href={"/shop"}
-            className="transition-all duration-300 hover:text-indigo-700 text-sm text-center"
+            className="transition-all duration-300 hover:text-indigo-700 text-sm lg:text-base text-center"
           >
             Loja
           </Link>
           <Link
             href={"/market"}
-            className="transition-all duration-300 hover:text-indigo-700 text-sm text-center"
+            className="transition-all duration-300 hover:text-indigo-700 text-sm lg:text-base text-center"
           >
             Mercado
           </Link>
           <Link
             href={"/lineups"}
-            className="transition-all duration-300 hover:text-indigo-700 text-sm text-center"
+            className="transition-all duration-300 hover:text-indigo-700 text-sm lg:text-base text-center"
           >
             Elencos
           </Link>
           <Link
             href={"/my-club"}
-            className="transition-all duration-300 hover:text-indigo-700 text-sm text-center"
+            className="transition-all duration-300 hover:text-indigo-700 text-sm lg:text-base text-center"
           >
             Meu Clube
           </Link>
@@ -96,7 +96,7 @@ const Navbar = () => {
               </div>
 
               <UserButton afterSignOutUrl="/" />
-              <GoSearch size={22.5} className="cursor-pointer gray-icon" />
+              <GoSearch size={22.5} className="cursor-pointer gray-icon hidden sm:block" />
               <IoMenuOutline
                 size={22.5}
                 className="cursor-pointer gray-icon"

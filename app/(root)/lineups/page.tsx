@@ -38,7 +38,7 @@ const page = () => {
         </p>
 
         {userLineups && userLineups.getUserLineups ? (
-          <div className="flex gap-8 mt-16 py-6">
+          <div className="flex gap-8 mt-16 py-6 flex-wrap sm:justify-normal justify-center w-full">
             {userLineups.getUserLineups.map(
               (lineup: LineupProps, index: number) => (
                 <Lineup key={index} lineupData={lineup} refetch={refetchUserLineups} />

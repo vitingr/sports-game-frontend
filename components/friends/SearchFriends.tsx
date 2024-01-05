@@ -1,9 +1,7 @@
 "use client";
 
 import { infoUser } from "@/contexts/UserContext";
-import { GET_ALL_PLAYERS } from "@/graphql/queries";
 import { UserProps } from "@/types";
-import { useQuery } from "@apollo/client";
 import Image from "next/image";
 import React from "react";
 import ToastMessage from "../config/ToastMessage";
@@ -27,8 +25,9 @@ const SearchFriends = () => {
         friendId: friend.id as string,
         socketId: socket.id
       });
-      await refetchPlayersData();
-      toast.success("Convite de amizade enviado com successo!");
+      await refetchPlayersData().then(() => {
+        toast.success("Convite de amizade enviado com successo!");
+      })
     } else {
       toast.error("Não é possível adicionar o mesmo amigo duas vezes");
     }

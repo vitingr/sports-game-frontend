@@ -25,7 +25,7 @@ export const WebSocketProvider = ({
   const { user } = infoUser();
 
   // Data Graphql Queries
-  const { data: myFriendsData, loading: myFriendsDataLoading } = useQuery(
+  const { data: myFriendsData, loading: myFriendsDataLoading, refetch: refetchMyFriendsData } = useQuery(
     GET_USER_FRIENDS,
     {
       variables: {
@@ -83,6 +83,7 @@ export const WebSocketProvider = ({
         playersData,
         pendingFriends,
         myFriendsData,
+        refetchMyFriendsData,
         refetchPlayersData,
         refetchPendingFriends,
       }}

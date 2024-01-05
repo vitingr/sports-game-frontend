@@ -16,7 +16,7 @@ const page = () => {
     <div className="flex items-center gap-6 w-full max-w-[1025px] mt-[2em] flex-col">
       <div className="flex gap-6 items-center w-full justify-between">
         <div
-          className="w-full border border-neutral-200 rounded-full px-4 py-2 flex justify-center bg-white cursor-pointer transition-all duration-300 hover:bg-indigo-600 hover:text-white"
+          className="w-full border border-neutral-200 rounded-full px-4 py-2 flex justify-center bg-white cursor-pointer transition-all duration-300 hover:bg-indigo-600 hover:text-white text-center sm:text-base text-sm"
           onClick={() => {
             setMyFriends(true);
             setSearchFriends(false);
@@ -26,7 +26,7 @@ const page = () => {
           Meus Amigos
         </div>
         <div
-          className="w-full border border-neutral-200 rounded-full px-4 py-2 flex justify-center bg-white cursor-pointer transition-all duration-300 hover:bg-indigo-600 hover:text-white"
+          className="w-full border border-neutral-200 rounded-full px-4 py-2 flex justify-center bg-white cursor-pointer transition-all duration-300 hover:bg-indigo-600 hover:text-white text-center sm:text-base text-sm"
           onClick={() => {
             setMyFriends(false);
             setSearchFriends(true);
@@ -36,7 +36,7 @@ const page = () => {
           Encontrar Amigos
         </div>
         <div
-          className="w-full border border-neutral-200 rounded-full px-4 py-2 flex justify-center bg-white cursor-pointer transition-all duration-300 hover:bg-indigo-600 hover:text-white"
+          className="w-full border border-neutral-200 rounded-full px-4 py-2 flex justify-center bg-white cursor-pointer transition-all duration-300 hover:bg-indigo-600 hover:text-white text-center sm:text-base text-sm"
           onClick={() => {
             setMyFriends(false);
             setSearchFriends(false);

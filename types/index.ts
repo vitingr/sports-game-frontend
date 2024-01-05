@@ -124,3 +124,8 @@ export interface GeneratedCardProps {
   quickSellValue: number;
   position: string;
 }
+
+export interface DoughnutProps {
+  chartData: any;
+  chartOptions: any;
+}

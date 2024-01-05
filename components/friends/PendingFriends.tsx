@@ -2,9 +2,7 @@
 
 import { infoUser } from "@/contexts/UserContext";
 import { socket, socketProvider } from "@/contexts/WebSocketContext";
-import { GET_USER_PENDING_FRIENDS } from "@/graphql/queries";
 import { UserProps } from "@/types";
-import { useQuery } from "@apollo/client";
 import Image from "next/image";
 import React from "react";
 import ToastMessage from "../config/ToastMessage";
@@ -20,9 +18,10 @@ const PendingFriends = () => {
         socket.emit("acceptInvite", {
           userId: user.id as string,
           friendId: friend.id as string,
+        })
+        await refetchPendingFriends().then(() => {
+          toast.success("O convite de amizade foi aceito com sucesso!");
         });
-        toast.success("O convite de amizade foi aceito com sucesso!");
-        await refetchPendingFriends();
       } catch (error) {
         throw new Error("Não foi possível aceitar o convite de amizade");
       }
@@ -48,8 +47,7 @@ const PendingFriends = () => {
     }
   };
 
-  return pendingFriends &&
-    pendingFriends?.getUserPendingFriends ? (
+  return pendingFriends && pendingFriends?.getUserPendingFriends ? (
     <>
       <ToastMessage />
       <h1 className="text-2xl font-bold mb-10 transition-all duration-300 hover:text-indigo-600 cursor-default">

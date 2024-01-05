@@ -1,26 +1,47 @@
 "use client";
 
 import { infoUser } from "@/contexts/UserContext";
-import { socketProvider } from "@/contexts/WebSocketContext";
-import { GET_USER_FRIENDS } from "@/graphql/queries";
+import { socket, socketProvider } from "@/contexts/WebSocketContext";
 import { UserProps } from "@/types";
-import { useQuery } from "@apollo/client";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
+import { BsTrash } from "react-icons/bs";
+import { toast } from "react-toastify";
+import ToastMessage from "../config/ToastMessage";
 
 const MyFriends = () => {
   const { user } = infoUser();
 
-  const {myFriendsData} = socketProvider()
+  const { myFriendsData, refetchMyFriendsData } = socketProvider();
 
-  return myFriendsData &&
-    myFriendsData?.getUserFriends  ? (
+  const handleRemoveFriend = async (friend: UserProps) => {
+    try {
+      socket.emit("removeFriend", {
+        userId: user.id as string,
+        friendId: friend.id as string,
+      });
+      await refetchMyFriendsData().then(() => {
+        toast.success("O amigo foi removido da sua lista");
+      })
+    } catch (error) {
+      console.log(error);
+      toast.error("Não foi possível remover o amigo da sua lista");
+    }
+  };
+
+  return myFriendsData && myFriendsData?.getUserFriends ? (
     <>
-      <h1 className="text-2xl font-bold mb-10 transition-all duration-300 hover:text-indigo-600 cursor-default">Meus Amigos</h1>
+      <ToastMessage />
+      <h1 className="text-2xl font-bold mb-10 transition-all duration-300 hover:text-indigo-600 cursor-default">
+        Meus Amigos
+      </h1>
       <div className="flex flex-wrap w-full gap-10">
         {myFriendsData.getUserFriends.map(
           (player: UserProps, index: number) => (
-            <div className="max-w-[450px] w-full flex justify-between gap-3 py-2 mb-2 border-b border-neutral-100 items-center" key={index}>
+            <div
+              className="max-w-[450px] w-full flex justify-between gap-3 py-2 mb-2 border-b border-neutral-100 items-center"
+              key={index}
+            >
               <Image
                 src={"/assets/undefinedTeam.png"}
                 alt="Team Badge"
@@ -32,9 +53,7 @@ const MyFriends = () => {
                 <h1 className="font-semibold">{player.clubname}</h1>
                 <span className="text-sm text-[#717171]">{player.name}</span>
               </div>
-              <span className="font-[700] text-transparent  bg-clip-text bg-gradient-to-r from-emerald-700 to-teal-500 w-full flex justify-end">
-                35.023 Pontos
-              </span>
+              <BsTrash size={25} className="gray-icon cursor-pointer" onClick={() => handleRemoveFriend(player)} />
             </div>
           )
         )}

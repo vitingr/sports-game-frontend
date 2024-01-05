@@ -173,3 +173,35 @@ export const UPDATE_LINEUP_CARD = gql`
     }
   }
 `;
+
+export const HOME_DRIVER = gql`
+  mutation ($id: String!) {
+    useHomeDriver(id: $id) {
+      id
+    }
+  }
+`
+
+export const LINEUP_DRIVER = gql`
+  mutation ($id: String!) {
+    useLineupDriver(id: $id) {
+      id
+    }
+  }
+`
+
+export const MENU_DRIVER = gql`
+  mutation ($id: String!) {
+    useMenuDriver(id: $id) {
+      id
+    }
+  }
+`
+
+export const PROFILE_DRIVER = gql`
+  mutation ($id: String!) {
+    useProfileDriver(id: $id) {
+      id
+    }
+  }
+`

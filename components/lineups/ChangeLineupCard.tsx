@@ -39,9 +39,7 @@ const ChangeLineupCard = ({
 
   const {
     data: lineupData,
-    loading: lineupDataLoading,
-    refetch: refetchLineupData,
-    error: errorLineup,
+    loading: lineupDataLoading
   } = useQuery(GET_LINEUP, {
     variables: {
       id: query,

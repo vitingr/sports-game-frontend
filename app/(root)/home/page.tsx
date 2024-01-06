@@ -11,11 +11,25 @@ import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import { useMutation } from "@apollo/client";
 import { HOME_DRIVER } from "@/graphql/mutations";
+import { socket, socketProvider } from "@/contexts/WebSocketContext";
+import { toast } from "react-toastify";
+import ToastMessage from "@/components/config/ToastMessage";
 
 const page = () => {
   const { user } = infoUser();
 
   const [updateHomeDriver] = useMutation(HOME_DRIVER)
+
+  const handleSearchMatch = async () => {
+    try {
+      socket.emit("searchMatch", {
+        id: user.id as string
+      })
+      toast.success("Buscando partida")
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   const viewDriverHome = async () => {
     try {
@@ -125,6 +139,7 @@ const page = () => {
 
   return (
     <div className="w-full flex flex-col items-center gap-6 max-w-[1250px] mt-[3em]">
+      <ToastMessage />
       <section className="w-full mt-[2.5em]">
         <Image
           src={"/assets/future-stars.jpg"}
@@ -133,6 +148,10 @@ const page = () => {
           height={650}
           className="w-full h-full max-h-[650px] max-w-[1250px] rounded-xl"
         />
+      </section>
+
+      <section className="w-full mt-[6.5em]">
+        <div className="text-indigo-600 cursor-pointer" onClick={() => handleSearchMatch()}>buscar partida</div>
       </section>
 
       <section className="flex justify-between gap-8 w-full mt-[6.5em] sm:flex-nowrap flex-wrap">

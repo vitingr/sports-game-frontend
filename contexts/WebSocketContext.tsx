@@ -12,6 +12,7 @@ import {
   GET_USER_FRIENDS,
   GET_USER_PENDING_FRIENDS,
 } from "@/graphql/queries";
+import { useRouter } from "next/navigation";
 
 export const socket = io("http://localhost:3030");
 export const WebSocketContext = createContext<Socket | any>(socket);
@@ -21,36 +22,8 @@ export const WebSocketProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-
   const { user } = infoUser();
-
-  // Data Graphql Queries
-  const { data: myFriendsData, loading: myFriendsDataLoading, refetch: refetchMyFriendsData } = useQuery(
-    GET_USER_FRIENDS,
-    {
-      variables: {
-        friends: user.friends,
-      },
-      skip: !user.friends,
-    }
-  );
-
-  const {
-    data: pendingFriends,
-    loading: pendingFriendsLoading,
-    refetch: refetchPendingFriends,
-  } = useQuery(GET_USER_PENDING_FRIENDS, {
-    variables: {
-      playersId: user.pendingFriends,
-    },
-    skip: !user.pendingFriends,
-  });
-
-  const {
-    data: playersData,
-    loading: playersDataLoading,
-    refetch: refetchPlayersData,
-  } = useQuery(GET_ALL_PLAYERS);
+  const router = useRouter();
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -59,33 +32,38 @@ export const WebSocketProvider = ({
 
     socket.on("onInvite", async (invite: any) => {
       console.log(invite);
-      
-      if (user.id === invite.content.friendId && socket.id === invite.content.socketId) {
+
+      if (
+        user.id === invite.content.friendId &&
+        socket.id === invite.content.socketId
+      ) {
         console.log(`${user.id} | ${invite.friendId}`);
         console.log(`${socket.id} | ${invite.socketId}`);
         toast.info("Convite de Amizade Recebido");
       }
+    });
 
-      await refetchPlayersData();
-      await refetchPendingFriends()
+    socket.on("matchFound", ({ msg, userId, matchId }) => {
+      console.log(matchId);
+      router.push(`/match/${matchId}`);
+    });
+
+    socket.on("matchAccepted", ({ msg, userId, matchId }) => {
+      console.log(matchId);
+      router.push(`/match/accepted/${matchId}`);
     });
 
     return () => {
       socket.off("connect");
       socket.off("onInvite");
+      socket.off("matchFound");
     };
-  }, [socket]);
+  }, []);
 
   return (
     <WebSocketContext.Provider
       value={{
         socket,
-        playersData,
-        pendingFriends,
-        myFriendsData,
-        refetchMyFriendsData,
-        refetchPlayersData,
-        refetchPendingFriends,
       }}
     >
       <ToastMessage />

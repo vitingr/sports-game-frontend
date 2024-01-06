@@ -7,10 +7,21 @@ import Image from "next/image";
 import React from "react";
 import ToastMessage from "../config/ToastMessage";
 import { toast } from "react-toastify";
+import { GET_USER_PENDING_FRIENDS } from "@/graphql/queries";
+import { useQuery } from "@apollo/client";
 
 const PendingFriends = () => {
   const { user } = infoUser();
-  const { pendingFriends, refetchPendingFriends } = socketProvider();
+  const {
+    data: pendingFriends,
+    loading: pendingFriendsLoading,
+    refetch: refetchPendingFriends,
+  } = useQuery(GET_USER_PENDING_FRIENDS, {
+    variables: {
+      playersId: user.pendingFriends,
+    },
+    skip: !user.pendingFriends,
+  });
 
   const handleAcceptInvite = async (friend: UserProps) => {
     if (!friend.friends.includes(user.id)) {

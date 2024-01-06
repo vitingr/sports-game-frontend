@@ -8,11 +8,21 @@ import React from "react";
 import { BsTrash } from "react-icons/bs";
 import { toast } from "react-toastify";
 import ToastMessage from "../config/ToastMessage";
+import { GET_USER_FRIENDS } from "@/graphql/queries";
+import { useQuery } from "@apollo/client";
 
 const MyFriends = () => {
   const { user } = infoUser();
-
-  const { myFriendsData, refetchMyFriendsData } = socketProvider();
+  const {
+    data: myFriendsData,
+    loading: myFriendsDataLoading,
+    refetch: refetchMyFriendsData,
+  } = useQuery(GET_USER_FRIENDS, {
+    variables: {
+      friends: user.friends,
+    },
+    skip: !user.friends,
+  });
 
   const handleRemoveFriend = async (friend: UserProps) => {
     try {
@@ -22,7 +32,7 @@ const MyFriends = () => {
       });
       await refetchMyFriendsData().then(() => {
         toast.success("O amigo foi removido da sua lista");
-      })
+      });
     } catch (error) {
       console.log(error);
       toast.error("Não foi possível remover o amigo da sua lista");
@@ -53,7 +63,11 @@ const MyFriends = () => {
                 <h1 className="font-semibold">{player.clubname}</h1>
                 <span className="text-sm text-[#717171]">{player.name}</span>
               </div>
-              <BsTrash size={25} className="gray-icon cursor-pointer" onClick={() => handleRemoveFriend(player)} />
+              <BsTrash
+                size={25}
+                className="gray-icon cursor-pointer"
+                onClick={() => handleRemoveFriend(player)}
+              />
             </div>
           )
         )}

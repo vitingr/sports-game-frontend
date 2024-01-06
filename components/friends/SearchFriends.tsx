@@ -7,12 +7,16 @@ import React from "react";
 import ToastMessage from "../config/ToastMessage";
 import { toast } from "react-toastify";
 import { socket, socketProvider } from "@/contexts/WebSocketContext";
+import { useQuery } from "@apollo/client";
+import { GET_ALL_PLAYERS } from "@/graphql/queries";
 
 const SearchFriends = () => {
-
   const { user } = infoUser();
-
-  const {playersData, refetchPlayersData} = socketProvider()
+  const {
+    data: playersData,
+    loading: playersDataLoading,
+    refetch: refetchPlayersData,
+  } = useQuery(GET_ALL_PLAYERS);
   
   // Configurações Sockets
   const handleInviteFriend = async (friend: UserProps) => {

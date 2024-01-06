@@ -204,12 +204,12 @@ const Navbar = () => {
           </div>
         )}
       </div>
-      <div className="w-full text-white p-4 bg-[#333] h-[50px] gap-4 flex items-center justify-center cursor-pointer">
+      <Link href={"/shop"} className="w-full text-white p-4 bg-[#333] h-[50px] gap-4 flex items-center justify-center cursor-pointer">
         <span className="text-white tracking-wider">
           Confira as novidades da nossa Loja
         </span>
         <MdNewReleases className="white-icon" size={20} />
-      </div>
+      </Link>
     </header>
   );
 };

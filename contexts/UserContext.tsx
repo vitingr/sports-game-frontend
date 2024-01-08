@@ -40,15 +40,13 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       const requisition = await fetch("/api/getUserInfo");
       const response = await requisition.json();
       setData(response);
-      console.log(response);
     } catch (error) {
-      console.log(`ERROR: ${error}`);
+      throw new Error("Não foi possível obter os dados da sessão do usuário")
     }
   };
 
   const fetchAndUpdateUser = async () => {
     await refetchPlayerData().then((content) => {
-      console.log(content);
       setUser(content.data.getUser);
     });
   };
@@ -56,8 +54,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const getUserInfo = async () => {
     fetchAndUpdateUser()    
     try {
-      console.log(`playerData = ${playerData}`)
-      console.log(`data = ${data}`)
       if (playerData === undefined && data.id && playerDataLoading === false) {
         await createUser({
           variables: {
@@ -75,7 +71,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
         await fetchAndUpdateUser();
       }
     } catch (error) {
-      console.log(`ERROR: ${error}`);
+      throw new Error("Não foi possível obter as informações do clube do jogador")
     }
   };
 
@@ -88,7 +84,6 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    console.log(data);
     if (data && data.id !== undefined && !playerDataLoading) {
       getUserInfo();
     }

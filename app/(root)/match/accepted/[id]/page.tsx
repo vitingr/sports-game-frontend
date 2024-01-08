@@ -9,10 +9,11 @@ import React, { useEffect, useState } from "react";
 
 const page = () => {
   const { user } = infoUser();
+  const router = useRouter()
 
   // Match States
   const { players } = socketProvider();
-  const [roundCount, setRoundCount] = useState<number>(0);
+  const [roundCount, setRoundCount] = useState<number>(1);
   // const [avaliableCards, setAvaliableCards] = useState<GeneratedCardProps[]>([])
   const [avaliableCards, setAvaliableCards] = useState<number[]>([
     1, 2, 3, 4, 5,
@@ -49,6 +50,11 @@ const page = () => {
       );
     });
 
+    socket.on("matchWinner", (winner: string) => {
+      console.log(winner)
+      router.push("/home")
+    })
+
     return () => {
       socket.off("startRound");
       socket.off("availableCards");
@@ -57,6 +63,7 @@ const page = () => {
   }, [roundCount]);
 
   const handleChooseCard = (cardValue: number) => {
+    console.log(cardValue)
     socket.emit("chooseCard", cardValue);
     setChosenCard(cardValue);
   };
@@ -76,6 +83,10 @@ const page = () => {
         {"" && <>matchWinner</>} */}
         <div>
           <h1>Game</h1>
+
+          {roundCount}
+          {avaliableCards}
+          {chosenCard}
 
           {players.length < 2 ? (
             <div>{JSON.stringify(players)}</div>

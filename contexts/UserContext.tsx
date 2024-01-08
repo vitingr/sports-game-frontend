@@ -12,7 +12,6 @@ import { createContext, useContext, useEffect, useState } from "react";
 const UserContext = createContext<UserContextProps | any>(undefined);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
-
   const path = usePathname();
 
   const isPublic = checkIsPublicRoute(path);
@@ -37,17 +36,28 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
   // Get User Data Function
   const getSessionInfo = async () => {
-    try {  
+    try {
       const requisition = await fetch("/api/getUserInfo");
       const response = await requisition.json();
       setData(response);
+      console.log(response);
     } catch (error) {
       console.log(`ERROR: ${error}`);
     }
   };
 
+  const fetchAndUpdateUser = async () => {
+    await refetchPlayerData().then((content) => {
+      console.log(content);
+      setUser(content.data.getUser);
+    });
+  };
+
   const getUserInfo = async () => {
+    fetchAndUpdateUser()    
     try {
+      console.log(`playerData = ${playerData}`)
+      console.log(`data = ${data}`)
       if (playerData === undefined && data.id && playerDataLoading === false) {
         await createUser({
           variables: {
@@ -60,28 +70,31 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
             password: "",
           },
         });
-        await refetchPlayerData();
+        await fetchAndUpdateUser();
       } else {
-        await refetchPlayerData().then(content => {
-          setUser(content.data.getUser);
-        })
+        await fetchAndUpdateUser();
       }
     } catch (error) {
       console.log(`ERROR: ${error}`);
     }
   };
 
+  const getSession = async () => {
+    await getSessionInfo()
+  }
+
   useEffect(() => {
-    getSessionInfo();
+    getSession();
   }, []);
 
   useEffect(() => {
-    if (data.id !== undefined && !playerDataLoading) {
+    console.log(data);
+    if (data && data.id !== undefined && !playerDataLoading) {
       getUserInfo();
     }
-  }, [playerDataLoading, data.id]);
+  }, [playerDataLoading, data]);
 
-  return isPublic || data.id && user ? (
+  return isPublic || (data.id && user) ? (
     <UserContext.Provider
       value={{ data, setData, user, setUser, getSessionInfo, getUserInfo }}
     >

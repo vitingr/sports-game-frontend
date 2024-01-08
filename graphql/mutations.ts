@@ -180,7 +180,7 @@ export const HOME_DRIVER = gql`
       id
     }
   }
-`
+`;
 
 export const LINEUP_DRIVER = gql`
   mutation ($id: String!) {
@@ -188,7 +188,7 @@ export const LINEUP_DRIVER = gql`
       id
     }
   }
-`
+`;
 
 export const MENU_DRIVER = gql`
   mutation ($id: String!) {
@@ -196,7 +196,7 @@ export const MENU_DRIVER = gql`
       id
     }
   }
-`
+`;
 
 export const PROFILE_DRIVER = gql`
   mutation ($id: String!) {
@@ -204,4 +204,12 @@ export const PROFILE_DRIVER = gql`
       id
     }
   }
-`
+`;
+
+export const SELECT_LINEUP = gql`
+  mutation ($userId: String!, $lineupId: String!) {
+    selectLineup(selectLineup: { userId: $userId, lineupId: $lineupId }) {
+      id
+    }
+  }
+`;

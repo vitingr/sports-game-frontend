@@ -2,16 +2,9 @@
 
 import { io, Socket } from "socket.io-client";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { InviteProps, UserProps } from "@/types";
 import ToastMessage from "@/components/config/ToastMessage";
 import { infoUser } from "./UserContext";
 import { toast } from "react-toastify";
-import { useQuery } from "@apollo/client";
-import {
-  GET_ALL_PLAYERS,
-  GET_USER_FRIENDS,
-  GET_USER_PENDING_FRIENDS,
-} from "@/graphql/queries";
 import { useRouter } from "next/navigation";
 
 export const socket = io("http://localhost:3030");
@@ -24,6 +17,9 @@ export const WebSocketProvider = ({
 }) => {
   const { user } = infoUser();
   const router = useRouter();
+
+  // Match States
+  const [players, setPlayers] = useState<string[]>([])
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -48,9 +44,11 @@ export const WebSocketProvider = ({
       router.push(`/match/${matchId}`);
     });
 
-    socket.on("matchAccepted", ({ msg, userId, matchId }) => {
-      console.log(matchId);
-      router.push(`/match/accepted/${matchId}`);
+    socket.on("gameJoined", ({players, matchId}: any) => {
+      console.log(players)
+      console.log(matchId)
+      setPlayers(players);
+      router.push(`/match/accepted/${matchId}`)
     });
 
     return () => {
@@ -64,6 +62,8 @@ export const WebSocketProvider = ({
     <WebSocketContext.Provider
       value={{
         socket,
+        players,
+        setPlayers
       }}
     >
       <ToastMessage />

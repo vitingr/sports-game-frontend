@@ -76,7 +76,7 @@ const Navbar = () => {
               <div className="flex flex-col">
                 <div className="flex items-center gap-2 justify-between">
                   <span className="text-[#717171] text-xs w-full justify-end flex">
-                    {user.currency}
+                    {user?.currency || ""}
                   </span>
                   <Image
                     src={"/assets/coins.png"}
@@ -87,7 +87,7 @@ const Navbar = () => {
                 </div>
                 <div className="flex items-center gap-2 justify-between">
                   <span className="text-[#717171] text-xs w-full justify-end flex">
-                    {user.futpoints}
+                    {user?.futpoints || ""}
                   </span>
                   <Image
                     src={"/assets/points.png"}

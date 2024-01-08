@@ -30,6 +30,8 @@ export const GET_PLAYER = gql`
       victories
       draws
       loses
+      searchingMatch
+      currentLineup
     }
   }
 `;
@@ -193,6 +195,29 @@ export const GET_SELLING_CARDS = gql`
 export const GET_LINEUP = gql`
   query findLineup($id: String!) {
     findLineup(id: $id) {
+      id
+      name
+      overall
+      totalOverall
+      owner
+      player1
+      player2
+      player3
+      player4
+      player5
+      player6
+      player7
+      player8
+      player9
+      player10
+      player11
+    }
+  }
+`
+
+export const GET_USER_CURRENT_LINEUP = gql`
+  query findUserCurrentLineup($userId: String!) {
+    findUserCurrentLineup(id: $userId) {
       id
       name
       overall

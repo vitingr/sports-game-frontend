@@ -47,6 +47,8 @@ export interface UserProps {
   victories: number;
   draws: number;
   loses: number;
+  searchingMatch: boolean;
+  currentLineup: string;
 }
 
 export interface InviteProps {

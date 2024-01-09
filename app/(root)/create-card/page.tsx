@@ -4,6 +4,9 @@ import ToastMessage from "@/components/config/ToastMessage";
 import UploadImage from "@/components/config/Upload";
 import { CREATE_CARD } from "@/graphql/mutations";
 import { PlayerCardProps } from "@/types";
+import { getMaxValue } from "@/utils/functions/getMaxValue";
+import { getMinValue } from "@/utils/functions/getMinValue";
+import { getQuickSellValue } from "@/utils/functions/getQuickSellValue";
 import { useMutation } from "@apollo/client";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
@@ -30,6 +33,11 @@ const page = () => {
   const [createCard] = useMutation(CREATE_CARD);
 
   const handleCreateCard = async () => {
+
+    let quickSellValue = await getQuickSellValue(cardInfo.overall)
+    let maxValue = await getMaxValue(cardInfo.overall)
+    let minValue = await getMinValue(cardInfo.overall)
+
     let photoDatabase;
 
     if (image !== "") {
@@ -59,9 +67,9 @@ const page = () => {
               drible: Number(cardInfo.drible),
               defense: Number(cardInfo.defense),
               physic: Number(cardInfo.physic),
-              minValue: Number(150),
-              maxValue: Number(10000),
-              quickSellValue: Number(150),
+              minValue: minValue,
+              maxValue: maxValue,
+              quickSellValue: quickSellValue,
             },
           }).then(() => {
             setCardInfo({
@@ -285,7 +293,7 @@ const page = () => {
           />
         )}
 
-        <img src={image} alt="teste" />
+        <img src={image} alt="teste" className="max-w-[200px] max-h-[200px]" />
 
         <button
           type="submit"

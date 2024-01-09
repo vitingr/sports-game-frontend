@@ -20,22 +20,22 @@ const PlayerCard = ({
 
   return cardData.selling === false ? (
     <div
-      className="cursor-pointer max-w-[185px] max-h-[250px] w-full h-full flex items-center justify-center"
+      className="cursor-pointer max-w-[165px] max-h-[225px] w-full h-full flex items-center justify-center"
       onClick={() => setShowPlayerInfo(true)}
     >
       {small ? (
         <Image
           src={cardData.cardImage}
           alt="Card Image"
-          width={125}
-          height={150}
+          width={100}
+          height={205}
           className="max-w-[125px] max-h-[150px] w-full h-full"
         />
       ) : (
         <Image
           src={cardData.cardImage}
           alt="Card Image"
-          width={185}
+          width={165}
           height={250}
           className="max-w-[185px] max-h-[250px] w-full h-full"
         />

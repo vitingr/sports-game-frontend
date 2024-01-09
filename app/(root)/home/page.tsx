@@ -150,8 +150,6 @@ const page = () => {
         />
       </section>
 
-      {JSON.stringify(user)}
-
       <section className="flex justify-between gap-8 w-full mt-[6.5em] sm:flex-nowrap flex-wrap">
         <div
           className="w-full bg-white p-8 rounded-b-xl border-t-2 border-t-indigo-600 border border-neutral-100 shadow-sm shadow-neutral-200 min-h-[300px] flex gap-12 sm:flex-row flex-col items-center"

@@ -98,14 +98,6 @@ export const CREATE_LINEUP = gql`
   }
 `;
 
-export const OPEN_PLAYERS_PACK = gql`
-  mutation ($userId: String!) {
-    openPlayersPack(id: $userId) {
-      name
-    }
-  }
-`;
-
 export const SELL_CARD = gql`
   mutation (
     $ownerId: String!
@@ -210,6 +202,168 @@ export const SELECT_LINEUP = gql`
   mutation ($userId: String!, $lineupId: String!) {
     selectLineup(selectLineup: { userId: $userId, lineupId: $lineupId }) {
       id
+    }
+  }
+`;
+
+export const OPEN_PLAYERS_PACK = gql`
+  mutation ($userId: String!) {
+    openPlayersPack(id: $userId) {
+      cardImage
+      owner
+      selling
+      playerId
+      name
+      club
+      league
+      type
+      overall
+      pace
+      finalization
+      pass
+      drible
+      defense
+      physic
+      minValue
+      maxValue
+      quickSellValue
+      price
+      position
+    }
+  }
+`;
+
+export const OPEN_RARE_GOLD_PACK = gql`
+  mutation ($userId: String!) {
+    openRareGoldPack(id: $userId) {
+      cardImage
+      owner
+      selling
+      playerId
+      name
+      club
+      league
+      type
+      overall
+      pace
+      finalization
+      pass
+      drible
+      defense
+      physic
+      minValue
+      maxValue
+      quickSellValue
+      price
+      position
+    }
+  }
+`;
+
+export const OPEN_GOLD_PACK = gql`
+  mutation ($userId: String!) {
+    openGoldPack(id: $userId) {
+      cardImage
+      owner
+      selling
+      playerId
+      name
+      club
+      league
+      type
+      overall
+      pace
+      finalization
+      pass
+      drible
+      defense
+      physic
+      minValue
+      maxValue
+      quickSellValue
+      price
+      position
+    }
+  }
+`;
+
+export const OPEN_RARE_SILVER_PACK = gql`
+  mutation ($userId: String!) {
+    openRareSilverPack(id: $userId) {
+      cardImage
+      owner
+      selling
+      playerId
+      name
+      club
+      league
+      type
+      overall
+      pace
+      finalization
+      pass
+      drible
+      defense
+      physic
+      minValue
+      maxValue
+      quickSellValue
+      price
+      position
+    }
+  }
+`;
+
+export const OPEN_SILVER_PACK = gql`
+  mutation ($userId: String!) {
+    openSilverPack(id: $userId) {
+      cardImage
+      owner
+      selling
+      playerId
+      name
+      club
+      league
+      type
+      overall
+      pace
+      finalization
+      pass
+      drible
+      defense
+      physic
+      minValue
+      maxValue
+      quickSellValue
+      price
+      position
+    }
+  }
+`;
+
+export const OPEN_BRONZE_PACK = gql`
+  mutation ($userId: String!) {
+    openBronzePack(id: $userId) {
+      cardImage
+      owner
+      selling
+      playerId
+      name
+      club
+      league
+      type
+      overall
+      pace
+      finalization
+      pass
+      drible
+      defense
+      physic
+      minValue
+      maxValue
+      quickSellValue
+      price
+      position
     }
   }
 `;

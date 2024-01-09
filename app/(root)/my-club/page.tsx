@@ -119,9 +119,9 @@ const page = () => {
             </p>
             <div>
               {myCards && myCards.findUserCards ? (
-                <div className="flex flex-wrap gap-4 mt-8 w-full">
+                <div className="flex flex-wrap gap-2 mt-8 w-full">
                   {myCards.findUserCards
-                    .slice(0, 5)
+                    .slice(0, 8)
                     .map((card: GeneratedCardProps, index: number) => (
                       <PlayerCard cardData={card} key={index} small={true} />
                     ))}

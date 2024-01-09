@@ -37,7 +37,7 @@ const page = () => {
         </p>
 
         {myCards && myCards.findUserCards ? (
-          <div className="flex flex-wrap gap-4 mt-8 w-full">
+          <div className="flex flex-wrap gap-4 mt-8 w-full justify-center">
             {myCards.findUserCards.map(
               (card: GeneratedCardProps, index: number) => (
                 <PlayerCard cardData={card} key={index} small={false} refetch={refetchMyCards} />

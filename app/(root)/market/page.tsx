@@ -25,7 +25,7 @@ const page = () => {
 
   const handleBuyCard = async (cardId: string, cardPrice: number, status: boolean, ownerId: string) => {
     if (user.currency < cardPrice) {
-      toast.error("ERRO! Dinheiro insuficiente")
+      toast.error("ERRO! Dinhei   ro insuficiente")
     } else {
       try {
         if (status === true) {

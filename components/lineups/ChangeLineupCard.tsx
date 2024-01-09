@@ -94,18 +94,19 @@ const ChangeLineupCard = ({
         if (!indexData) {
           // Campo de seleção de jogador vazio
           if (
-            players[0]?.playerId || null === cardData.playerId ||
-            players[1]?.playerId || null === cardData.playerId ||
-            players[2]?.playerId || null === cardData.playerId ||
-            players[3]?.playerId || null === cardData.playerId ||
-            players[4]?.playerId || null === cardData.playerId ||
-            players[5]?.playerId || null === cardData.playerId ||
-            players[6]?.playerId || null === cardData.playerId ||
-            players[7]?.playerId || null === cardData.playerId ||
-            players[8]?.playerId || null === cardData.playerId ||
-            players[9]?.playerId || null === cardData.playerId ||
-            players[10]?.playerId || null === cardData.playerId
+            players[0]?.playerId === cardData.playerId ||
+            players[1]?.playerId === cardData.playerId ||
+            players[2]?.playerId === cardData.playerId ||
+            players[3]?.playerId === cardData.playerId ||
+            players[4]?.playerId === cardData.playerId ||
+            players[5]?.playerId === cardData.playerId ||
+            players[6]?.playerId === cardData.playerId ||
+            players[7]?.playerId === cardData.playerId ||
+            players[8]?.playerId === cardData.playerId ||
+            players[9]?.playerId === cardData.playerId ||
+            players[10]?.playerId === cardData.playerId
           ) {
+            console.log(cardData.playerId)
             toast.error(
               "Não é possível adicionar o mesmo jogador duas vezes no elenco"
             );

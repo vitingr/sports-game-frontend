@@ -16,7 +16,7 @@ const ShowLoot = ({ loot, showState, packRarity }: ShowLootProps) => {
       description="Aqui é possível ver as cartas as quais você encontrou no pacote recém aberto, elas podem ser utilizadas em suas escalações, vendidas no menu, mercado de transferências ou utilizadas em desafios de montagem de elencos"
       state={showState}
     >
-      <div className="mt-12">
+      <div className="mt-12 h-[650px] overflow-y-scroll">
         {packRarity === "players_pack" && (
           <>
             {loot.openPlayersPack.map(

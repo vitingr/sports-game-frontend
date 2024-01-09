@@ -8,18 +8,17 @@ import {
   slideInFromLeft,
   slideInFromRight,
 } from "@/utils/common/motion";
-import {useInView} from 'react-intersection-observer'
+import { useInView } from "react-intersection-observer";
 
 export default function Home() {
-
   const { ref, inView } = useInView({
-    triggerOnce: true
-  })
+    triggerOnce: true,
+  });
 
-    const imageVariants = {
+  const imageVariants = {
     hidden: { opacity: 0 },
-    visible: { opacity: 1 }
-  }
+    visible: { opacity: 1 },
+  };
 
   return (
     <motion.div
@@ -28,7 +27,13 @@ export default function Home() {
       className="w-full bg-[#161616] flex flex-col items-center"
     >
       <Hero />
-      <motion.div ref={ref} animate={inView ? "visible" : "hidden"} initial="hidden" variants={slideInFromLeft(1)} className="w-full flex flex-col items-center -mt-52 py-16 max-w-[1050px]">
+      <motion.div
+        ref={ref}
+        animate={inView ? "visible" : "hidden"}
+        initial="hidden"
+        variants={slideInFromLeft(1)}
+        className="w-full flex flex-col items-center -mt-52 py-16 max-w-[1050px]"
+      >
         <h1 className="uppercase text-white tracking-wider text-5xl font-bold cursor-default">
           Modos de Jogo
         </h1>
@@ -65,7 +70,13 @@ export default function Home() {
           </div>
         </div>
       </motion.div>
-      <motion.div ref={ref} animate={inView ? "visible" : "hidden"} initial="hidden" variants={slideInFromRight(1.5)} className="w-full flex flex-col items-center mt-[10em] mb-[20em] max-w-[1050px]">
+      <motion.div
+        ref={ref}
+        animate={inView ? "visible" : "hidden"}
+        initial="hidden"
+        variants={slideInFromRight(1.5)}
+        className="w-full flex flex-col items-center mt-[10em] mb-[20em] max-w-[1050px]"
+      >
         <h1 className="uppercase text-white tracking-wider text-5xl font-bold cursor-default">
           Nossos Eventos
         </h1>

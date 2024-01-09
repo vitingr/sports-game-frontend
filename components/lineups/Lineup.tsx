@@ -17,7 +17,7 @@ const Lineup = ({
   lineupData: LineupProps;
   refetch: any;
 }) => {
-  const { user } = infoUser();
+  const { user, getUserInfo } = infoUser();
 
   const [deleteLineup] = useMutation(DELETE_USER_LINEUP);
   const [selectLineup] = useMutation(SELECT_LINEUP) 
@@ -30,6 +30,7 @@ const Lineup = ({
         },
       }).then(async () => {
         toast.success("A formação foi removida com sucesso!");
+        await getUserInfo()
         await refetch();
       });
     } catch (error) {
@@ -47,6 +48,7 @@ const Lineup = ({
         }
       }).then(async () => {
         toast.success("A sua lineup principal foi alterada!")
+        await getUserInfo()
         await refetch()
       })
     } catch (error) {

@@ -40,16 +40,16 @@ const ChangePlayer = ({
         setPosition(["Goleiro"]);
         break;
       case 2:
-        setPosition(["Lateral Direito", "Lateral Direito", "Zagueiro"]);
+        setPosition(["Lateral Direito", "Lateral Esquerdo", "Zagueiro"]);
         break;
       case 3:
-        setPosition(["Lateral Direito", "Lateral Direito", "Zagueiro"]);
+        setPosition(["Lateral Direito", "Lateral Esquerdo", "Zagueiro"]);
         break;
       case 4:
-        setPosition(["Lateral Direito", "Lateral Direito", "Zagueiro"]);
+        setPosition(["Lateral Direito", "Lateral Esquerdo", "Zagueiro"]);
         break;
       case 5:
-        setPosition(["Lateral Direito", "Lateral Direito", "Zagueiro"]);
+        setPosition(["Lateral Direito", "Lateral Esquerdo", "Zagueiro"]);
         break;
       case 6:
         setPosition(["Meio-Campo", "Volante", "Meia Armador"]);
@@ -80,7 +80,7 @@ const ChangePlayer = ({
         description="Escolha um jogador para ocupar essa posição na sua formação atual"
       >
         {myCards && myCards.findUserCards ? (
-          <div className="flex flex-wrap gap-4 py-8 w-full">
+          <div className="flex flex-wrap gap-4 py-8 w-full h-[650px] overflow-y-scroll">
             {myCards.findUserCards.map(
               (card: GeneratedCardProps, index: number) => (
                 <ChangeLineupCard

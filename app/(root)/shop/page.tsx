@@ -16,9 +16,11 @@ import { useMutation } from "@apollo/client";
 import Image from "next/image";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { motion } from "framer-motion"
+import { slideInFromLeft, slideInFromRight, slideInFromTop } from "@/utils/common/motion";
 
 const page = () => {
-  const { user } = infoUser();
+  const { user, getUserInfo } = infoUser();
 
   const [showLoot, setShowLoot] = useState<boolean>(false)
   const [loot, setLoot] = useState<GeneratedCardProps[]>([])
@@ -39,6 +41,7 @@ const page = () => {
             userId: user.id,
           },
         });
+        await getUserInfo()
         setLoot(data)
         setShowLoot(true)
         setPackRarity("players_pack")
@@ -53,12 +56,13 @@ const page = () => {
 
   const rare_gold_pack = async () => {
     try {
-      if (user.currency >= 15000 || user.futpoints >= 150) {
+      if (user.currency >= 10000 || user.futpoints >= 150) {
         const { data } = await openRareGoldPack({
           variables: {
             userId: user.id,
           },
         });
+        await getUserInfo()
         setLoot(data)
         setShowLoot(true)
         setPackRarity("rare_gold_pack")
@@ -73,12 +77,13 @@ const page = () => {
 
   const gold_pack = async () => {
     try {
-      if (user.currency >= 10000 || user.futpoints >= 100) {
+      if (user.currency >= 7500 || user.futpoints >= 100) {
         const { data } = await openGoldPack({
           variables: {
             userId: user.id,
           },
         });
+        await getUserInfo()
         setLoot(data)
         setShowLoot(true)
         setPackRarity("gold_pack")
@@ -99,6 +104,7 @@ const page = () => {
             userId: user.id,
           },
         });
+        await getUserInfo()
         setLoot(data)
         setShowLoot(true)
         setPackRarity("rare_silver_pack")
@@ -119,6 +125,7 @@ const page = () => {
             userId: user.id,
           },
         });
+        await getUserInfo()
         setLoot(data)
         setShowLoot(true)
         setPackRarity("silver_pack")
@@ -139,6 +146,7 @@ const page = () => {
             userId: user.id,
           },
         });
+        await getUserInfo()
         setLoot(data)
         setShowLoot(true)
         setPackRarity("bronze_pack")
@@ -152,7 +160,7 @@ const page = () => {
   };
 
   return user.id && (
-    <div className="flex flex-col items-center gap-6 w-full max-w-[1250px] bg-white p-10 rounded-xl shadow-md shadow-neutral-200 border border-neutral-100">
+    <motion.div initial="hidden" animate="visible" className="flex flex-col items-center gap-6 w-full max-w-[1250px] bg-white p-10 rounded-xl shadow-md shadow-neutral-200 border border-neutral-100">
       <ToastMessage />
       <h1 className="font-bold text-3xl w-full transition-all duration-300 hover:text-indigo-600 cursor-default mt-4">
         Loja de Pacotes
@@ -164,7 +172,7 @@ const page = () => {
         caso você não goste dos itens, você pode vender eles futuramente.
       </p>
       <div className="flex flex-wrap justify-around w-full gap-16 mt-[4em]">
-        <div className="card cursor-pointer" id="especial">
+        <motion.div variants={slideInFromTop(0.5)} className="card cursor-pointer" id="especial">
           <div className="img-box">
             <Image
               src={"/assets/rare-pack.png"}
@@ -201,9 +209,9 @@ const page = () => {
               Comprar Pacote
             </button>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="card" id="gold">
+        <motion.div variants={slideInFromTop(0.75)} className="card" id="gold">
           <div className="img-box">
             <Image
               src={"/assets/gold-pack.png"}
@@ -225,7 +233,7 @@ const page = () => {
                 width={25}
                 height={25}
               />
-              15.000
+              10.000
             </h2>
             <h2 className="preco-produto-loja flex items-center gap-2">
               <Image
@@ -243,9 +251,9 @@ const page = () => {
               Comprar Pacote
             </button>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="card" id="gold">
+        <motion.div variants={slideInFromTop(1)} className="card" id="gold">
           <div className="img-box">
             <Image
               src={"/assets/gold-pack.png"}
@@ -267,7 +275,7 @@ const page = () => {
                 width={25}
                 height={25}
               />
-              10.000
+              7.500
             </h2>
             <h2 className="preco-produto-loja flex items-center gap-2">
               <Image
@@ -282,9 +290,9 @@ const page = () => {
               Comprar Pacote
             </button>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="card" id="silver">
+        <motion.div variants={slideInFromTop(1.25)} className="card" id="silver">
           <div className="img-box">
             <Image
               src={"/assets/silver-pack.png"}
@@ -324,9 +332,9 @@ const page = () => {
               Comprar Pacote
             </button>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="card" id="silver">
+        <motion.div variants={slideInFromTop(1.5)} className="card" id="silver">
           <div className="img-box">
             <Image
               src={"/assets/silver-pack.png"}
@@ -363,9 +371,9 @@ const page = () => {
               Comprar Pacote
             </button>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="card" id="bronze">
+        <motion.div variants={slideInFromTop(1.75)} className="card" id="bronze">
           <div className="img-box">
             <Image
               src={"/assets/bronze-pack.png"}
@@ -402,14 +410,14 @@ const page = () => {
               Comprar Pacote
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {showLoot && (
         <ShowLoot loot={loot} showState={setShowLoot} packRarity={packRarity} />
       )}
 
-    </div>
+    </motion.div>
   );
 };
 

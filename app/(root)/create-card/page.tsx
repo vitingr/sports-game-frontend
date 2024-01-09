@@ -123,6 +123,7 @@ const page = () => {
           className="outline-none px-2 py-1 border border-neutral-200 w-full"
         >
           <option value=""></option>
+          <option value="Idolos">Idolos</option>
           <option value="Palmeiras">Palmeiras</option>
           <option value="Flamengo">Flamengo</option>
           <option value="São Paulo">São Paulo</option>
@@ -143,6 +144,8 @@ const page = () => {
           <option value="Atlético Goianiense">Atlético Goianiense</option>
           <option value="Juventude">Juventude</option>
           <option value="Criciúma">Criciúma</option>
+          <option value="Juventude">Universidad Católica</option>
+          <option value="Criciúma">Nacional-URU</option>
         </select>
 
         <select
@@ -153,7 +156,13 @@ const page = () => {
           className="outline-none px-2 py-1 border border-neutral-200 w-full"
         >
           <option value=""></option>
-          <option value="Brasileirão Série A">Brasileirao</option>
+          <option value="Brasileirão Série A">Brasileirao Serie A</option>
+          <option value="Brasileirão Série B">Brasileirao Serie B</option>
+          <option value="Liga Argentina">Liga Argentina</option>
+          <option value="Liga Uruguai">Liga Uruguai</option>
+          <option value="Liga Paraguai">Liga Paraguai</option>
+          <option value="Liga Chile">Liga Chile</option>
+          <option value="Liga Colômbia">Liga Colômbia</option>
           <option value="Idolos">Idolos</option>
         </select>
 

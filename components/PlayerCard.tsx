@@ -27,9 +27,9 @@ const PlayerCard = ({
         <Image
           src={cardData.cardImage}
           alt="Card Image"
-          width={100}
-          height={205}
-          className="max-w-[125px] max-h-[150px] w-full h-full"
+          width={125}
+          height={215}
+          className="max-w-[125px] max-h-[215px] w-full h-full object-contain"
         />
       ) : (
         <Image
@@ -37,7 +37,7 @@ const PlayerCard = ({
           alt="Card Image"
           width={165}
           height={250}
-          className="max-w-[185px] max-h-[250px] w-full h-full"
+          className="max-w-[185px] max-h-[250px] w-full h-full object-contain"
         />
       )}
 

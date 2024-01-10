@@ -20,6 +20,7 @@ export const WebSocketProvider = ({
 
   // Match States
   const [players, setPlayers] = useState<string[]>([])
+  const [availableCards, setAvailableCards] = useState<any>();
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -46,15 +47,21 @@ export const WebSocketProvider = ({
 
     socket.on("gameJoined", ({players, matchId}: any) => {
       console.log(players)
-      console.log(matchId)
       setPlayers(players);
       router.push(`/match/accepted/${matchId}`)
+    });
+
+    socket.on("availableCards", (userLineupAvaliableCards: any) => {
+      console.log(`CARTAS => ${userLineupAvaliableCards}`);
+      setAvailableCards(userLineupAvaliableCards);
     });
 
     return () => {
       socket.off("connect");
       socket.off("onInvite");
       socket.off("matchFound");
+      socket.off("gameJoined")
+      socket.off("availableCards")
     };
   }, []);
 
@@ -63,7 +70,9 @@ export const WebSocketProvider = ({
       value={{
         socket,
         players,
-        setPlayers
+        setPlayers,
+        availableCards,
+        setAvailableCards
       }}
     >
       <ToastMessage />

@@ -13,22 +13,8 @@ const page = () => {
   const router = useRouter();
 
   // Match States
-  const { players } = socketProvider();
+  const { players, availableCards } = socketProvider();
   const [roundCount, setRoundCount] = useState<number>(1);
-  // const [avaliableCards, setAvaliableCards] = useState<any>([
-  //   { carta1: "" },
-  //   { carta2: "" },
-  //   { carta3: "" },
-  //   { carta4: "" },
-  //   { carta5: "" },
-  //   { carta6: "" },
-  //   { carta7: "" },
-  //   { carta8: "" },
-  //   { carta9: "" },
-  //   { carta10: "" },
-  //   { carta11: "" },
-  // ]);
-  const [avaliableCards, setAvaliableCards] = useState<number[]>([1, 2, 3, 4, 5])
   const [chosenCard, setChosenCard] = useState<number | null>(null);
 
   const { data: currentLineup, loading: currentLineupLoading } = useQuery(
@@ -47,27 +33,9 @@ const page = () => {
     });
 
     socket.on("startRound", (roundCount: number) => {
+      console.log("Round começando");
       setRoundCount(roundCount);
       setChosenCard(null);
-    });
-
-    socket.on("avaliableCards", (userLineupAvaliableCards: any) => {
-      console.log(userLineupAvaliableCards)
-      // retornou o Array certinho, agora so falta corrigir a questão dos jogadores
-      // ao clicar no jogador vai abrir um popup para escolher o atributo do jogador (cardValue dinamico)
-      // setAvaliableCards([
-      //   { carta1: userLineupAvaliableCards.player1 },
-      //   { carta2: userLineupAvaliableCards.player2 },
-      //   { carta3: userLineupAvaliableCards.player3 },
-      //   { carta4: userLineupAvaliableCards.player4 },
-      //   { carta5: userLineupAvaliableCards.player5 },
-      //   { carta6: userLineupAvaliableCards.player6 },
-      //   { carta7: userLineupAvaliableCards.player7 },
-      //   { carta8: userLineupAvaliableCards.player8 },
-      //   { carta9: userLineupAvaliableCards.player9 },
-      //   { carta10: userLineupAvaliableCards.player10 },
-      //   { carta11: userLineupAvaliableCards.player11 },
-      // ]);
     });
 
     socket.on("roundWinner", ({ winner, card1, card2 }) => {
@@ -83,7 +51,6 @@ const page = () => {
 
     return () => {
       socket.off("startRound");
-      socket.off("avaliableCards");
       socket.off("roundWinner");
     };
   }, [roundCount]);
@@ -97,47 +64,37 @@ const page = () => {
   return (
     currentLineup &&
     currentLineup.findUserCurrentLineup &&
-    avaliableCards !== null && (
-      <>
-        {/* {"" && <>lineup</>}
+    availableCards && (
+      <div>
+        <h1>Game</h1>
 
-        {"" && <>chooseCard</>}
+        {roundCount}
+        {chosenCard}
 
-        {"" && <>wait</>}
-
-        {"" && <>roundWinner</>}
-
-        {"" && <>matchWinner</>} */}
         <div>
-          <h1>Game</h1>
+          <p>Round {roundCount}</p>
 
-          {roundCount}
-          {avaliableCards}
-          {chosenCard}
-
-          {players.length < 2 ? (
-            <div>{JSON.stringify(players)}</div>
+          {chosenCard !== null ? (
+            <p>You chose card: {chosenCard}</p>
           ) : (
             <div>
-              {JSON.stringify(players)}
-              <p>Round {roundCount}</p>
-
-              {chosenCard !== null ? (
-                <p>You chose card: {chosenCard}</p>
-              ) : (
-                <div>
-                  <p>Choose a card:</p>
-                  {avaliableCards.map((card: any) => (
-                    <button key={card} onClick={() => handleChooseCard(card)}>
-                      {card}
-                    </button>
-                  ))}
+              <p>Choose a card:</p>
+              {(JSON.parse(availableCards)).map((line: LineupProps, index: number) => (
+                <div key={index}>
+                  {line.owner === user.id && (
+                    <>
+                      {JSON.stringify(line)}
+                    </>
+                  )}
                 </div>
-              )}
+                // <button key={card} onClick={() => handleChooseCard(card)}>
+                //   {card}
+                // </button>
+              ))}
             </div>
           )}
         </div>
-      </>
+      </div>
     )
   );
 };

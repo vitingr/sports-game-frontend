@@ -38,7 +38,6 @@ export default function RootLayout({
                 <SignedIn>
                   <UserProvider>
                     <Navbar />
-                    <Header />
                     <main className="bg-[#f6f6f6] w-full min-h-[62vh] sm:pt-[150px] flex justify-center">
                       {children}
                     </main>

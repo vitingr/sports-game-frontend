@@ -1,5 +1,7 @@
 "use client";
 
+import MatchLineup from "@/components/MatchComponents/MatchLineup";
+import Lineup from "@/components/lineups/Lineup";
 import { infoUser } from "@/contexts/UserContext";
 import { socket, socketProvider } from "@/contexts/WebSocketContext";
 import { GET_USER_CURRENT_LINEUP } from "@/graphql/queries";
@@ -11,11 +13,19 @@ import React, { useEffect, useState } from "react";
 const page = () => {
   const { user } = infoUser();
   const router = useRouter();
+  const {
+    players,
+    availableCards,
+    matchCurrentTurn,
+    player1Score,
+    player2Score,
+    matchUsedCards,
+    currentStat,
+  } = socketProvider();
 
   // Match States
-  const { players, availableCards } = socketProvider();
+  const [chosenCard, setChosenCard] = useState<GeneratedCardProps | null>();
   const [roundCount, setRoundCount] = useState<number>(1);
-  const [chosenCard, setChosenCard] = useState<number | null>(null);
 
   const { data: currentLineup, loading: currentLineupLoading } = useQuery(
     GET_USER_CURRENT_LINEUP,
@@ -33,15 +43,8 @@ const page = () => {
     });
 
     socket.on("startRound", (roundCount: number) => {
-      console.log("Round começando");
       setRoundCount(roundCount);
       setChosenCard(null);
-    });
-
-    socket.on("roundWinner", ({ winner, card1, card2 }) => {
-      console.log(
-        `Round ${roundCount} - Winner: ${winner} {Cards: ${card1} | ${card2}}`
-      );
     });
 
     socket.on("matchWinner", (winner: string) => {
@@ -51,14 +54,16 @@ const page = () => {
 
     return () => {
       socket.off("startRound");
-      socket.off("roundWinner");
+      socket.off("matchWinner");
     };
   }, [roundCount]);
 
-  const handleChooseCard = (cardValue: number) => {
-    console.log(cardValue);
-    socket.emit("chooseCard", cardValue);
-    setChosenCard(cardValue);
+  const handleChooseCard = async (card: GeneratedCardProps, stat: string) => {
+    socket.emit("chooseCard", {
+      card: card,
+      stat: stat,
+    });
+    setChosenCard(card);
   };
 
   return (
@@ -66,31 +71,56 @@ const page = () => {
     currentLineup.findUserCurrentLineup &&
     availableCards && (
       <div>
-        <h1>Game</h1>
-
-        {roundCount}
-        {chosenCard}
+        {matchCurrentTurn}
+        <div className="w-full p-6 border border-neutral-200 rounded-xl shadow-sm shadow-neutral-100 bg-white">
+          <div className="w-full flex justify-between">
+            <div className="w-full flex justify-between items-center">
+              <div className="w-full flex justify-start">
+                <h1 className="text-2xl font-semibold">{user.clubname}</h1>
+              </div>
+              <div className="w-[100px] flex justify-center text-2xl">
+                {player1Score ? `${player1Score}` : "0"}
+              </div>
+            </div>
+            <div className="flex items-center justify-center text-2xl">X</div>
+            <div className="w-full flex justify-between items-center">
+              <div className="w-[100px] flex justify-center text-2xl">
+                {player2Score ? `${player2Score}` : "0"}
+              </div>
+              <div className="w-full flex justify-end">
+                <h1 className="text-2xl font-semibold">Time Adversário</h1>
+              </div>
+            </div>
+          </div>
+          <div className="w-full flex justify-center items-center pt-4 mt-4 border-t border-neutral-200">
+            <h1 className="text-2xl">Round {roundCount}</h1>
+          </div>
+          <div className="w-full flex justify-center items-center pt-4 mt-4 gap-2 border-t border-neutral-200">
+            <h1 className="text-2xl">
+              Atributo em Jogo
+              <span className="text-2xl text-indigo-600 uppercase ml-2">
+                {currentStat === "free" || !currentStat ? "Livre" : `${currentStat}`}
+              </span>
+            </h1>
+          </div>
+        </div>
 
         <div>
-          <p>Round {roundCount}</p>
-
-          {chosenCard !== null ? (
-            <p>You chose card: {chosenCard}</p>
+          {matchCurrentTurn !== user.id ? (
+            <h1>Espere o usuário escolher a carta dele</h1>
           ) : (
             <div>
-              <p>Choose a card:</p>
-              {(JSON.parse(availableCards)).map((line: LineupProps, index: number) => (
-                <div key={index}>
-                  {line.owner === user.id && (
-                    <>
-                      {JSON.stringify(line)}
-                    </>
-                  )}
-                </div>
-                // <button key={card} onClick={() => handleChooseCard(card)}>
-                //   {card}
-                // </button>
-              ))}
+              <p>Escolha uma carta:</p>
+              {JSON.parse(availableCards).map(
+                (lineupContent: LineupProps, index: number) => (
+                  <MatchLineup
+                    lineup={lineupContent}
+                    key={index}
+                    handleChooseCard={handleChooseCard}
+                    usedCards={matchUsedCards}
+                  />
+                )
+              )}
             </div>
           )}
         </div>

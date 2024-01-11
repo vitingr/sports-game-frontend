@@ -21,6 +21,13 @@ export const WebSocketProvider = ({
   // Match States
   const [players, setPlayers] = useState<string[]>([])
   const [availableCards, setAvailableCards] = useState<any>();
+  const [matchCurrentTurn, setMatchCurrentTurn] = useState<string>("");
+  const [currentStat, setCurrentStat] = useState<string>("")
+
+  const [matchUsedCards, setMatchUsedCards] = useState<string[]>([])
+
+  const [player1Score, setPlayer1Score] = useState<number>(0);
+  const [player2Score, setPlayer2Score] = useState<number>(0);
 
   useEffect(() => {
     socket.on("connect", () => {
@@ -28,33 +35,43 @@ export const WebSocketProvider = ({
     });
 
     socket.on("onInvite", async (invite: any) => {
-      console.log(invite);
-
       if (
         user.id === invite.content.friendId &&
         socket.id === invite.content.socketId
       ) {
-        console.log(`${user.id} | ${invite.friendId}`);
-        console.log(`${socket.id} | ${invite.socketId}`);
         toast.info("Convite de Amizade Recebido");
       }
     });
 
     socket.on("matchFound", ({ msg, userId, matchId }) => {
-      console.log(matchId);
       router.push(`/match/${matchId}`);
     });
 
     socket.on("gameJoined", ({players, matchId}: any) => {
-      console.log(players)
       setPlayers(players);
       router.push(`/match/accepted/${matchId}`)
     });
 
     socket.on("availableCards", (userLineupAvaliableCards: any) => {
-      console.log(`CARTAS => ${userLineupAvaliableCards}`);
       setAvailableCards(userLineupAvaliableCards);
     });
+
+    socket.on("currentTurn", ({turn, currentStat}: {turn: string, currentStat: string}) => {
+      console.log(`É a vez do usuário: ${turn}`)
+      console.log(`atributo da vez: ${currentStat} ${typeof currentStat}`)
+      setMatchCurrentTurn(turn);
+      setCurrentStat(currentStat)
+    });
+
+    socket.on(
+      "roundWinner",
+      ({ winner, card1, card2, player1Score, player2Score, usedCards }: any) => {
+        console.log(`player1score = ${player1Score} || player2score = ${player2Score}`)
+        setPlayer1Score(player1Score);
+        setPlayer2Score(player2Score);
+        setMatchCurrentTurn(usedCards)
+      }
+    );
 
     return () => {
       socket.off("connect");
@@ -62,6 +79,9 @@ export const WebSocketProvider = ({
       socket.off("matchFound");
       socket.off("gameJoined")
       socket.off("availableCards")
+      socket.off("currentTurn");
+      socket.off("roundWinner")
+      socket.off("matchWinner");
     };
   }, []);
 
@@ -70,9 +90,12 @@ export const WebSocketProvider = ({
       value={{
         socket,
         players,
-        setPlayers,
         availableCards,
-        setAvailableCards
+        matchCurrentTurn,
+        player1Score,
+        player2Score,
+        matchUsedCards,
+        currentStat
       }}
     >
       <ToastMessage />

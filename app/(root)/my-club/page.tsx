@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import { PROFILE_DRIVER } from "@/graphql/mutations";
+import ChangeClubBadge from "@/components/personalization/ChangeClubBadge";
 
 const page = () => {
   const { user } = infoUser();
@@ -27,19 +28,19 @@ const page = () => {
     skip: !user.id,
   });
 
-  const [updateProfileDriver] = useMutation(PROFILE_DRIVER)
+  const [updateProfileDriver] = useMutation(PROFILE_DRIVER);
 
   const viewDriverProfile = async () => {
     try {
       await updateProfileDriver({
         variables: {
-          id: user.id
-        }
-      })
+          id: user.id,
+        },
+      });
     } catch (error) {
-      throw new Error("Não foi possível utilizar o profile driver")
+      throw new Error("Não foi possível utilizar o profile driver");
     }
-  }
+  };
 
   const driverObj = driver({
     showProgress: true,
@@ -96,11 +97,12 @@ const page = () => {
 
   useEffect(() => {
     if (user.driverProfile === false && user.id !== undefined) {
-      driverObj.drive()
-      viewDriverProfile()
+      driverObj.drive();
+      viewDriverProfile();
     }
   }, [user]);
 
+  const [showChangeBadge, setShowChangeBadge] = useState<boolean>(false);
   const [showChangeClubName, setShowChangeClubname] = useState<boolean>(false);
 
   return (
@@ -175,41 +177,57 @@ const page = () => {
                   </div>
                 </div>
                 <div className="w-full flex flex-col items-center">
-                {user.points < 5000 || user.points === undefined && (
-                  <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neutral-700 to-slate-600 uppercase">
-                    {user.points}
-                  </span>
-                )}
-                {user.points >= 5000 && user.points <= 9999 && (
-                  <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500 uppercase">
-                    {user.points}
-                  </span>
-                )}
-                {user.points >= 10000 && user.points <= 14999 && (
-                  <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-900 to-indigo-600 uppercase">
-                    {user.points}
-                  </span>
-                )}
-                {user.points >= 15000 && user.points <= 19999 && (
-                  <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 uppercase">
-                    {user.points}
-                  </span>
-                )}
-                {user.points >= 20000 && user.points <= 24999 && (
-                  <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-800 to-rose-600 uppercase">
-                    {user.points}
-                  </span>
-                )}
-                {user.points >= 25000 && user.points <= 29999 && (
-                  <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-700 to-orange-400 uppercase">
-                    {user.points}
-                  </span>
-                )}
-                {user.points >= 30000 && (
-                  <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-600 uppercase">
-                    {user.points}
-                  </span>
-                )}
+                  {user.points < 5000 ||
+                  user.points === 0 ||
+                  user.points === undefined ? (
+                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neutral-700 to-slate-600 uppercase">
+                      {user.points}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                  {user.points >= 5000 && user.points <= 9999 ? (
+                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500 uppercase">
+                      {user.points}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                  {user.points >= 10000 && user.points <= 14999 ? (
+                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-900 to-indigo-600 uppercase">
+                      {user.points}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                  {user.points >= 15000 && user.points <= 19999 ? (
+                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 uppercase">
+                      {user.points}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                  {user.points >= 20000 && user.points <= 24999 ? (
+                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-800 to-rose-600 uppercase">
+                      {user.points}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                  {user.points >= 25000 && user.points <= 29999 ? (
+                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-700 to-orange-400 uppercase">
+                      {user.points}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
+                  {user.points >= 30000 ? (
+                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-600 uppercase">
+                      {user.points}
+                    </span>
+                  ) : (
+                    <></>
+                  )}
 
                   {user.points > 5000 && (
                     <>
@@ -380,7 +398,10 @@ const page = () => {
               >
                 Renomear meu Clube
               </div>
-              <div className="mt-4 rounded-full text-indigo-600 border border-indigo-600 px-4 py-2 text-center cursor-pointer">
+              <div
+                className="mt-4 rounded-full text-indigo-600 border border-indigo-600 px-4 py-2 text-center cursor-pointer"
+                onClick={() => setShowChangeBadge(!showChangeBadge)}
+              >
                 Editar meu Emblema
               </div>
             </div>
@@ -388,6 +409,7 @@ const page = () => {
         </div>
 
         {showChangeClubName && <EditClubName state={setShowChangeClubname} />}
+        {showChangeBadge && <ChangeClubBadge />}
       </div>
     )
   );

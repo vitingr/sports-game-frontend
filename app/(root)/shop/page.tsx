@@ -41,6 +41,7 @@ const page = () => {
             userId: user.id,
           },
         });
+        console.log(data)
         await getUserInfo()
         setLoot(data)
         setShowLoot(true)

@@ -131,3 +131,17 @@ export interface DoughnutProps {
   chartData: any;
   chartOptions: any;
 }
+
+export interface GeneratedBadgeProps {
+  id: string;
+  badgeId: string;
+  ownerId: string;
+  selling: boolean;
+  created: Date;
+  price: number;
+  badgeImage: string;
+  clubname: string;
+  maxValue: number;
+  minValue: number;
+  quickSellValue: number;
+}

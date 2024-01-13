@@ -210,25 +210,18 @@ export const OPEN_PLAYERS_PACK = gql`
   mutation ($userId: String!) {
     openPlayersPack(id: $userId) {
       cardImage
-      owner
-      selling
-      playerId
       name
       club
       league
       type
       overall
-      pace
-      finalization
-      pass
-      drible
-      defense
-      physic
       minValue
       maxValue
       quickSellValue
-      price
       position
+      badgeImage
+      clubname
+      
     }
   }
 `;
@@ -236,26 +229,41 @@ export const OPEN_PLAYERS_PACK = gql`
 export const OPEN_RARE_GOLD_PACK = gql`
   mutation ($userId: String!) {
     openRareGoldPack(id: $userId) {
-      cardImage
-      owner
-      selling
-      playerId
-      name
-      club
-      league
-      type
-      overall
-      pace
-      finalization
-      pass
-      drible
-      defense
-      physic
-      minValue
-      maxValue
-      quickSellValue
-      price
-      position
+      GeneratedCard {
+        cardImage
+        owner
+        selling
+        playerId
+        name
+        club
+        league
+        type
+        overall
+        pace
+        finalization
+        pass
+        drible
+        defense
+        physic
+        minValue
+        maxValue
+        quickSellValue
+        price
+        position
+      }
+      GeneratedBadge {
+        id
+        badgeId
+        ownerId
+        selling
+        created
+        price
+        badgeImage
+        clubname
+        maxValue
+        minValue
+        quickSellValue
+      }
     }
   }
 `;
@@ -263,26 +271,41 @@ export const OPEN_RARE_GOLD_PACK = gql`
 export const OPEN_GOLD_PACK = gql`
   mutation ($userId: String!) {
     openGoldPack(id: $userId) {
-      cardImage
-      owner
-      selling
-      playerId
-      name
-      club
-      league
-      type
-      overall
-      pace
-      finalization
-      pass
-      drible
-      defense
-      physic
-      minValue
-      maxValue
-      quickSellValue
-      price
-      position
+      GeneratedCard {
+        cardImage
+        owner
+        selling
+        playerId
+        name
+        club
+        league
+        type
+        overall
+        pace
+        finalization
+        pass
+        drible
+        defense
+        physic
+        minValue
+        maxValue
+        quickSellValue
+        price
+        position
+      }
+      GeneratedBadge {
+        id
+        badgeId
+        ownerId
+        selling
+        created
+        price
+        badgeImage
+        clubname
+        maxValue
+        minValue
+        quickSellValue
+      }
     }
   }
 `;
@@ -290,26 +313,41 @@ export const OPEN_GOLD_PACK = gql`
 export const OPEN_RARE_SILVER_PACK = gql`
   mutation ($userId: String!) {
     openRareSilverPack(id: $userId) {
-      cardImage
-      owner
-      selling
-      playerId
-      name
-      club
-      league
-      type
-      overall
-      pace
-      finalization
-      pass
-      drible
-      defense
-      physic
-      minValue
-      maxValue
-      quickSellValue
-      price
-      position
+      GeneratedCard {
+        cardImage
+        owner
+        selling
+        playerId
+        name
+        club
+        league
+        type
+        overall
+        pace
+        finalization
+        pass
+        drible
+        defense
+        physic
+        minValue
+        maxValue
+        quickSellValue
+        price
+        position
+      }
+      GeneratedBadge {
+        id
+        badgeId
+        ownerId
+        selling
+        created
+        price
+        badgeImage
+        clubname
+        maxValue
+        minValue
+        quickSellValue
+      }
     }
   }
 `;
@@ -317,26 +355,41 @@ export const OPEN_RARE_SILVER_PACK = gql`
 export const OPEN_SILVER_PACK = gql`
   mutation ($userId: String!) {
     openSilverPack(id: $userId) {
-      cardImage
-      owner
-      selling
-      playerId
-      name
-      club
-      league
-      type
-      overall
-      pace
-      finalization
-      pass
-      drible
-      defense
-      physic
-      minValue
-      maxValue
-      quickSellValue
-      price
-      position
+      GeneratedCard {
+        cardImage
+        owner
+        selling
+        playerId
+        name
+        club
+        league
+        type
+        overall
+        pace
+        finalization
+        pass
+        drible
+        defense
+        physic
+        minValue
+        maxValue
+        quickSellValue
+        price
+        position
+      }
+      GeneratedBadge {
+        id
+        badgeId
+        ownerId
+        selling
+        created
+        price
+        badgeImage
+        clubname
+        maxValue
+        minValue
+        quickSellValue
+      }
     }
   }
 `;
@@ -344,26 +397,63 @@ export const OPEN_SILVER_PACK = gql`
 export const OPEN_BRONZE_PACK = gql`
   mutation ($userId: String!) {
     openBronzePack(id: $userId) {
-      cardImage
-      owner
-      selling
-      playerId
-      name
-      club
-      league
-      type
-      overall
-      pace
-      finalization
-      pass
-      drible
-      defense
-      physic
-      minValue
-      maxValue
-      quickSellValue
-      price
-      position
+      GeneratedCard {
+        cardImage
+        owner
+        selling
+        playerId
+        name
+        club
+        league
+        type
+        overall
+        pace
+        finalization
+        pass
+        drible
+        defense
+        physic
+        minValue
+        maxValue
+        quickSellValue
+        price
+        position
+      }
+      GeneratedBadge {
+        id
+        badgeId
+        ownerId
+        selling
+        created
+        price
+        badgeImage
+        clubname
+        maxValue
+        minValue
+        quickSellValue
+      }
+    }
+  }
+`;
+
+export const CREATE_BADGE = gql`
+  mutation (
+    $badgeImage: String!
+    $clubname: String!
+    $maxValue: Float!
+    $minValue: Float!
+    $quickSellValue: Float!
+  ) {
+    createBadge(
+      createBadgeInput: {
+        badgeImage: $badgeImage
+        clubname: $clubname
+        maxValue: $maxValue
+        minValue: $minValue
+        quickSellValue: $quickSellValue
+      }
+    ) {
+      id
     }
   }
 `;

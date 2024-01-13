@@ -172,7 +172,7 @@ const page = () => {
                 datasets: [
                   {
                     label: "Índice de Vitórias em Partidas",
-                    data: [3, 1, 2],
+                    data: [user.victories || 1, user.draws || 1, user.loses || 1],
                     backgroundColor: ["#5549A6", "#7553A6", "#A47ED9"],
                     hoverOffset: 4,
                   },
@@ -202,41 +202,41 @@ const page = () => {
               </div>
               <div className="mt-6 w-full">
                 <h1 className="text-xl font-semibold mb-4">Seus Pontos</h1>
-                {user.points < 5000 || user.points === 0 || user.points === undefined && (
+                {user.points < 5000 || user.points === 0 || user.points === undefined ? (
                   <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neutral-700 to-slate-600 uppercase">
                     {user.points}
                   </span>
-                )}
-                {user.points >= 5000 && user.points <= 9999 && (
+                ) : <></>}
+                {user.points >= 5000 && user.points <= 9999 ? (
                   <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500 uppercase">
                     {user.points}
                   </span>
-                )}
-                {user.points >= 10000 && user.points <= 14999 && (
+                ): <></>}
+                {user.points >= 10000 && user.points <= 14999 ? (
                   <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-900 to-indigo-600 uppercase">
                     {user.points}
                   </span>
-                )}
-                {user.points >= 15000 && user.points <= 19999 && (
+                ): <></>}
+                {user.points >= 15000 && user.points <= 19999 ? (
                   <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 uppercase">
                     {user.points}
                   </span>
-                )}
-                {user.points >= 20000 && user.points <= 24999 && (
+                ): <></>}
+                {user.points >= 20000 && user.points <= 24999 ? (
                   <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-800 to-rose-600 uppercase">
                     {user.points}
                   </span>
-                )}
-                {user.points >= 25000 && user.points <= 29999 && (
+                ): <></>}
+                {user.points >= 25000 && user.points <= 29999 ? (
                   <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-700 to-orange-400 uppercase">
                     {user.points}
                   </span>
-                )}
-                {user.points >= 30000 && (
+                ): <></>}
+                {user.points >= 30000 ? (
                   <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-600 uppercase">
                     {user.points}
                   </span>
-                )}
+                ): <></>}
               </div>
             </div>
           </div>
@@ -354,10 +354,6 @@ const page = () => {
             />
           </div>
         </section>
-
-        {/* Lineups */}
-
-        {/* Anunciar / Vender Cartas (Cards Flex) */}
       </div>
     )
   );

@@ -51,7 +51,6 @@ const page = () => {
       if (imageUpload.ok) {
         photoDatabase = await imageUpload.json();
         try {
-          console.log(cardInfo);
           await createCard({
             variables: {
               cardImage: photoDatabase.url as string,

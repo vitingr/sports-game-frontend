@@ -3,7 +3,7 @@
 import PlayerCard from "@/components/PlayerCard";
 import EditClubName from "@/components/personalization/EditClubName";
 import { infoUser } from "@/contexts/UserContext";
-import { GET_USER_CARDS } from "@/graphql/queries";
+import { GET_USER_BADGE, GET_USER_CARDS } from "@/graphql/queries";
 import { GeneratedCardProps } from "@/types";
 import { useMutation, useQuery } from "@apollo/client";
 import Image from "next/image";
@@ -17,6 +17,9 @@ import ChangeClubBadge from "@/components/personalization/ChangeClubBadge";
 const page = () => {
   const { user } = infoUser();
 
+  const [showChangeBadge, setShowChangeBadge] = useState<boolean>(false);
+  const [showChangeClubName, setShowChangeClubname] = useState<boolean>(false);
+
   const {
     data: myCards,
     loading: myCardsLoading,
@@ -26,6 +29,17 @@ const page = () => {
       userId: user.id,
     },
     skip: !user.id,
+  });
+
+  const {
+    data: userBadge,
+    loading: userBadgeLoading,
+    refetch: refetchUserBadge,
+  } = useQuery(GET_USER_BADGE, {
+    variables: {
+      id: user.badge,
+    },
+    skip: !user.badge,
   });
 
   const [updateProfileDriver] = useMutation(PROFILE_DRIVER);
@@ -102,15 +116,13 @@ const page = () => {
     }
   }, [user]);
 
-  const [showChangeBadge, setShowChangeBadge] = useState<boolean>(false);
-  const [showChangeClubName, setShowChangeClubname] = useState<boolean>(false);
-
   return (
-    myCardsLoading === false && (
+    myCardsLoading === false &&
+    userBadgeLoading === false && (
       <div className="flex justify-center gap-6 w-full max-w-[1600px] mt-[3em] sm:flex-nowrap flex-wrap h-full">
         <div className="w-full flex flex-col gap-4 sm:h-auto h-full">
           <div
-            className="w-full bg-white p-6 sm:p-10 rounded-lg border border-neutral-100 shadow-md shadow-neutral-200 h-full"
+            className="w-full bg-white p-6 sm:p-10 rounded-lg border border-neutral-100 shadow-md shadow-neutral-200 h-full border-t-2 border-t-indigo-600"
             id="my-cards"
           >
             <h1 className="font-semibold text-2xl">Minhas Cartas</h1>
@@ -144,7 +156,7 @@ const page = () => {
             </div>
           </div>
           <div
-            className="w-full bg-white p-6 sm:p-10 rounded-lg border border-neutral-100 shadow-md shadow-neutral-200 h-full"
+            className="w-full bg-white p-6 sm:p-10 rounded-lg border border-neutral-100 border-t-2 border-t-indigo-600 shadow-md shadow-neutral-200 h-full"
             id="ranking"
           >
             <h1 className="font-semibold text-2xl">Minha Classificação</h1>
@@ -180,119 +192,53 @@ const page = () => {
                   {user.points < 5000 ||
                   user.points === 0 ||
                   user.points === undefined ? (
-                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neutral-700 to-slate-600 uppercase">
+                    <span className="font-700 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neutral-700 to-slate-600 uppercase">
                       {user.points}
                     </span>
                   ) : (
                     <></>
                   )}
                   {user.points >= 5000 && user.points <= 9999 ? (
-                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500 uppercase">
+                    <span className="font-700 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-sky-500 uppercase">
                       {user.points}
                     </span>
                   ) : (
                     <></>
                   )}
                   {user.points >= 10000 && user.points <= 14999 ? (
-                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-900 to-indigo-600 uppercase">
+                    <span className="font-700 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-900 to-indigo-600 uppercase">
                       {user.points}
                     </span>
                   ) : (
                     <></>
                   )}
                   {user.points >= 15000 && user.points <= 19999 ? (
-                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 uppercase">
+                    <span className="font-700 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 uppercase">
                       {user.points}
                     </span>
                   ) : (
                     <></>
                   )}
                   {user.points >= 20000 && user.points <= 24999 ? (
-                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-800 to-rose-600 uppercase">
+                    <span className="font-700 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-800 to-rose-600 uppercase">
                       {user.points}
                     </span>
                   ) : (
                     <></>
                   )}
                   {user.points >= 25000 && user.points <= 29999 ? (
-                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-700 to-orange-400 uppercase">
+                    <span className="font-700 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-700 to-orange-400 uppercase">
                       {user.points}
                     </span>
                   ) : (
                     <></>
                   )}
                   {user.points >= 30000 ? (
-                    <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-600 uppercase">
+                    <span className="font-700 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-800 to-emerald-600 uppercase">
                       {user.points}
                     </span>
                   ) : (
                     <></>
-                  )}
-
-                  {user.points > 5000 && (
-                    <>
-                      <span className="font-[700] text-transparent text-4xl bg-clip-text bg-gradient-to-r from-blue-700 to-blue-400">
-                        {user.points}
-                      </span>
-                      <span className="text-transparent text-base bg-clip-text bg-gradient-to-r from-blue-700 to-blue-400 italic">
-                        +250 em caso de vitória
-                      </span>
-                    </>
-                  )}
-
-                  {user.points > 10000 && (
-                    <>
-                      <span className="font-[700] text-transparent text-4xl bg-clip-text bg-gradient-to-r from-indigo-700 to-violet-600">
-                        14.023 Pontos
-                      </span>
-                      <span className="text-transparent text-base bg-clip-text bg-gradient-to-r from-indigo-700 to-violet-600 italic">
-                        +150 em caso de vitória
-                      </span>
-                    </>
-                  )}
-
-                  {user.points > 15000 && (
-                    <>
-                      <span className="font-[700] text-transparent text-4xl bg-clip-text bg-gradient-to-r from-pink-600 to-fuchsia-700">
-                        17.023 Pontos
-                      </span>
-                      <span className="text-transparent text-base bg-clip-text bg-gradient-to-r from-pink-600 to-fuchsia-700 italic">
-                        +100 em caso de vitória
-                      </span>
-                    </>
-                  )}
-
-                  {user.points > 20000 && (
-                    <>
-                      <span className="font-[700] text-transparent text-4xl bg-clip-text bg-gradient-to-r from-pink-700 to-red-700">
-                        21.023 Pontos
-                      </span>
-                      <span className="text-transparent text-base bg-clip-text bg-gradient-to-r from-pink-700 to-red-700 italic">
-                        +50 em caso de vitória
-                      </span>
-                    </>
-                  )}
-
-                  {user.points > 25000 && (
-                    <>
-                      <span className="font-[700] text-transparent text-4xl bg-clip-text bg-gradient-to-r from-amber-700 to-yellow-500">
-                        26.023 Pontos
-                      </span>
-                      <span className="text-transparent text-base bg-clip-text bg-gradient-to-r from-amber-700 to-yellow-500 italic">
-                        +25 em caso de vitória
-                      </span>
-                    </>
-                  )}
-
-                  {user.poins > 30000 && (
-                    <>
-                      <span className="font-[700] text-transparent text-4xl bg-clip-text bg-gradient-to-r from-emerald-700 to-teal-500">
-                        35.023 Pontos
-                      </span>
-                      <span className="text-transparent text-base bg-clip-text bg-gradient-to-r from-emerald-700 to-teal-500 italic">
-                        +10 em caso de vitória
-                      </span>
-                    </>
                   )}
 
                   <span className="mt-6 text-2xl font-[400]">
@@ -308,7 +254,7 @@ const page = () => {
         </div>
 
         <div
-          className="w-full bg-white p-6 rounded-lg border border-neutral-100 shadow-md shadow-neutral-200 h-full"
+          className="w-full bg-white p-6 rounded-lg border border-neutral-100 shadow-md shadow-neutral-200 h-full border-t-2 border-t-indigo-600"
           id="my-club"
         >
           <h1 className="font-semibold text-2xl">Meu Clube</h1>
@@ -320,12 +266,17 @@ const page = () => {
           </p>
           <div className="w-full flex flex-col justify-between mt-12 h-full">
             <div className="flex flex-col w-full justify-center items-center">
-              <Image
-                src={"/assets/undefinedTeam.png"}
-                alt="Team Badge"
-                width={100}
-                height={100}
-              />
+              {userBadge && (
+                <Image
+                  src={
+                    userBadge.findUserBadge.badgeImage ||
+                    "/assets/undefinedTeam.png"
+                  }
+                  alt="Team Badge"
+                  width={125}
+                  height={125}
+                />
+              )}
               <h1 className="text-xl font-semibold uppercase">
                 {user.clubname}
               </h1>
@@ -394,13 +345,13 @@ const page = () => {
             <div className="h-full flex flex-col justify-end mt-48">
               <div
                 className="rounded-full bg-indigo-600 text-white px-4 py-2 text-center cursor-pointer transition-all duration-300 hover:bg-indigo-800"
-                onClick={() => setShowChangeClubname(!showChangeClubName)}
+                onClick={() => setShowChangeClubname(true)}
               >
                 Renomear meu Clube
               </div>
               <div
                 className="mt-4 rounded-full text-indigo-600 border border-indigo-600 px-4 py-2 text-center cursor-pointer"
-                onClick={() => setShowChangeBadge(!showChangeBadge)}
+                onClick={() => setShowChangeBadge(true)}
               >
                 Editar meu Emblema
               </div>
@@ -409,7 +360,7 @@ const page = () => {
         </div>
 
         {showChangeClubName && <EditClubName state={setShowChangeClubname} />}
-        {showChangeBadge && <ChangeClubBadge />}
+        {showChangeBadge && <ChangeClubBadge state={setShowChangeBadge} />}
       </div>
     )
   );

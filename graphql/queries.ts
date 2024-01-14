@@ -12,9 +12,7 @@ export const GET_PLAYER = gql`
       email
       password
       currency
-      cards
       qtdCards
-      badges
       badge
       friends
       pendingFriends
@@ -45,8 +43,7 @@ export const GET_ALL_PLAYERS = gql`
       clubname
       email
       password
-      currency
-      cards
+      currency      
       qtdCards
       badge
       friends
@@ -72,7 +69,6 @@ export const GET_USER_FRIENDS = gql`
       email
       password
       currency
-      cards
       qtdCards
       badge
       friends
@@ -98,7 +94,6 @@ export const GET_USER_PENDING_FRIENDS = gql`
       email
       password
       currency
-      cards
       qtdCards
       badge
       friends
@@ -177,7 +172,7 @@ export const GET_SELLING_CARDS = gql`
       league
       type
       overall
-      pace   
+      pace
       finalization
       pass
       drible
@@ -213,7 +208,7 @@ export const GET_LINEUP = gql`
       player11
     }
   }
-`
+`;
 
 export const GET_USER_CURRENT_LINEUP = gql`
   query findUserCurrentLineup($userId: String!) {
@@ -234,6 +229,50 @@ export const GET_USER_CURRENT_LINEUP = gql`
       player9
       player10
       player11
+    }
+  }
+`;
+
+export const GET_USER_BADGES = gql`
+  query findUserBadges($userId: String!) {
+    findUserBadges(id: $userId) {
+      id
+      badgeId
+      ownerId
+      selling
+      created
+      price
+      badgeImage
+      clubname
+      maxValue
+      minValue
+      quickSellValue
+    }
+  }
+`;
+
+export const GET_USER_BADGE = gql`
+  query findUserBadge($id: String!) {
+    findUserBadge(id: $id) {
+      badgeImage
+    }
+  }
+`;
+
+export const GET_SELLING_BADGES = gql `
+  query findSellingBadges {
+    findSellingBadges {
+      id
+      badgeId
+      ownerId
+      selling
+      created
+      price
+      badgeImage
+      clubname
+      maxValue
+      minValue
+      quickSellValue 
     }
   }
 `

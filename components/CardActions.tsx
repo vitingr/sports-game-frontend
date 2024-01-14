@@ -13,7 +13,7 @@ const CardActions = ({
   cardData: GeneratedCardProps;
   showState: any;
   showSellingOptions: any;
-}) => {
+}) => { 
   return (
     <Popup
       state={showState}

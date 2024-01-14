@@ -457,3 +457,51 @@ export const CREATE_BADGE = gql`
     }
   }
 `;
+
+export const CHANGE_CLUB_BADGE = gql`
+  mutation (
+    $userId: String!
+    $clubBadge: String!
+  ) {
+    changeClubBadge(
+      changeClubBadge: {
+        userId: $userId
+        clubBadge: $clubBadge
+      }
+    ) {
+      id
+    }
+  }
+`
+
+export const SELL_BADGE = gql`
+  mutation (
+    $id: String!
+    $price: Float!
+  ) {
+    sellBadge(sellBadge: {
+      id: $id
+      price: $price
+    }) {
+      id
+    }
+  }
+`
+
+export const BUY_BADGE = gql`
+  mutation (
+    $id: String!
+    $ownerId: String!
+    $newOwnerId: String!
+    $price: Float!
+  ) {
+    buyBadge(buyBadge: {
+      id: $id
+      ownerId: $ownerId
+      newOwnerId: $newOwnerId
+      price: $price
+    }) {
+      id
+    }
+  }
+`

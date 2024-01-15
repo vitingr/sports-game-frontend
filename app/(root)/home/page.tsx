@@ -18,9 +18,13 @@ import { GET_ALL_PLAYERS } from "@/graphql/queries";
 import { UserProps } from "@/types";
 import Result from "@/components/MatchComponents/Result";
 import MatchWinner from "@/components/MatchComponents/MatchWinner";
+import Link from "next/link";
+import GlobalRanking from "@/components/config/GlobalRanking";
 
 const page = () => {
-  const { user } = infoUser();
+  const { user, getUserInfo } = infoUser();
+
+  const [showWorldRanking, setShowWorldRanking] = useState<boolean>(false);
 
   const [updateHomeDriver] = useMutation(HOME_DRIVER);
   const {
@@ -43,7 +47,22 @@ const page = () => {
       socket.emit("searchMatch", {
         id: user.id as string,
       });
-      toast.success("Buscando partida");
+      await getUserInfo().then(() => {
+        toast.success("Buscando partida");
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleStopSearchMatch = async () => {
+    try {
+      socket.emit("stopSearchingMatch", {
+        id: user.id as string,
+      });
+      await getUserInfo().then(() => {
+        toast.success("Buscando partida");
+      });
     } catch (error) {
       console.log(error);
     }
@@ -247,7 +266,7 @@ const page = () => {
                   <></>
                 )}
                 {user.points >= 20000 && user.points <= 24999 ? (
-                  <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-800 to-rose-600 uppercase">
+                  <span className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-red-700 to-rose-500 uppercase">
                     {user.points}
                   </span>
                 ) : (
@@ -276,17 +295,23 @@ const page = () => {
           >
             <h1 className="text-xl font-semibold">Ranking Global</h1>
             <ul className="list-none mt-6">
-              {playersData.getAllUsers.map(
-                (player: UserProps, index: number) => (
+              {playersData.getAllUsers
+                .slice(0, 4)
+                .map((player: UserProps, index: number) => (
                   <li
                     className="py-2 mb-2 border-b border-neutral-100 tracking-wider flex justify-between w-full"
                     key={index}
                   >
                     <div className="w-full">
-                      <h2 className="overflow-hidden">
-                        {index + 1}. {player.clubname} (
-                        {user.id === player.id ? "Você" : `${player.name}`})
-                      </h2>
+                      {user.id === player.id ? (
+                        <h2 className="overflow-hidden text-indigo-700">
+                          {index + 1}. {player.clubname} (Você)
+                        </h2>
+                      ) : (
+                        <h2 className="overflow-hidden">
+                          {index + 1}. {player.clubname} ({player.name})
+                        </h2>
+                      )}
                     </div>
                     <div className="flex justify-end">
                       <span className="text-transparent bg-clip-text bg-gradient-to-r from-neutral-700 to-slate-600 uppercase">
@@ -294,10 +319,9 @@ const page = () => {
                       </span>
                     </div>
                   </li>
-                )
-              )}
+                ))}
             </ul>
-            <div className="text-white py-2 w-full bg-indigo-600 rounded-full cursor-pointer text-center mt-28 ">
+            <div className="text-white py-2 w-full bg-indigo-600 rounded-full cursor-pointer text-center mt-28" onClick={() => setShowWorldRanking(true)}>
               Ver Ranking Completo
             </div>
           </div>
@@ -307,11 +331,16 @@ const page = () => {
           {user.currentLineup ? (
             <div
               className="bg-white p-16 border border-neutral-100 shadow-sm shadow-neutral-200 w-full flex flex-col items-center justify-center text-3xl font-bold uppercase cursor-pointer rounded-xl"
-              onClick={() => handleSearchMatch()}
+              onClick={async () => await handleSearchMatch()}
             >
               {user.searchingMatch ? (
-                <div className="w-full flex justify-center items-center">
-                  <p className="mr-6">Buscando partida</p>
+                <div
+                  className="w-full flex justify-center items-center"
+                  onClick={async () => {
+                    await handleStopSearchMatch();
+                  }}
+                >
+                  <p className="mr-6">Cancelar Busca</p>
                   <div className="dot-spinner">
                     <div className="dot-spinner__dot"></div>
                     <div className="dot-spinner__dot"></div>
@@ -328,12 +357,12 @@ const page = () => {
               )}
             </div>
           ) : (
-            <div
+            <Link
+              href={"/lineups"}
               className="bg-neutral-200 p-16 border border-neutral-100 shadow-sm shadow-neutral-200 w-full flex flex-col items-center justify-center text-3xl font-bold uppercase cursor-not-allowed rounded-xl"
-              onClick={() => handleSearchMatch()}
             >
               Escolha uma Escalação para Buscar uma Partida
-            </div>
+            </Link>
           )}
         </section>
 
@@ -410,6 +439,8 @@ const page = () => {
             player2Score={player2Score}
           />
         )}
+
+        {showWorldRanking && <GlobalRanking showState={setShowWorldRanking} />}
       </div>
     )
   );

@@ -156,6 +156,7 @@ const Navbar = () => {
                 href={"/home"}
                 className="flex w-full justify-between items-center gap-8 cursor-pointer"
                 id="home"
+                onClick={() => setShowMenu(false)}
               >
                 <IoHomeOutline size={27.5} className="gray-icon" />
                 <h3 className="text-[#717171] w-full text-lg">Início</h3>
@@ -164,6 +165,7 @@ const Navbar = () => {
                 href={"/friends"}
                 className="flex w-full justify-between items-center gap-8 cursor-pointer"
                 id="purchases"
+                onClick={() => setShowMenu(false)}
               >
                 <IoPeopleOutline size={27.5} className="gray-icon" />
                 <h3 className="text-[#717171] w-full text-lg">Amigos</h3>
@@ -172,6 +174,7 @@ const Navbar = () => {
                 href={"/shop"}
                 className="flex w-full justify-between items-center gap-8 cursor-pointer"
                 id="coupons"
+                onClick={() => setShowMenu(false)}
               >
                 <RiShoppingCartLine size={27.5} className="gray-icon" />
                 <h3 className="text-[#717171] w-full text-lg">Loja</h3>
@@ -180,6 +183,7 @@ const Navbar = () => {
                 href={"/market"}
                 className="flex w-full justify-between items-center gap-8 cursor-pointer"
                 id="profile"
+                onClick={() => setShowMenu(false)}
               >
                 <BsShop size={27.5} className="gray-icon" />
                 <h3 className="text-[#717171] w-full text-lg">Mercado</h3>
@@ -188,6 +192,7 @@ const Navbar = () => {
                 href={"/lineups"}
                 className="flex w-full justify-between items-center gap-8 cursor-pointer"
                 id="coupons"
+                onClick={() => setShowMenu(false)}
               >
                 <LuFileSpreadsheet size={27.5} className="gray-icon" />
                 <h3 className="text-[#717171] w-full text-lg">Elencos</h3>
@@ -196,6 +201,7 @@ const Navbar = () => {
                 href={"/my-club"}
                 className="flex w-full justify-between items-center gap-8 cursor-pointer"
                 id="coupons"
+                onClick={() => setShowMenu(false)}
               >
                 <IoSettingsOutline size={27.5} className="gray-icon" />
                 <h3 className="text-[#717171] w-full text-lg">Meu Clube</h3>

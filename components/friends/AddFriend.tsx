@@ -27,7 +27,7 @@ const AddFriend = ({
       !friends.includes(user.id) &&
       !pendingFriends.includes(user.id) &&
       player.id !== user.id && (
-        <div className="flex justify-between gap-3 py-2 mb-2 border-b border-neutral-100 items-center w-[450px]">
+        <div className="flex justify-between gap-3 py-2 mb-2 border-b border-neutral-100 items-center max-w-[450px] w-full">
           <Image
             src={player.badgeImage || "/assets/undefinedTeam.png"}
             alt="Team Badge"

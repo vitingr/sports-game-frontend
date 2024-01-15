@@ -61,22 +61,6 @@ const MatchCard = ({
             description="Escolha um dos atributos abaixo do jogador para disputar essa rodada, após escolher um jogador durante uma rodada, você não pode usa-lo mais durante essa partida"
           >
             <div className="w-full flex flex-col items-center">
-              <p>
-                {currentStat
-                  ? `${currentStat} é ${typeof currentStat}`
-                  : "não tem o stat"}
-              </p>
-              <p>
-                {currentStat === "free" || currentStat || currentStat === "pace"
-                  ? "render"
-                  : "não render"}
-              </p>
-              <p>{currentStat === "free" ? "livre" : "n"}</p>
-              <p>{currentStat ? "existe" : "n existe"}</p>
-              <p>{currentStat === "pace" ? "é pace" : "n é pace"}</p>
-              <p></p>
-              <p></p>
-
               <Image
                 src={cardStats?.cardImage || ""}
                 alt="Lineup Card"

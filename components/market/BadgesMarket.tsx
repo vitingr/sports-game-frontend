@@ -68,7 +68,7 @@ const BadgesMarket = () => {
                   alt="Player Card"
                   width={75}
                   height={75}
-                  className="max-w-[75px] max-h-[75px] w-auto h-auto"
+                  className="max-w-[75px] max-h-[75px] w-auto h-auto object-fill"
                 />
                 <div className="w-full flex flex-col items-center mt-1">
                   <h1 className="font-bold">{badge.clubname}</h1>

@@ -3,7 +3,11 @@
 import PlayerCard from "@/components/PlayerCard";
 import EditClubName from "@/components/personalization/EditClubName";
 import { infoUser } from "@/contexts/UserContext";
-import { GET_USER_BADGE, GET_USER_CARDS } from "@/graphql/queries";
+import {
+  GET_ALL_PLAYERS,
+  GET_USER_BADGE,
+  GET_USER_CARDS,
+} from "@/graphql/queries";
 import { GeneratedCardProps } from "@/types";
 import { useMutation, useQuery } from "@apollo/client";
 import Image from "next/image";
@@ -13,12 +17,15 @@ import { driver } from "driver.js";
 import "driver.js/dist/driver.css";
 import { PROFILE_DRIVER } from "@/graphql/mutations";
 import ChangeClubBadge from "@/components/personalization/ChangeClubBadge";
+import GlobalRanking from "@/components/config/GlobalRanking";
 
 const page = () => {
   const { user } = infoUser();
 
   const [showChangeBadge, setShowChangeBadge] = useState<boolean>(false);
   const [showChangeClubName, setShowChangeClubname] = useState<boolean>(false);
+  
+  const [showWorldRanking, setShowWorldRanking] = useState<boolean>(false)
 
   const {
     data: myCards,
@@ -30,6 +37,12 @@ const page = () => {
     },
     skip: !user.id,
   });
+
+  const {
+    data: playersData,
+    loading: playersDataLoading,
+    refetch: refetchPlayersData,
+  } = useQuery(GET_ALL_PLAYERS);
 
   const [updateProfileDriver] = useMutation(PROFILE_DRIVER);
 
@@ -106,7 +119,9 @@ const page = () => {
   }, [user]);
 
   return (
-    myCardsLoading === false && (
+    myCardsLoading === false &&
+    playersDataLoading === false &&
+    playersData && (
       <div className="flex justify-center gap-6 w-full max-w-[1600px] mt-[3em] sm:flex-nowrap flex-wrap h-full">
         <div className="w-full flex flex-col gap-4 sm:h-auto h-full">
           <div
@@ -230,11 +245,11 @@ const page = () => {
                   )}
 
                   <span className="mt-6 text-2xl font-[400]">
-                    #1 Ranking Geral
+                  #{playersData.getAllUsers.findIndex((userData: any) => userData.id === user.id) + 1} Ranking Geral
                   </span>
                 </div>
               </div>
-              <div className="justify-end flex flex-col mt-10 underline underline-offset-4 px-4 py-2 text-center cursor-pointer">
+              <div className="justify-end flex flex-col mt-10 underline underline-offset-4 px-4 py-2 text-center cursor-pointer" onClick={() => setShowWorldRanking(true)}>
                 Ver Ranking Completo
               </div>
             </div>
@@ -256,10 +271,7 @@ const page = () => {
             <div className="flex flex-col w-full justify-center items-center">
               {user.badgeImage && (
                 <Image
-                  src={
-                    user.badgeImage ||
-                    "/assets/undefinedTeam.png"
-                  }
+                  src={user.badgeImage || "/assets/undefinedTeam.png"}
                   alt="Team Badge"
                   width={125}
                   height={125}
@@ -349,6 +361,7 @@ const page = () => {
 
         {showChangeClubName && <EditClubName state={setShowChangeClubname} />}
         {showChangeBadge && <ChangeClubBadge state={setShowChangeBadge} />}
+        {showWorldRanking && <GlobalRanking showState={setShowWorldRanking} />}
       </div>
     )
   );

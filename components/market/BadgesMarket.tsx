@@ -55,12 +55,12 @@ const BadgesMarket = () => {
 
   return (
     sellingBadgesLoading === false && (
-      <div className="flex flex-wrap w-full gap-10 mt-12 justify-start">
+      <div className="flex flex-wrap w-full gap-10 mt-12 justify-start pb-20">
         {sellingBadges && sellingBadges.findSellingBadges ? (
           sellingBadges.findSellingBadges.map(
             (badge: GeneratedBadgeProps, index: number) => (
               <div
-                className="w-[225px] h-[300px] rounded-xl flex flex-col items-center"
+                className="w-[160px] h-[150px] rounded-xl flex flex-col items-center"
                 key={index}
               >
                 <Image
@@ -70,7 +70,7 @@ const BadgesMarket = () => {
                   height={75}
                   className="max-w-[75px] max-h-[75px] w-auto h-auto"
                 />
-                <div className="w-full flex flex-col items-center">
+                <div className="w-full flex flex-col items-center mt-1">
                   <h1 className="font-bold">{badge.clubname}</h1>
                   <p className="text-sm text-[#717171]">Emblema de Clube</p>
                   <div className="flex gap-2 items-center mt-2">

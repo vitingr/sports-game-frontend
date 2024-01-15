@@ -31,17 +31,6 @@ const page = () => {
     skip: !user.id,
   });
 
-  const {
-    data: userBadge,
-    loading: userBadgeLoading,
-    refetch: refetchUserBadge,
-  } = useQuery(GET_USER_BADGE, {
-    variables: {
-      id: user.badge,
-    },
-    skip: !user.badge,
-  });
-
   const [updateProfileDriver] = useMutation(PROFILE_DRIVER);
 
   const viewDriverProfile = async () => {
@@ -117,8 +106,7 @@ const page = () => {
   }, [user]);
 
   return (
-    myCardsLoading === false &&
-    userBadgeLoading === false && (
+    myCardsLoading === false && (
       <div className="flex justify-center gap-6 w-full max-w-[1600px] mt-[3em] sm:flex-nowrap flex-wrap h-full">
         <div className="w-full flex flex-col gap-4 sm:h-auto h-full">
           <div
@@ -266,10 +254,10 @@ const page = () => {
           </p>
           <div className="w-full flex flex-col justify-between mt-12 h-full">
             <div className="flex flex-col w-full justify-center items-center">
-              {userBadge && (
+              {user.badgeImage && (
                 <Image
                   src={
-                    userBadge.findUserBadge.badgeImage ||
+                    user.badgeImage ||
                     "/assets/undefinedTeam.png"
                   }
                   alt="Team Badge"

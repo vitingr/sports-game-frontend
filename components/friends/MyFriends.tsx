@@ -53,7 +53,7 @@ const MyFriends = () => {
               key={index}
             >
               <Image
-                src={"/assets/undefinedTeam.png"}
+                src={player.badgeImage || "/assets/undefinedTeam.png"}
                 alt="Team Badge"
                 width={45}
                 height={45}

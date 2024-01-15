@@ -29,7 +29,7 @@ const AddFriend = ({
       player.id !== user.id && (
         <div className="flex justify-between gap-3 py-2 mb-2 border-b border-neutral-100 items-center w-[450px]">
           <Image
-            src={"/assets/undefinedTeam.png"}
+            src={player.badgeImage || "/assets/undefinedTeam.png"}
             alt="Team Badge"
             width={45}
             height={45}

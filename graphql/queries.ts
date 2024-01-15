@@ -14,6 +14,7 @@ export const GET_PLAYER = gql`
       currency
       qtdCards
       badge
+      badgeImage
       friends
       pendingFriends
       qtdFriends
@@ -43,9 +44,10 @@ export const GET_ALL_PLAYERS = gql`
       clubname
       email
       password
-      currency      
+      currency
       qtdCards
       badge
+      badgeImage
       friends
       pendingFriends
       qtdFriends
@@ -71,6 +73,7 @@ export const GET_USER_FRIENDS = gql`
       currency
       qtdCards
       badge
+      badgeImage
       friends
       pendingFriends
       qtdFriends
@@ -96,6 +99,7 @@ export const GET_USER_PENDING_FRIENDS = gql`
       currency
       qtdCards
       badge
+      badgeImage
       friends
       pendingFriends
       qtdFriends
@@ -259,7 +263,7 @@ export const GET_USER_BADGE = gql`
   }
 `;
 
-export const GET_SELLING_BADGES = gql `
+export const GET_SELLING_BADGES = gql`
   query findSellingBadges {
     findSellingBadges {
       id
@@ -272,7 +276,7 @@ export const GET_SELLING_BADGES = gql `
       clubname
       maxValue
       minValue
-      quickSellValue 
+      quickSellValue
     }
   }
-`
+`;

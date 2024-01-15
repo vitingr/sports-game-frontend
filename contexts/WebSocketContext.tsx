@@ -23,6 +23,9 @@ export const WebSocketProvider = ({
   const [availableCards, setAvailableCards] = useState<any>();
   const [matchCurrentTurn, setMatchCurrentTurn] = useState<string>("");
   const [currentStat, setCurrentStat] = useState<string>("")
+  const [showMatchResults, setShowMatchResults] = useState<boolean>(false)
+  const [matchWinner, setMatchWinner] = useState<string>("")
+  const [matchLoser, setMatchLoser] = useState<string>("")
 
   const [matchUsedCards, setMatchUsedCards] = useState<string[]>([])
 
@@ -56,6 +59,13 @@ export const WebSocketProvider = ({
       setAvailableCards(userLineupAvaliableCards);
     });
 
+    socket.on("matchWinner", ({winner, loser}: any) => {
+      setShowMatchResults(true)
+      setMatchWinner(winner)
+      setMatchLoser(loser)
+      router.push("/home");
+    });
+
     socket.on("currentTurn", ({turn, currentStat}: {turn: string, currentStat: string}) => {
       console.log(`É a vez do usuário: ${turn}`)
       console.log(`atributo da vez: ${currentStat} ${typeof currentStat}`)
@@ -69,7 +79,7 @@ export const WebSocketProvider = ({
         console.log(`player1score = ${player1Score} || player2score = ${player2Score}`)
         setPlayer1Score(player1Score);
         setPlayer2Score(player2Score);
-        setMatchCurrentTurn(usedCards)
+        setMatchUsedCards(usedCards)
       }
     );
 
@@ -95,7 +105,11 @@ export const WebSocketProvider = ({
         player1Score,
         player2Score,
         matchUsedCards,
-        currentStat
+        currentStat,
+        showMatchResults,
+        setShowMatchResults,
+        matchWinner,
+        matchLoser,
       }}
     >
       <ToastMessage />

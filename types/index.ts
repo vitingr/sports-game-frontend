@@ -29,10 +29,9 @@ export interface UserProps {
   email: string;
   password?: string;
   currency: number;
-  cards: string[];
   qtdCards?: number;
-  badges: string[];
   badge?: string;
+  badgeImage?: string;
   friends: string[];
   qtdFriends?: number;
   pendingFriends: string[];
@@ -144,4 +143,12 @@ export interface GeneratedBadgeProps {
   maxValue: number;
   minValue: number;
   quickSellValue: number;
+}
+
+export interface ResultProps {
+  showState: any
+  winner: any;
+  loser: any;
+  player1Score: number;
+  player2Score: number;
 }

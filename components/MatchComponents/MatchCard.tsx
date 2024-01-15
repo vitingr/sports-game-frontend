@@ -9,18 +9,18 @@ import { socketProvider } from "@/contexts/WebSocketContext";
 type MatchCardProps = {
   cardData: string | any;
   handleChooseCard: any;
-  usedCards: string[];
 };
 
 const MatchCard = ({
   cardData,
   handleChooseCard,
-  usedCards,
 }: MatchCardProps) => {
   const [showStats, setShowStats] = useState<boolean>(false);
   const [cardStats, setCardStats] = useState<GeneratedCardProps>();
 
   const { currentStat } = socketProvider();
+
+  const {matchUsedCards} = socketProvider()
 
   const parseData = async () => {
     const data = await JSON.parse(cardData);
@@ -35,13 +35,13 @@ const MatchCard = ({
     cardStats &&
     cardStats?.cardImage && (
       <>
-        {usedCards.includes(cardStats.id) ? (
+        {matchUsedCards.includes(cardStats.id) ? (
           <Image
             src={cardStats?.cardImage || ""}
             alt="Lineup Card"
             width={125}
             height={125}
-            className="cursor-pointer grayscale"
+            className="grayscale cursor-not-allowed"
           />
         ) : (
           <Image

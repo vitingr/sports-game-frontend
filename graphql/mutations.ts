@@ -462,11 +462,13 @@ export const CHANGE_CLUB_BADGE = gql`
   mutation (
     $userId: String!
     $clubBadge: String!
+    $badgeImage: String!
   ) {
     changeClubBadge(
       changeClubBadge: {
         userId: $userId
         clubBadge: $clubBadge
+        badgeImage: $badgeImage
       }
     ) {
       id
@@ -478,10 +480,12 @@ export const SELL_BADGE = gql`
   mutation (
     $id: String!
     $price: Float!
+    $ownerId: String!
   ) {
     sellBadge(sellBadge: {
       id: $id
       price: $price
+      ownerId: $ownerId
     }) {
       id
     }

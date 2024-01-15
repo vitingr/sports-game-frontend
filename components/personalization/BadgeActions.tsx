@@ -33,6 +33,7 @@ const BadgeActions = ({
         variables: {
           userId: user.id,
           clubBadge: currentBadge.id,
+          badgeImage: currentBadge.badgeImage
         },
       });
       await getUserInfo().then(() => {
@@ -50,6 +51,7 @@ const BadgeActions = ({
         variables: {
           id: currentBadge.id,
           price: Number(badgeValue),
+          ownerId: user.id
         },
       });
       await refetch().then(() => {

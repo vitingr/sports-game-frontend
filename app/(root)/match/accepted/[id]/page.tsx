@@ -47,14 +47,8 @@ const page = () => {
       setChosenCard(null);
     });
 
-    socket.on("matchWinner", (winner: string) => {
-      console.log(winner);
-      router.push("/home");
-    });
-
     return () => {
       socket.off("startRound");
-      socket.off("matchWinner");
     };
   }, [roundCount]);
 
@@ -117,7 +111,6 @@ const page = () => {
                     lineup={lineupContent}
                     key={index}
                     handleChooseCard={handleChooseCard}
-                    usedCards={matchUsedCards}
                   />
                 )
               )}

@@ -13,10 +13,10 @@ ChartJS.register(
   ArcElement
 )
 
-const DoughnutChart = ({chartData, chartOptions}: DoughnutProps) => {
+const DoughnutChart = ({chartData}: DoughnutProps) => {
   return (
     <div className='max-w-[250px] min-h-[250px]'>
-      <Chart type="doughnut" data={chartData} options={chartOptions} />
+      <Chart type="doughnut" data={chartData} />
     </div>
   );
 }

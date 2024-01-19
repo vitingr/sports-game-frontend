@@ -128,7 +128,6 @@ export interface GeneratedCardProps {
 
 export interface DoughnutProps {
   chartData: any;
-  chartOptions: any;
 }
 
 export interface GeneratedBadgeProps {

@@ -80,10 +80,6 @@ const page = () => {
     }
   };
 
-  const config = {
-    type: "doughnut",
-  };
-
   const driverObj = driver({
     showProgress: true,
     popoverClass: "driverjs-theme",
@@ -195,7 +191,6 @@ const page = () => {
             id="stats"
           >
             <DoughnutChart
-              chartOptions={config}
               chartData={{
                 labels: ["Vitórias", "Empates", "Derrotas"],
                 datasets: [

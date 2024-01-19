@@ -1,7 +1,18 @@
-import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, CategoryScale, PointElement, LineElement, LinearScale, Title, BarElement } from 'chart.js';
-import { Chart } from 'react-chartjs-2';
-import { DoughnutProps } from '@/types';
+import React from "react";
+import {
+  Chart as ChartJS,
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  PointElement,
+  LineElement,
+  LinearScale,
+  Title,
+  BarElement,
+} from "chart.js";
+import { Chart, Doughnut } from "react-chartjs-2";
+import { DoughnutProps } from "@/types";
 
 ChartJS.register(
   CategoryScale,
@@ -11,14 +22,10 @@ ChartJS.register(
   Tooltip,
   Legend,
   ArcElement
-)
+);
 
-const DoughnutChart = ({chartData}: DoughnutProps) => {
-  return (
-    <div className='max-w-[250px] min-h-[250px]'>
-      <Chart type="doughnut" data={chartData} />
-    </div>
-  );
-}
+const DoughnutChart = ({ chartData }: DoughnutProps) => {
+  return <Doughnut className="w-[250px] h-[250px] doughnut-chart" data={chartData} />;
+};
 
-export default DoughnutChart
+export default DoughnutChart;

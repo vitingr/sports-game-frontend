@@ -38,7 +38,7 @@ export default function RootLayout({
                 <SignedIn>
                   <UserProvider>
                     <Navbar />
-                    <main className="bg-[#f6f6f6] w-full min-h-[62vh] sm:pt-[150px] flex justify-center">
+                    <main className="bg-[#FAFAFC] w-full min-h-[62vh] sm:pt-[150px] flex justify-center">
                       {children}
                     </main>
                     <Footer />
@@ -46,7 +46,7 @@ export default function RootLayout({
                 </SignedIn>
                 <SignedOut>
                     <Header />
-                    <main className="bg-[#f6f6f6] w-full min-h-[62vh] sm:pt-[150px] flex justify-center">
+                    <main className="bg-[#FAFAFC] w-full min-h-[62vh] sm:pt-[150px] flex justify-center">
                       {children}
                     </main>
                     <Footer />
@@ -59,7 +59,7 @@ export default function RootLayout({
                 <WebSocketProvider>
                   <SignedIn>
                     <Navbar />
-                    <main className="bg-[#f6f6f6] w-full min-h-[62vh] p-[2%] sm:pt-[150px] sm:p-[5%] flex justify-center">
+                    <main className="bg-[#FAFAFC] w-full min-h-[62vh] p-[2%] sm:pt-[150px] sm:p-[5%] flex justify-center">
                       {children}
                     </main>
                     <Footer />

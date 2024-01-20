@@ -20,7 +20,7 @@ const PlayerCard = ({
 
   return cardData.selling === false ? (
     <div
-      className="cursor-pointer max-w-[165px] max-h-[225px] w-full h-full flex items-center justify-center"
+      className="cursor-pointer sm:max-w-[165px] max-w-[150px]  max-h-[225px] w-full h-full flex items-center justify-center"
       onClick={() => setShowPlayerInfo(true)}
     >
       {small ? (

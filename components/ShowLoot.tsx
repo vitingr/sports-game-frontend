@@ -1,8 +1,12 @@
+"use client"
+
 import { GeneratedCardProps } from "@/types";
 import React from "react";
 import Popup from "./config/Popup";
 import LootCard from "./LootCard";
 import LootBadge from "./LootBadge";
+import { motion } from "framer-motion"
+import { slideInFromLeft, slideInFromRight, slideInFromTop } from "@/utils/common/motion";
 
 type ShowLootProps = {
   loot: any;
@@ -21,78 +25,78 @@ const ShowLoot = ({ loot, showState, packRarity }: ShowLootProps) => {
         {packRarity === "players_pack" && (
           <>
             {loot.openPlayersPack.map((card: any, index: number) => (
-              <div key={index}>
+              <motion.div variants={slideInFromTop(index * 0.2)} key={index}>
                 {card.cardImage === null ? (
                   <LootBadge badgeData={card} />
-                ) : (
+                ) : ( 
                   <LootCard cardData={card} />
                 )}
-              </div>
+              </motion.div>
             ))}
           </>
         )}
         {packRarity === "rare_gold_pack" && (
           <>
             {loot.openRareGoldPack.map((card: any, index: number) => (
-              <div key={index}>
+              <motion.div variants={slideInFromTop(index * 0.2)} key={index}>
                 {card.cardImage === null ? (
                   <LootBadge badgeData={card} />
                 ) : (
                   <LootCard cardData={card} />
                 )}
-              </div>
+              </motion.div>
             ))}
           </>
         )}
         {packRarity === "gold_pack" && (
           <>
             {loot.openGoldPack.map((card: any, index: number) => (
-              <div key={index}>
+              <motion.div variants={slideInFromTop(index * 0.2)} key={index}>
                 {card.cardImage === null ? (
                   <LootBadge badgeData={card} />
                 ) : (
                   <LootCard cardData={card} />
                 )}
-              </div>
+              </motion.div>
             ))}
           </>
         )}
         {packRarity === "rare_silver_pack" && (
           <>
             {loot.openRareSilverPack.map((card: any, index: number) => (
-              <div key={index}>
+              <motion.div variants={slideInFromTop(index * 0.2)} key={index}>
                 {card.cardImage === null ? (
                   <LootBadge badgeData={card} />
                 ) : (
                   <LootCard cardData={card} />
                 )}
-              </div>
+              </motion.div>
             ))}
           </>
         )}
         {packRarity === "silver_pack" && (
           <>
             {loot.openSilverPack.map((card: any, index: number) => (
-              <div key={index}>
+              <motion.div variants={slideInFromTop(index * 0.2)} key={index}>
                 {card.cardImage === null ? (
                   <LootBadge badgeData={card} />
                 ) : (
                   <LootCard cardData={card} />
                 )}
-              </div>
+              </motion.div>
             ))}
           </>
         )}
         {packRarity === "bronze_pack" && (
           <>
             {loot.openBronzePack.map((card: any, index: number) => (
-              <div key={index}>
+              <motion.div variants={slideInFromTop(index * 0.2)} key={index}>
                 {card.cardImage === null ? (
                   <LootBadge badgeData={card} />
                 ) : (
                   <LootCard cardData={card} />
                 )}
-              </div>
+              </motion.div>
             ))}
           </>
         )}

@@ -187,7 +187,7 @@ const page = () => {
 
         <section className="flex justify-between gap-8 w-full mt-[6.5em] sm:flex-nowrap flex-wrap">
           <div
-            className="w-full bg-white p-8 rounded-b-xl border-t-2 border-t-indigo-600 border border-neutral-100 shadow-sm shadow-neutral-200 min-h-[300px] flex gap-12 sm:flex-row flex-col items-center"
+            className="w-full bg-white p-8 rounded-b-xl border-t-2 border-t-indigo-600 border border-neutral-100 shadow-md shadow-neutral-300 min-h-[300px] flex gap-12 sm:flex-row flex-col items-center"
             id="stats"
           >
             <DoughnutChart
@@ -285,7 +285,7 @@ const page = () => {
             </div>
           </div>
           <div
-            className="max-w-[450px] w-full bg-white rounded-b-xl border-t-2 border-t-indigo-600 p-8 border border-neutral-100 shadow-sm shadow-neutral-200 min-h-[300px]"
+            className="max-w-[450px] w-full bg-white rounded-b-xl border-t-2 border-t-indigo-600 p-8 border border-neutral-100 shadow-md shadow-neutral-300 min-h-[300px]"
             id="ranking"
           >
             <h1 className="text-xl font-semibold">Ranking Global</h1>
@@ -325,7 +325,7 @@ const page = () => {
         <section className="w-full mt-[6.5em] flex gap-10 justify-between sm:flex-nowrap flex-wrap">
           {user.currentLineup ? (
             <div
-              className="bg-white p-16 border border-neutral-100 shadow-sm shadow-neutral-200 w-full flex flex-col items-center justify-center text-3xl font-bold uppercase cursor-pointer rounded-xl"
+              className="bg-white p-16 border border-neutral-100 shadow-md shadow-neutral-300 w-full flex flex-col items-center justify-center text-3xl font-bold uppercase cursor-pointer rounded-xl"
               onClick={async () => await handleSearchMatch()}
             >
               {user.searchingMatch ? (
@@ -354,7 +354,7 @@ const page = () => {
           ) : (
             <Link
               href={"/lineups"}
-              className="bg-neutral-200 p-16 border border-neutral-100 shadow-sm shadow-neutral-200 w-full flex flex-col items-center justify-center text-3xl font-bold uppercase cursor-not-allowed rounded-xl"
+              className="bg-neutral-200 p-16 border border-neutral-100 shadow-md shadow-neutral-300 w-full flex flex-col items-center justify-center text-3xl font-bold uppercase cursor-not-allowed rounded-xl"
             >
               Escolha uma Escalação para Buscar uma Partida
             </Link>
@@ -363,7 +363,7 @@ const page = () => {
 
         <section className="w-full mt-[6.5em] flex justify-around gap-10 sm:flex-nowrap flex-wrap">
           <div
-            className="bg-white rounded-xl p-8 border border-neutral-100 shadow-sm shadow-neutral-200 flex flex-col items-center w-full h-[300px] cursor-pointer transition-all duration-300 hover:scale-105"
+            className="bg-white rounded-xl p-8 border border-neutral-100 shadow-md shadow-neutral-300 flex flex-col items-center w-full h-[300px] cursor-pointer transition-all duration-300 hover:scale-105"
             id="shop"
           >
             <h1 className="text-3xl mt-2 font-bold">Loja</h1>
@@ -374,7 +374,7 @@ const page = () => {
             <RiShoppingCartLine size={50} className="gray-icon mt-10" />
           </div>
           <div
-            className="bg-white rounded-xl p-8 border border-neutral-100 shadow-sm shadow-neutral-200 flex flex-col items-center w-full h-[300px] cursor-pointer transition-all duration-300 hover:scale-105"
+            className="bg-white rounded-xl p-8 border border-neutral-100 shadow-md shadow-neutral-300 flex flex-col items-center w-full h-[300px] cursor-pointer transition-all duration-300 hover:scale-105"
             id="market"
           >
             <h1 className="text-3xl mt-2 font-bold">Mercado</h1>
@@ -385,7 +385,7 @@ const page = () => {
             <BsShop size={50} className="gray-icon mt-10" />
           </div>
           <div
-            className="bg-white rounded-xl p-8 border border-neutral-100 shadow-sm shadow-neutral-200 flex flex-col items-center w-full h-[300px] cursor-pointer transition-all duration-300 hover:scale-105"
+            className="bg-white rounded-xl p-8 border border-neutral-100 shadow-md shadow-neutral-300 flex flex-col items-center w-full h-[300px] cursor-pointer transition-all duration-300 hover:scale-105"
             id="lineups"
           >
             <h1 className="text-3xl mt-2 font-bold">Elencos</h1>
@@ -398,7 +398,7 @@ const page = () => {
         </section>
 
         <section
-          className="w-full flex justify-between gap-6 bg-white rounded-b-xl border-t-2 border-t-indigo-600 p-10 border border-neutral-100 shadow-sm shadow-neutral-200 mt-[6.5em]"
+          className="w-full flex justify-between gap-6 bg-white rounded-b-xl border-t-2 border-t-indigo-600 p-10 border border-neutral-100 shadow-md shadow-neutral-300 mt-[6.5em]"
           id="dme"
         >
           <div className="w-full">

@@ -24,7 +24,7 @@ const page = () => {
 
   return (
     myCardsLoading === false && (
-      <div className="flex flex-col items-center gap-6 w-full max-w-[1250px] bg-white p-10 rounded-xl shadow-md shadow-neutral-200 border border-neutral-100">
+      <div className="flex flex-col items-center gap-6 w-full max-w-[1250px] bg-[#F3F4F8] p-10 rounded-xl shadow-md shadow-neutral-200 border border-neutral-100">
         <h1 className="text-3xl font-bold w-full transition-all duration-300 hover:text-indigo-600 cursor-default mt-4">
           Minhas Cartas
         </h1>

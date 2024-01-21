@@ -221,7 +221,6 @@ export const OPEN_PLAYERS_PACK = gql`
       position
       badgeImage
       clubname
-      
     }
   }
 `;
@@ -229,41 +228,18 @@ export const OPEN_PLAYERS_PACK = gql`
 export const OPEN_RARE_GOLD_PACK = gql`
   mutation ($userId: String!) {
     openRareGoldPack(id: $userId) {
-      GeneratedCard {
-        cardImage
-        owner
-        selling
-        playerId
-        name
-        club
-        league
-        type
-        overall
-        pace
-        finalization
-        pass
-        drible
-        defense
-        physic
-        minValue
-        maxValue
-        quickSellValue
-        price
-        position
-      }
-      GeneratedBadge {
-        id
-        badgeId
-        ownerId
-        selling
-        created
-        price
-        badgeImage
-        clubname
-        maxValue
-        minValue
-        quickSellValue
-      }
+      cardImage
+      name
+      club
+      league
+      type
+      overall
+      minValue
+      maxValue
+      quickSellValue
+      position
+      badgeImage
+      clubname
     }
   }
 `;
@@ -271,41 +247,18 @@ export const OPEN_RARE_GOLD_PACK = gql`
 export const OPEN_GOLD_PACK = gql`
   mutation ($userId: String!) {
     openGoldPack(id: $userId) {
-      GeneratedCard {
-        cardImage
-        owner
-        selling
-        playerId
-        name
-        club
-        league
-        type
-        overall
-        pace
-        finalization
-        pass
-        drible
-        defense
-        physic
-        minValue
-        maxValue
-        quickSellValue
-        price
-        position
-      }
-      GeneratedBadge {
-        id
-        badgeId
-        ownerId
-        selling
-        created
-        price
-        badgeImage
-        clubname
-        maxValue
-        minValue
-        quickSellValue
-      }
+      cardImage
+      name
+      club
+      league
+      type
+      overall
+      minValue
+      maxValue
+      quickSellValue
+      position
+      badgeImage
+      clubname
     }
   }
 `;
@@ -313,41 +266,18 @@ export const OPEN_GOLD_PACK = gql`
 export const OPEN_RARE_SILVER_PACK = gql`
   mutation ($userId: String!) {
     openRareSilverPack(id: $userId) {
-      GeneratedCard {
-        cardImage
-        owner
-        selling
-        playerId
-        name
-        club
-        league
-        type
-        overall
-        pace
-        finalization
-        pass
-        drible
-        defense
-        physic
-        minValue
-        maxValue
-        quickSellValue
-        price
-        position
-      }
-      GeneratedBadge {
-        id
-        badgeId
-        ownerId
-        selling
-        created
-        price
-        badgeImage
-        clubname
-        maxValue
-        minValue
-        quickSellValue
-      }
+      cardImage
+      name
+      club
+      league
+      type
+      overall
+      minValue
+      maxValue
+      quickSellValue
+      position
+      badgeImage
+      clubname
     }
   }
 `;
@@ -355,41 +285,18 @@ export const OPEN_RARE_SILVER_PACK = gql`
 export const OPEN_SILVER_PACK = gql`
   mutation ($userId: String!) {
     openSilverPack(id: $userId) {
-      GeneratedCard {
-        cardImage
-        owner
-        selling
-        playerId
-        name
-        club
-        league
-        type
-        overall
-        pace
-        finalization
-        pass
-        drible
-        defense
-        physic
-        minValue
-        maxValue
-        quickSellValue
-        price
-        position
-      }
-      GeneratedBadge {
-        id
-        badgeId
-        ownerId
-        selling
-        created
-        price
-        badgeImage
-        clubname
-        maxValue
-        minValue
-        quickSellValue
-      }
+      cardImage
+      name
+      club
+      league
+      type
+      overall
+      minValue
+      maxValue
+      quickSellValue
+      position
+      badgeImage
+      clubname
     }
   }
 `;
@@ -397,41 +304,18 @@ export const OPEN_SILVER_PACK = gql`
 export const OPEN_BRONZE_PACK = gql`
   mutation ($userId: String!) {
     openBronzePack(id: $userId) {
-      GeneratedCard {
-        cardImage
-        owner
-        selling
-        playerId
-        name
-        club
-        league
-        type
-        overall
-        pace
-        finalization
-        pass
-        drible
-        defense
-        physic
-        minValue
-        maxValue
-        quickSellValue
-        price
-        position
-      }
-      GeneratedBadge {
-        id
-        badgeId
-        ownerId
-        selling
-        created
-        price
-        badgeImage
-        clubname
-        maxValue
-        minValue
-        quickSellValue
-      }
+      cardImage
+      name
+      club
+      league
+      type
+      overall
+      minValue
+      maxValue
+      quickSellValue
+      position
+      badgeImage
+      clubname
     }
   }
 `;

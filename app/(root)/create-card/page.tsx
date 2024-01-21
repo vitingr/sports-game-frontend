@@ -145,6 +145,11 @@ const page = () => {
           <option value="Criciúma">Criciúma</option>
           <option value="Juventude">Universidad Católica</option>
           <option value="Criciúma">Nacional-URU</option>
+          <option value="Santos">Santos</option>
+          <option value="Vila Nova">Vila Nova</option>
+          <option value="Chapecoense">Chapecoense</option>
+          <option value="Coritiba">Coritiba</option>
+          <option value="Sport Recife">Sport Recife</option>
         </select>
 
         <select

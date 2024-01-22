@@ -58,7 +58,7 @@ export default function Home() {
         <h1 className="uppercase tracking-wider text-4xl font-bold cursor-default">
           Modos de Jogo
         </h1>
-        <div className="w-full justify-between flex gap-10 p-6 sm:p-0 items-center mt-[6.5em] sm:flex-nowrap flex-wrap">
+        <div className="w-full sm:justify-between justify-center flex gap-10 p-6 sm:p-0 items-center mt-[6.5em] sm:flex-nowrap flex-wrap">
           <div className="bg-transparent border border-neutral-200 p-6 rounded-xl w-[325px] h-[250px]">
             <Image
               width={35}

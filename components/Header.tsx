@@ -12,40 +12,40 @@ const Header = () => {
         <h1 className="font-extrabold text-3xl w-full flex justify-center">
           FUT24
         </h1>
-        <ul className="list-none flex gap-10 items-center w-full justify-around">
+        <ul className="list-none sm:flex gap-10 items-center w-full justify-around hidden">
           <Link
             href={"/home"}
-            className="transition-all duration-300 hover:text-indigo-700"
+            className="transition-all duration-300 hover:text-[#5BB5A2]"
           >
             Início
           </Link>
           <Link
             href={"/friends"}
-            className="transition-all duration-300 hover:text-indigo-700"
+            className="transition-all duration-300 hover:text-[#5BB5A2]"
           >
             Amigos
           </Link>
           <Link
             href={"/shop"}
-            className="transition-all duration-300 hover:text-indigo-700"
+            className="transition-all duration-300 hover:text-[#5BB5A2]"
           >
             Loja
           </Link>
           <Link
             href={"/market"}
-            className="transition-all duration-300 hover:text-indigo-700"
+            className="transition-all duration-300 hover:text-[#5BB5A2]"
           >
             Mercado
           </Link>
           <Link
             href={"/lineups"}
-            className="transition-all duration-300 hover:text-indigo-700"
+            className="transition-all duration-300 hover:text-[#5BB5A2]"
           >
             Elencos
           </Link>
           <Link
             href={"/my-club"}
-            className="transition-all duration-300 hover:text-indigo-700"
+            className="transition-all duration-300 hover:text-[#5BB5A2]"
           >
             Meu Clube
           </Link>
@@ -59,7 +59,7 @@ const Header = () => {
           </Link>
         </div>
       </div>
-      <div className="w-full text-white p-4 bg-indigo-500 h-[50px] gap-4 flex items-center justify-center cursor-pointer">
+      <div className="w-full text-white p-4 bg-[#5BB5A2] h-[50px] gap-4 flex items-center justify-center cursor-pointer">
         <span className="text-white tracking-wider">
           Confira as novidades da nossa Loja
         </span>

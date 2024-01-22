@@ -145,7 +145,7 @@ export interface GeneratedBadgeProps {
 }
 
 export interface ResultProps {
-  showState: any
+  showState: any;
   winner: any;
   loser: any;
   player1Score: number;

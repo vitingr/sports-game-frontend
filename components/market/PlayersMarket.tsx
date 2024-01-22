@@ -84,7 +84,7 @@ const PlayersMarket = () => {
                     <span className="text-sm">{card.price}</span>
                   </div>
                   <div
-                    className="text-white bg-indigo-600 w-full rounded-full py-1 mt-6 cursor-pointer text-center text-sm"
+                    className="text-white bg-[#5BB5A2] w-full rounded-full py-1 mt-6 cursor-pointer text-center text-sm"
                     onClick={() =>
                       handleBuyCard(
                         card.id,

@@ -19,15 +19,20 @@ export const WebSocketProvider = ({
   const router = useRouter();
 
   // Match States
-  const [players, setPlayers] = useState<string[]>([])
+  const [players, setPlayers] = useState<string[]>([]);
   const [availableCards, setAvailableCards] = useState<any>();
   const [matchCurrentTurn, setMatchCurrentTurn] = useState<string>("");
-  const [currentStat, setCurrentStat] = useState<string>("")
-  const [showMatchResults, setShowMatchResults] = useState<boolean>(false)
-  const [matchWinner, setMatchWinner] = useState<string>("")
-  const [matchLoser, setMatchLoser] = useState<string>("")
+  const [currentStat, setCurrentStat] = useState<string>("");
+  const [showMatchResults, setShowMatchResults] = useState<boolean>(false);
+  const [matchWinner, setMatchWinner] = useState<string>("");
+  const [matchLoser, setMatchLoser] = useState<string>("");
 
-  const [matchUsedCards, setMatchUsedCards] = useState<string[]>([])
+  // Validation Match States
+  const [matchUsedCards, setMatchUsedCards] = useState<string[]>([]);
+
+  // Match Players Data
+  const [player1, setPlayer1] = useState<string>("");
+  const [player2, setPlayer2] = useState<string>("");
 
   const [player1Score, setPlayer1Score] = useState<number>(0);
   const [player2Score, setPlayer2Score] = useState<number>(0);
@@ -50,36 +55,52 @@ export const WebSocketProvider = ({
       router.push(`/match/${matchId}`);
     });
 
-    socket.on("gameJoined", ({players, matchId}: any) => {
+    socket.on("gameJoined", ({ players, matchId }: any) => {
       setPlayers(players);
-      router.push(`/match/accepted/${matchId}`)
+      router.push(`/match/accepted/${matchId}`);
     });
 
     socket.on("availableCards", (userLineupAvaliableCards: any) => {
       setAvailableCards(userLineupAvaliableCards);
     });
 
-    socket.on("matchWinner", ({winner, loser}: any) => {
-      setShowMatchResults(true)
-      setMatchWinner(winner)
-      setMatchLoser(loser)
+    socket.on("matchWinner", ({ winner, loser }: any) => {
+      setShowMatchResults(true);
+      setMatchWinner(winner);
+      setMatchLoser(loser);
       router.push("/home");
     });
 
-    socket.on("currentTurn", ({turn, currentStat}: {turn: string, currentStat: string}) => {
-      console.log(`É a vez do usuário: ${turn}`)
-      console.log(`atributo da vez: ${currentStat} ${typeof currentStat}`)
-      setMatchCurrentTurn(turn);
-      setCurrentStat(currentStat)
-    });
+    socket.on(
+      "currentTurn",
+      ({ turn, currentStat }: { turn: string; currentStat: string }) => {
+        console.log(`É a vez do usuário: ${turn}`);
+        console.log(`atributo da vez: ${currentStat} ${typeof currentStat}`);
+        setMatchCurrentTurn(turn);
+        setCurrentStat(currentStat);
+      }
+    );
 
     socket.on(
       "roundWinner",
-      ({ winner, card1, card2, player1Score, player2Score, usedCards }: any) => {
-        console.log(`player1score = ${player1Score} || player2score = ${player2Score}`)
+      ({
+        winner,
+        card1,
+        card2,
+        player1,
+        player2,
+        player1Score,
+        player2Score,
+        usedCards,
+      }: any) => {
+        console.log(
+          `player1score = ${player1Score} || player2score = ${player2Score}`
+        );
         setPlayer1Score(player1Score);
         setPlayer2Score(player2Score);
-        setMatchUsedCards(usedCards)
+        setPlayer1(player1);
+        setPlayer2(player2);
+        setMatchUsedCards(usedCards);
       }
     );
 
@@ -87,10 +108,10 @@ export const WebSocketProvider = ({
       socket.off("connect");
       socket.off("onInvite");
       socket.off("matchFound");
-      socket.off("gameJoined")
-      socket.off("availableCards")
+      socket.off("gameJoined");
+      socket.off("availableCards");
       socket.off("currentTurn");
-      socket.off("roundWinner")
+      socket.off("roundWinner");
       socket.off("matchWinner");
     };
   }, []);
@@ -102,6 +123,8 @@ export const WebSocketProvider = ({
         players,
         availableCards,
         matchCurrentTurn,
+        player1,
+        player2,
         player1Score,
         player2Score,
         matchUsedCards,

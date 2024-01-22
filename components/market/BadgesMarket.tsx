@@ -83,7 +83,7 @@ const BadgesMarket = () => {
                     <span className="text-sm">{badge.price}</span>
                   </div>
                   <div
-                    className="text-white bg-indigo-600 w-full rounded-full py-1 mt-6 cursor-pointer text-center text-sm"
+                    className="text-white bg-[#5BB5A2] w-full rounded-full py-1 mt-6 cursor-pointer text-center text-sm"
                     onClick={() =>
                       handleBuyBadge(
                         badge.id,

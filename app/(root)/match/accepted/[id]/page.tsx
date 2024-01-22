@@ -17,9 +17,10 @@ const page = () => {
     players,
     availableCards,
     matchCurrentTurn,
+    player1,
+    player2,
     player1Score,
     player2Score,
-    matchUsedCards,
     currentStat,
   } = socketProvider();
 
@@ -70,19 +71,35 @@ const page = () => {
           <div className="w-full flex justify-between">
             <div className="w-full flex justify-between items-center">
               <div className="w-full flex justify-start">
-                <h1 className="text-2xl font-semibold">{user.clubname}</h1>
+                {user.id === player1 ? (
+                  <h1 className="text-2xl font-semibold">{user.clubname}</h1>
+                ) : (
+                  <h1 className="text-2xl font-semibold">Time Adversário</h1>
+                )}
               </div>
               <div className="w-[100px] flex justify-center text-2xl">
-                {player1Score ? `${player1Score}` : "0"}
+                {user.id === player1 ? (
+                  <span>{player1Score ? `${player1Score}` : "0"}</span>
+                ) : (
+                  <span>{player2Score ? `${player2Score}` : "0"}</span>
+                )}
               </div>
             </div>
             <div className="flex items-center justify-center text-2xl">X</div>
             <div className="w-full flex justify-between items-center">
               <div className="w-[100px] flex justify-center text-2xl">
-                {player2Score ? `${player2Score}` : "0"}
+                {user.id === player2 ? (
+                  <span>{player2Score ? `${player2Score}` : "0"}</span>
+                ) : (
+                  <span>{player1Score ? `${player1Score}` : "0"}</span>
+                )}
               </div>
               <div className="w-full flex justify-end">
-                <h1 className="text-2xl font-semibold">Time Adversário</h1>
+                {user.id === player2 ? (
+                  <h1 className="text-2xl font-semibold">{user.clubname}</h1>
+                ) : (
+                  <h1 className="text-2xl font-semibold">Time Adversário</h1>
+                )}
               </div>
             </div>
           </div>
@@ -93,7 +110,9 @@ const page = () => {
             <h1 className="text-2xl">
               Atributo em Jogo
               <span className="text-2xl text-[#5BB5A2] uppercase ml-2">
-                {currentStat === "free" || !currentStat ? "Livre" : `${currentStat}`}
+                {currentStat === "free" || !currentStat
+                  ? "Livre"
+                  : `${currentStat}`}
               </span>
             </h1>
           </div>

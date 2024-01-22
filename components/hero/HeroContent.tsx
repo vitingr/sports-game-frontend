@@ -33,7 +33,7 @@ const HeroContent = () => {
       </motion.div>
 
       <motion.div variants={slideInFromLeft(1.5)}>
-        <div className="bg-[#5BB5A2] text-white px-4 py-3 rounded-xl text-center w-[350px] cursor-pointer transition-all duration-300 hover:bg-indigo-700 mt-12">
+        <div className="bg-[#5BB5A2] text-white px-4 py-3 rounded-xl text-center w-[350px] cursor-pointer transition-all duration-300 hover:bg-[#53a593] mt-12">
           Bora lá
         </div>
       </motion.div>

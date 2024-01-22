@@ -62,7 +62,7 @@ const Result = ({
             </div>
           )}
         </div>
-        <div className="mt-12 w-full rounded-xl text-white bg-indigo-600 py-2 text-center cursor-pointer" onClick={() => showState(false)}>
+        <div className="mt-12 w-full rounded-xl text-white bg-[#5BB5A2] py-2 text-center cursor-pointer" onClick={() => showState(false)}>
           Fechar 
         </div>
       </div>

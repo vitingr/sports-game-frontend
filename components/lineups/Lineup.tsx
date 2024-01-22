@@ -58,12 +58,12 @@ const Lineup = ({
   }
 
   return (
-    <div className="h-[250px] w-[250px] flex flex-col border border-neutral-200 shadow-sm shadow-neutral-100 rounded-xl">
+    <div className="h-[250px] w-[300px] flex flex-col border border-neutral-200 shadow-sm shadow-neutral-100 rounded-xl">
       <ToastMessage />
       <div
-        className="h-[75px] rounded-t-xl bg-center bg-no-repeat"
+        className="h-[75px] rounded-t-xl bg-center bg-no-repeat bg-cover"
         style={{
-          backgroundImage: `url(https://d585tldpucybw.cloudfront.net/sfimages/default-source/professional-services/ui-ux-modernization-hero.png?sfvrsn=d92d0367_3)`,
+          backgroundImage: `url(https://png.pngtree.com/background/20211215/original/pngtree-glass-morphism-with-smooth-green-gradient-color-picture-image_1472393.jpg)`,
         }}
       />
       <div className="p-4">
@@ -74,17 +74,17 @@ const Lineup = ({
         <div className="w-full mt-6 flex gap-2 justify-between items-center">
           <div className="w-full flex flex-col gap-2">
             {user.currentLineup && user.currentLineup === lineupData.id ? (
-              <div className="w-full text-sm text-indigo-400 cursor-pointer px-4 py-2 rounded-xl text-center">
-                Esse é seu elenco principal!
+              <div className="w-full text-sm text-[#5BB5A2] border border-[#7fc7b7ab] cursor-pointer px-4 py-2 rounded-xl text-center uppercase">
+                Elenco Selecionado
               </div>
             ) : (
-              <div className="w-full text-sm bg-indigo-400 text-white cursor-pointer px-4 py-2 rounded-xl text-center" onClick={() => handleSelectLineup()}>
+              <div className="w-full text-sm bg-[#5BB5A2] text-white cursor-pointer px-4 py-2 rounded-xl text-center" onClick={() => handleSelectLineup()}>
                 Tornar Principal
               </div>
             )}
             <Link
               href={`/lineups/lineup/${lineupData.id}`}
-              className="w-full text-sm text-indigo-400 border border-indigo-400 cursor-pointer px-4 py-2 rounded-xl text-center"
+              className="w-full text-sm text-[#5BB5A2] cursor-pointer px-4 py-2 rounded-xl text-center"
             >
               Editar Elenco
             </Link>

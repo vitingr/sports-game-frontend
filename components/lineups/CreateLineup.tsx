@@ -59,14 +59,14 @@ const CreateLineup = ({
 					type="text"
 					name="lineupName"
 					id="lineupName"
-					className="w-full px-4 py-3 border border-neutral-300 rounded-lg outline-none transition-all duration-300 focus:border-indigo-600"
+					className="w-full px-4 py-3 border border-neutral-300 rounded-lg outline-none transition-all duration-300 focus:border-[#5BB5A2]"
 					placeholder="Digite o novo nome desejado para a sua formação"
 					onChange={(e) => setLineupName(e.target.value)}
 					autoComplete="off"
 				/>
 
 				<button
-					className="w-full mt-16 bg-indigo-600 text-white py-3 rounded-full"
+					className="w-full mt-16 bg-[#5BB5A2] text-white py-3 rounded-full"
 					type="submit"
 				>
 					Adicionar nova Lineup

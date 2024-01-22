@@ -31,7 +31,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="pt-br">
-        <body className="selection:text-[white] selection:bg-indigo-400">
+        <body className="selection:text-[white] selection:bg-[#5BB5A2]">
           <ApolloContext>
             {isPublic && (
               <>

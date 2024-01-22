@@ -92,7 +92,7 @@ const page = () => {
           <div className="w-full flex justify-center items-center pt-4 mt-4 gap-2 border-t border-neutral-200">
             <h1 className="text-2xl">
               Atributo em Jogo
-              <span className="text-2xl text-indigo-600 uppercase ml-2">
+              <span className="text-2xl text-[#5BB5A2] uppercase ml-2">
                 {currentStat === "free" || !currentStat ? "Livre" : `${currentStat}`}
               </span>
             </h1>

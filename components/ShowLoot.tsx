@@ -101,7 +101,7 @@ const ShowLoot = ({ loot, showState, packRarity }: ShowLootProps) => {
           </>
         )}
       </div>
-      <button className="text-white py-2 bg-indigo-600 rounded-full text-center mt-10 cursor-pointer w-full" onClick={() => showState(false)}>
+      <button className="text-white py-2 bg-[#5BB5A2] rounded-full text-center mt-10 cursor-pointer w-full" onClick={() => showState(false)}>
         Fechar 
       </button>
     </Popup>

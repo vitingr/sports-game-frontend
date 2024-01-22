@@ -187,7 +187,7 @@ const page = () => {
 
         <section className="flex justify-between gap-8 w-full mt-[6.5em] sm:flex-nowrap flex-wrap">
           <div
-            className="w-full bg-white p-8 rounded-b-xl border-t-2 border-t-indigo-600 border border-neutral-100 shadow-md shadow-neutral-300 min-h-[300px] flex gap-12 sm:flex-row flex-col items-center"
+            className="w-full bg-white p-8 rounded-b-xl border-t-2 border-t-[#5BB5A2] border border-neutral-100 shadow-md shadow-neutral-300 min-h-[300px] flex gap-12 sm:flex-row flex-col items-center"
             id="stats"
           >
             <DoughnutChart
@@ -201,7 +201,7 @@ const page = () => {
                       user.draws || 1,
                       user.loses || 1,
                     ],
-                    backgroundColor: ["#5549A6", "#7553A6", "#A47ED9"],
+                    backgroundColor: ["#5BB5A2", "#6b9c91", "#a8e3d6"],
                     hoverOffset: 4,
                   },
                 ],
@@ -285,7 +285,7 @@ const page = () => {
             </div>
           </div>
           <div
-            className="max-w-[450px] w-full bg-white rounded-b-xl border-t-2 border-t-indigo-600 p-8 border border-neutral-100 shadow-md shadow-neutral-300 min-h-[300px]"
+            className="max-w-[450px] w-full bg-white rounded-b-xl border-t-2 border-t-[#5BB5A2] p-8 border border-neutral-100 shadow-md shadow-neutral-300 min-h-[300px]"
             id="ranking"
           >
             <h1 className="text-xl font-semibold">Ranking Global</h1>
@@ -299,7 +299,7 @@ const page = () => {
                   >
                     <div className="w-full">
                       {user.id === player.id ? (
-                        <h2 className="overflow-hidden text-indigo-700">
+                        <h2 className="overflow-hidden text-[#5BB5A2]">
                           {index + 1}. {player.clubname} (Você)
                         </h2>
                       ) : (
@@ -316,7 +316,7 @@ const page = () => {
                   </li>
                 ))}
             </ul>
-            <div className="text-white py-2 w-full bg-indigo-600 rounded-full cursor-pointer text-center mt-28" onClick={() => setShowWorldRanking(true)}>
+            <div className="text-white py-3 w-full bg-[#5BB5A2] rounded-xl cursor-pointer text-center mt-28" onClick={() => setShowWorldRanking(true)}>
               Ver Ranking Completo
             </div>
           </div>
@@ -398,7 +398,7 @@ const page = () => {
         </section>
 
         <section
-          className="w-full flex justify-between gap-6 bg-white rounded-b-xl border-t-2 border-t-indigo-600 p-10 border border-neutral-100 shadow-md shadow-neutral-300 mt-[6.5em]"
+          className="w-full flex justify-between gap-6 bg-white rounded-b-xl border-t-2 border-t-[#5BB5A2] p-10 border border-neutral-100 shadow-md shadow-neutral-300 mt-[6.5em]"
           id="dme"
         >
           <div className="w-full">
@@ -411,7 +411,7 @@ const page = () => {
               poderá receber, futcoins, pacotes e excelentes recompensas para
               completar seu time ao realizar esses desafios. Boa sorte!
             </p>
-            <div className="mt-20 bg-[#36be6f] text-white rounded-full w-full py-2 cursor-pointer text-center">
+            <div className="mt-20 bg-[#5BB5A2] text-white rounded-xl w-full py-3 cursor-pointer text-center">
               Ver Todos os Desafios
             </div>
           </div>

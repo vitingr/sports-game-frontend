@@ -449,7 +449,7 @@
   left: 0;
   display: block;
   border-radius: 50px;
-  background: #b1dae7;
+  background: #addfd4;
   width: 35px;
   height: 35px;
   transition: all 0.3s ease;
@@ -461,7 +461,7 @@
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: #234567;
+  color: #1c574a;
 }
 
 .cta svg {
@@ -471,7 +471,7 @@
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke: #234567;
+  stroke: #1c574a;
   stroke-width: 2;
   transform: translateX(-5px);
   transition: all 0.3s ease;
@@ -479,7 +479,7 @@
 
 .cta:hover:before {
   width: 100%;
-  background: #b1dae7;
+  background: #addfd4;
 }
 
 .cta:hover svg {

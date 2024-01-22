@@ -27,7 +27,7 @@ const page = () => {
 
   return (
     <div className="bg-white rounded-xl border-neutral-100 shadow-sm shadow-neutral-200 p-10 flex flex-col items-center mt-[3m] max-w-[800px] w-full">
-      <h1 className="text-3xl font-bold w-full transition-all duration-300 hover:text-indigo-600 cursor-default mt-4">
+      <h1 className="text-3xl font-bold w-full transition-all duration-300 hover:text-[#5BB5A2] cursor-default mt-4">
         Encontramos uma partida para você!
       </h1>
       <p className="text-[#717171]">
@@ -74,13 +74,13 @@ const page = () => {
       </div>
 
       <button
-        className="w-full mt-10 bg-indigo-500 py-2 text-white rounded-full"
+        className="w-full mt-10 bg-[#5BB5A2] py-3 text-white rounded-xl"
         onClick={() => handleAcceptMatch()}
       >
         Aceitar partida
       </button>
-      <button className="w-full mt-6 text-indigo-500 border border-indigo-500 py-2 rounded-full">
-        Aceitar partida
+      <button className="w-full mt-6 text-[#5BB5A2] border border-[#5BB5A2] py-3 rounded-xl">
+        Cancelar partida
       </button>
     </div>
   );

@@ -61,7 +61,7 @@ const PendingFriends = () => {
   return pendingFriends && pendingFriends?.getUserPendingFriends ? (
     <>
       <ToastMessage />
-      <h1 className="text-2xl font-bold mb-10 transition-all duration-300 hover:text-indigo-600 cursor-default">
+      <h1 className="text-2xl font-bold mb-10 transition-all duration-300 hover:text-[#5BB5A2] cursor-default">
         Amigos Pendentes
       </h1>
       <div className="flex flex-wrap w-full gap-10">
@@ -83,7 +83,7 @@ const PendingFriends = () => {
                 <span className="text-sm text-[#717171]">{player.name}</span>
               </div>
               <span
-                className="bg-indigo-600 text-white rounded-xl text-center px-2 py-2 w-full text-sm cursor-pointer max-w-[85px]"
+                className="bg-[#5BB5A2] text-white rounded-xl text-center px-2 py-2 w-full text-sm cursor-pointer max-w-[85px]"
                 onClick={async (e: React.SyntheticEvent) => {
                   e.preventDefault();
                   await handleAcceptInvite(player);
@@ -92,7 +92,7 @@ const PendingFriends = () => {
                 Confirmar
               </span>
               <span
-                className="text-indigo-600 border border-indigo-600 rounded-xl text-center px-2 py-2 w-full text-sm cursor-pointer max-w-[85px]"
+                className="text-[#5BB5A2] border border-[#5BB5A2] rounded-xl text-center px-2 py-2 w-full text-sm cursor-pointer max-w-[85px]"
                 onClick={async (e: React.SyntheticEvent) => {
                   e.preventDefault();
                   await handleCancelInvite(player);

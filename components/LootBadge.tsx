@@ -42,7 +42,7 @@ const LootBadge = ({ badgeData }: { badgeData: GeneratedBadgeProps }) => {
           </span>
         </h2>
       </div>
-      <div className="text-white bg-indigo-600 rounded-xl py-2 w-[200px] text-sm text-center cursor-pointer transition-all duration-200 hover:bg-indigo-500">
+      <div className="text-white bg-[#5BB5A2] rounded-xl py-2 w-[200px] text-sm text-center cursor-pointer transition-all duration-200 hover:bg-[#57ac99]">
         Venda Rápida
       </div>
     </div>

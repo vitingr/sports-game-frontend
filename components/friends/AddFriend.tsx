@@ -40,7 +40,7 @@ const AddFriend = ({
             <span className="text-sm text-[#717171]">{player.name}</span>
           </div>
           <span
-            className="bg-indigo-600 text-white rounded-xl text-center px-2 py-2 w-full text-sm cursor-pointer max-w-[125px] transition-all duration-300 hover:bg-indigo-500"
+            className="bg-[#5BB5A2] text-white rounded-xl text-center px-2 py-2 w-full text-sm cursor-pointer max-w-[125px] transition-all duration-300 hover:bg-[#51a190]"
             onClick={(e: React.SyntheticEvent) => {
               e.preventDefault();
               handleFunction(player);

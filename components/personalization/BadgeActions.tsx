@@ -74,13 +74,13 @@ const BadgeActions = ({
       {!sellBadge && !useBadge && (
         <>
           <div
-            className="bg-indigo-600 text-white w-full rounded-full cursor-pointer py-3 text-center"
+            className="bg-[#5BB5A2] text-white w-full rounded-xl cursor-pointer py-3 text-center"
             onClick={() => handleChangeClubBadge()}
           >
             Tornar emblema atual
           </div>
           <div
-            className="text-indigo-600 border border-indigo-600 w-full rounded-full cursor-pointer py-3 mt-6 text-center"
+            className="text-[#5BB5A2] border border-[#5BB5A2] w-full rounded-xl cursor-pointer py-3 mt-6 text-center"
             onClick={() => setSellBadge(true)}
           >
             Vender Emblema
@@ -109,7 +109,7 @@ const BadgeActions = ({
               type="number"
               name="value"
               id="value"
-              className="w-full px-4 py-3 border border-neutral-300 rounded-lg outline-none transition-all duration-300 focus:border-indigo-600"
+              className="w-full px-4 py-3 border border-neutral-300 rounded-lg outline-none transition-all duration-300 focus:border-[#5BB5A2]"
               placeholder="Insira o valor que o seu emblema será vendido"
               onChange={(e) => setBadgeValue(e.target.value)}
               autoComplete="off"
@@ -121,7 +121,7 @@ const BadgeActions = ({
             </p>
 
             <button
-              className="w-full mt-16 bg-indigo-600 text-white py-3 rounded-full"
+              className="w-full mt-16 bg-[#5BB5A2] text-white py-3 rounded-xl"
               type="submit"
             >
               Vender Emblema

@@ -72,7 +72,7 @@ const SellCard = ({
           type="number"
           name="value"
           id="value"
-          className="w-full px-4 py-3 border border-neutral-300 rounded-lg outline-none transition-all duration-300 focus:border-indigo-600"
+          className="w-full px-4 py-3 border border-neutral-300 rounded-lg outline-none transition-all duration-300 focus:border-[#5BB5A2]"
           placeholder="Insira o valor que o seu jogador será vendido"
           onChange={(e) => setCardValue(e.target.value)}
           autoComplete="off"
@@ -84,7 +84,7 @@ const SellCard = ({
         </p>
 
         <button
-          className="w-full mt-16 bg-indigo-600 text-white py-3 rounded-full"
+          className="w-full mt-16 bg-[#5BB5A2] text-white py-3 rounded-full"
           type="submit"
         >
           Vender jogador

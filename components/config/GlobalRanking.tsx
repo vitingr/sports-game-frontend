@@ -30,7 +30,7 @@ const GlobalRanking = ({ showState }: { showState: any }) => {
           >
             <div className="w-full">
               {user.id === player.id ? (
-                <h2 className="overflow-hidden text-indigo-700">
+                <h2 className="overflow-hidden text-[#5BB5A2]">
                   {index + 1}. {player.clubname} (Você)
                 </h2>
               ) : (
@@ -47,7 +47,7 @@ const GlobalRanking = ({ showState }: { showState: any }) => {
           </li>
         ))}
       </div>
-      <div className="mt-12 w-full bg-indigo-600 text-white rounded-full py-3 cursor-pointer transition-all duration-300 hover:bg-indigo-500 text-center">
+      <div className="mt-12 w-full bg-[#5BB5A2] text-white rounded-xl py-3 cursor-pointer transition-all duration-300 hover:bg-[#56aa98] text-center">
         Fechar Ranking
       </div>
     </Popup>

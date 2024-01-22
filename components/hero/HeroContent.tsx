@@ -15,7 +15,7 @@ const HeroContent = () => {
       animate="visible"
       className="flex flex-col items-center px-6 sm:px-20 mt-72 w-full z-[20]"
     >
-      <motion.div variants={slideInFromTop}>
+      <motion.div variants={slideInFromTop(0.5)}>
         <h1 className="text-white text-[72px] font-extrabold">FUT 24</h1>
       </motion.div>
 
@@ -33,7 +33,7 @@ const HeroContent = () => {
       </motion.div>
 
       <motion.div variants={slideInFromLeft(1.5)}>
-        <div className="bg-indigo-600 text-white px-4 py-3 rounded-full text-center w-[350px] cursor-pointer transition-all duration-300 hover:bg-indigo-700 mt-12">
+        <div className="bg-[#5BB5A2] text-white px-4 py-3 rounded-xl text-center w-[350px] cursor-pointer transition-all duration-300 hover:bg-indigo-700 mt-12">
           Bora lá
         </div>
       </motion.div>

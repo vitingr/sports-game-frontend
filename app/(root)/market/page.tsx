@@ -16,7 +16,7 @@ const page = () => {
       <div className="flex items-center gap-6 w-full max-w-[1025px] sm:mt-[2em] flex-col mt-[150px]">
       <div className="flex gap-6 items-center w-full justify-between">
         <div
-          className="w-full border border-neutral-200 rounded-full px-4 py-2 flex justify-center bg-white cursor-pointer transition-all duration-300 hover:bg-indigo-600 hover:text-white text-center sm:text-base text-sm"
+          className="w-full border border-neutral-200 rounded-full px-4 py-2 flex justify-center bg-white cursor-pointer transition-all duration-300 hover:bg-[#5BB5A2] hover:text-white text-center sm:text-base text-sm"
           onClick={() => {
             setPlayersMarket(true)
             setBadgesMarket(false)
@@ -25,7 +25,7 @@ const page = () => {
           Comprar Jogadores
         </div>
         <div
-          className="w-full border border-neutral-200 rounded-full px-4 py-2 flex justify-center bg-white cursor-pointer transition-all duration-300 hover:bg-indigo-600 hover:text-white text-center sm:text-base text-sm"
+          className="w-full border border-neutral-200 rounded-full px-4 py-2 flex justify-center bg-white cursor-pointer transition-all duration-300 hover:bg-[#5BB5A2] hover:text-white text-center sm:text-base text-sm"
           onClick={() => {
             setPlayersMarket(false)
             setBadgesMarket(true)
@@ -36,7 +36,7 @@ const page = () => {
       </div>
       <div className="flex flex-col items-center gap-6 w-full max-w-[1250px] bg-white p-10 rounded-xl shadow-md shadow-neutral-200 border border-neutral-100">
         <ToastMessage />
-        <h1 className="text-3xl font-bold w-full transition-all duration-300 hover:text-indigo-600 cursor-default mt-4">
+        <h1 className="text-3xl font-bold w-full transition-all duration-300 hover:text-[#5BB5A2] cursor-default mt-4">
           Mercado de Transferências
         </h1>
         <p className="text-[#717171]">

@@ -41,7 +41,7 @@ const SearchFriends = () => {
   return playersData ? (
     <>
       <ToastMessage />
-      <h1 className="text-2xl font-bold mb-10 transition-all duration-300 hover:text-indigo-600 cursor-default">
+      <h1 className="text-2xl font-bold mb-10 transition-all duration-300 hover:text-[#5BB5A2] cursor-default">
         Encontrar Amigos
       </h1>
       <div className="flex flex-wrap w-full gap-10">

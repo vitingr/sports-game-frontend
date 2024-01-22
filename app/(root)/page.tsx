@@ -24,71 +24,114 @@ export default function Home() {
     <motion.div
       initial="hidden"
       animate="visible"
-      className="w-full bg-[#161616] flex flex-col items-center"
+      className="w-full flex flex-col items-center"
     >
-      <Hero />
-      <motion.div
-        ref={ref}
-        animate={inView ? "visible" : "hidden"}
-        initial="hidden"
-        variants={slideInFromLeft(1)}
-        className="w-full flex flex-col items-center -mt-52 py-16 max-w-[1050px]"
+      {/* <Hero /> */}
+      <section className="w-full max-w-[1050px] flex justify-between gap-10 pt-[150px] pb-[75px] sm:flex-nowrap flex-wrap p-6 sm:p-0 mt-[50px] sm:mt-0">
+        <div className="w-full flex flex-col items-center">
+          <div className="">
+            <h1 className="text-5xl font-bold">Seja Bem-Vindo</h1>
+            <h2 className="text-2xl">Monte seu time dos sonhos conosco</h2>
+
+            <p className="mt-8 text-lg text-[#717171] max-w-[350px] text-justify break-all">
+              Monte sua equipe dos sonhos com jogadores das mais diversas ligas
+              e clubes para competir com os outros jogadores
+            </p>
+
+            <div className="flex gap-6 mt-8 max-w-[350px] w-full">
+              <div className="bg-[#5BB5A2] text-white py-3 rounded-xl w-full text-center cursor-pointer">
+                Bora lá
+              </div>
+              <div className=" text-[#5BB5A2] py-3 w-full text-center cursor-pointer">
+                Ver modos de jogo
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="w-full flex flex-col place-items-center">
+        <Image alt="Main Image" src={"/assets/suarez.png"} width={300} height={300} />
+        </div>
+      </section>
+      <div
+        className="w-full flex flex-col items-center py-16 max-w-[1050px] border-b pb-[4em] border-neutral-300 overflow-hidden"
       >
-        <h1 className="uppercase text-white tracking-wider text-5xl font-bold cursor-default">
+        <h1 className="uppercase tracking-wider text-4xl font-bold cursor-default">
           Modos de Jogo
         </h1>
-        <div className="w-full justify-between flex gap-10 items-center mt-[6.5em]">
-          <div className="bg-[#f3f3f3] p-6 rounded-lg w-[325px] h-[200px]">
-            <h2 className="text-3xl font-bold">Fut Team</h2>
-            <p className="text-[#717171]">
+        <div className="w-full justify-between flex gap-10 p-6 sm:p-0 items-center mt-[6.5em] sm:flex-nowrap flex-wrap">
+          <div className="bg-transparent border border-neutral-200 p-6 rounded-xl w-[325px] h-[250px]">
+            <Image
+              width={35}
+              height={35}
+              alt="Icon"
+              src={"/assets/icon1.svg"}
+            />
+            <h2 className="text-2xl mt-6 font-bold">Fut Team</h2>
+            <p className="text-[#717171] text-base">
               Abra Pacotes e encontre jogadores para formar o seu time dos
               sonhos
             </p>
-            <div className="bg-[#36be6f] text-white text-center px-4 py-2 w-full rounded-full mt-12 cursor-pointer">
+            <div className="bg-[#5BB5A2] text-white text-center px-4 py-2 w-full rounded-full mt-12 cursor-pointer">
               Quero ver mais
             </div>
           </div>
-          <div className="bg-[#f3f3f3] p-6 rounded-lg w-[325px] h-[200px]">
-            <h2 className="text-3xl font-bold">DMEs</h2>
-            <p className="text-[#717171]">
+          <div className="bg-transparent border border-neutral-200 p-6 rounded-xl w-[325px] h-[250px]">
+            <Image
+              width={35}
+              height={35}
+              alt="Icon"
+              src={"/assets/icon2.svg"}
+            />
+            <h2 className="text-2xl mt-6 font-bold">DMEs</h2>
+            <p className="text-[#717171] text-base">
               Troque jogadores em desafios para ser recompensado com vários
               itens
             </p>
-            <div className="bg-[#36be6f] text-white text-center px-4 py-2 w-full rounded-full mt-12 cursor-pointer">
+            <div className="bg-[#5BB5A2] text-white text-center px-4 py-2 w-full rounded-full mt-12 cursor-pointer">
               Quero ver mais
             </div>
           </div>
-          <div className="bg-[#f3f3f3] p-6 rounded-lg w-[325px] h-[200px]">
-            <h2 className="text-3xl font-bold">Batalhas</h2>
-            <p className="text-[#717171]">
+          <div className="bg-transparent border border-neutral-200 p-6 rounded-xl w-[325px] h-[250px]">
+            <Image
+              width={35}
+              height={35}
+              alt="Icon"
+              src={"/assets/icon3.svg"}
+            />
+            <h2 className="text-2xl mt-6 font-bold">Batalhas</h2>
+            <p className="text-[#717171] text-base">
               Encontre um adversário capaz de desafiar o seu clube e seus
               jogadores
             </p>
-            <div className="bg-[#36be6f] text-white text-center px-4 py-2 w-full rounded-full mt-12 cursor-pointer">
+            <div className="bg-[#5BB5A2] text-white text-center px-4 py-2 w-full rounded-full mt-12 cursor-pointer">
               Quero ver mais
             </div>
           </div>
         </div>
-      </motion.div>
-      <motion.div
-        ref={ref}
-        animate={inView ? "visible" : "hidden"}
-        initial="hidden"
-        variants={slideInFromRight(1.5)}
-        className="w-full flex flex-col items-center mt-[10em] mb-[20em] max-w-[1050px]"
+      </div>
+      <div
+        className="bg-[#5bb5a252] p-16 w-full flex flex-col items-center mt-[8em] mb-[10em] overflow-hidden"
       >
-        <h1 className="uppercase text-white tracking-wider text-5xl font-bold cursor-default">
+        <div className="max-w-[1050px] w-full flex flex-col">
+          <h1>baby baby</h1>
+        </div>
+
+      </div>
+      <div
+        className="w-full flex flex-col items-center mt-[4em] mb-[20em] max-w-[1050px] overflow-hidden p-6 sm:p-0"
+      >
+        <h1 className="uppercase tracking-wider text-5xl font-bold cursor-default">
           Nossos Eventos
         </h1>
-        <div className="w-full max-w-[750px] justify-between flex gap-10 items-center mt-[6.5em]">
+        <div className="w-full max-w-[750px] sm:justify-between flex gap-10 items-center mt-[5em] sm:flex-nowrap flex-wrap justify-center">
           <Image
             src={"/assets/otw.jpg"}
             alt="Ones to Watch Logo"
-            width={400}
+            width={350}
             height={500}
-            className="w-[400px] h-[500px] object-contain rounded-xl"
+            className="w-[350px] h-[500px] object-contain rounded-xl"
           />
-          <p className="text-white text-2xl tracking-wide text-center">
+          <p className="text-[#717171] text-base sm:text-2xl tracking-wide text-center">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
             itaque iure sed ducimus, blanditiis, sequi minus laborum
             necessitatibus modi rerum vel beatae suscipit magni corporis. Dolor
@@ -99,7 +142,7 @@ export default function Home() {
             aliquid.
           </p>
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 }

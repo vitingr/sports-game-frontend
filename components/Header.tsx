@@ -51,10 +51,10 @@ const Header = () => {
           </Link>
         </ul>
         <div className="w-full flex justify-center items-center gap-6">
-          <Link href={"/sign-in"} className="w-[100px] px-4 py-2 text-sm cursor-pointer rounded-xl bg-indigo-600 text-white text-center">
+          <Link href={"/sign-in"} className="w-[100px] px-4 py-2 text-sm cursor-pointer rounded-xl bg-[#5BB5A2] text-white text-center">
             Login
           </Link>
-          <Link href={"/sign-up"} className="w-[100px] px-4 py-2 text-sm cursor-pointer rounded-xl border border-indigo-600 text-indigo-600 text-center">
+          <Link href={"/sign-up"} className="w-[100px] px-4 py-2 text-sm cursor-pointer rounded-xl border border-[#5BB5A2] text-[#5BB5A2] text-center">
             Cadastro
           </Link>
         </div>

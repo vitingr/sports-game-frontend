@@ -34,42 +34,42 @@ const Navbar = () => {
         <ul className="list-none hidden sm:flex gap-10 items-center w-full justify-around">
           <Link
             href={"/home"}
-            className="p-2 flex flex-col items-center justify-center w-[65px] h-[55px]"
+            className="p-2 flex flex-col items-center justify-center w-[65px] h-[55px] rounded-xl transition-all duration-300 hover:bg-[#f8f8f8]"
           >
             <IoHomeOutline size={20} className="gray-icon" />
             <p className="text-[#717171] text-sm text-center mt-1">Início</p>
           </Link>
           <Link
             href={"/friends"}
-            className="p-2 flex flex-col items-center justify-center w-[65px] h-[55px]"
+            className="p-2 flex flex-col items-center justify-center w-[65px] h-[55px] rounded-xl transition-all duration-300 hover:bg-[#f8f8f8]"
           >
             <IoPeopleOutline size={20} className="gray-icon" />
             <p className="text-[#717171] text-sm text-center mt-1">Amigos</p>
           </Link>
           <Link
             href={"/shop"}
-            className="p-2 flex flex-col items-center justify-center w-[65px] h-[55px]"
+            className="p-2 flex flex-col items-center justify-center w-[65px] h-[55px] rounded-xl transition-all duration-300 hover:bg-[#f8f8f8]"
           >
             <RiShoppingCartLine size={20} className="gray-icon" />
             <p className="text-[#717171] text-sm text-center mt-1">Loja</p>
           </Link>
           <Link
             href={"/market"}
-            className="p-2 flex flex-col items-center justify-center w-[65px] h-[55px]"
+            className="p-2 flex flex-col items-center justify-center w-[65px] h-[55px] rounded-xl transition-all duration-300 hover:bg-[#f8f8f8]"
           >
             <BsShop size={20} className="gray-icon" />
             <p className="text-[#717171] text-sm text-center mt-1">Mercado</p>
           </Link>
           <Link
             href={"/lineups"}
-            className="p-2 flex flex-col items-center justify-center w-[65px] h-[55px]"
+            className="p-2 flex flex-col items-center justify-center w-[65px] h-[55px] rounded-xl transition-all duration-300 hover:bg-[#f8f8f8]"
           >
             <LuFileSpreadsheet size={20} className="gray-icon" />
             <p className="text-[#717171] text-sm text-center mt-1">Elencos</p>
           </Link>
           <Link
             href={"/my-club"}
-            className="p-2 flex flex-col items-center justify-center w-[65px] h-[55px]"
+            className="p-2 flex flex-col items-center justify-center w-[65px] h-[55px] rounded-xl transition-all duration-300 hover:bg-[#f8f8f8]"
           >
             <IoSettingsOutline size={20} className="gray-icon" />
             <p className="text-[#717171] text-sm text-center mt-1">Clube</p>
@@ -218,7 +218,7 @@ const Navbar = () => {
       </div>
       <Link
         href={"/shop"}
-        className="w-full text-white p-4 bg-[#333] h-[50px] gap-4 flex items-center justify-center cursor-pointer"
+        className="w-full text-white p-4 bg-[#5BB5A2] h-[50px] gap-4 flex items-center justify-center cursor-pointer"
       >
         <span className="text-white tracking-wider">
           Confira as novidades da nossa Loja

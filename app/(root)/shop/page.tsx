@@ -161,9 +161,9 @@ const page = () => {
   };
 
   return user.id && (
-    <motion.div initial="hidden" animate="visible" className="flex flex-col items-center gap-6 w-full max-w-[1250px] bg-white p-10 rounded-xl shadow-md sm:mt-0 mt-[150px] shadow-neutral-300 border border-neutral-100">
+    <motion.div initial="hidden" animate="visible" className="flex flex-col items-center gap-6 w-full max-w-[1250px] bg-white p-10 rounded-xl shadow-md sm:mt-[50px] mt-[150px] shadow-neutral-300 border border-neutral-100">
       <ToastMessage />
-      <h1 className="font-bold text-3xl w-full transition-all duration-300 hover:text-indigo-600 cursor-default mt-4">
+      <h1 className="font-bold text-3xl w-full transition-all duration-300 hover:text-[#5BB5A2] cursor-default mt-4">
         Loja de Pacotes
       </h1>
       <p className="text-[#717171]">

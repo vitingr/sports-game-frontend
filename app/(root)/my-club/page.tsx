@@ -122,10 +122,10 @@ const page = () => {
     myCardsLoading === false &&
     playersDataLoading === false &&
     playersData && (
-      <div className="flex justify-center gap-6 w-full max-w-[1600px] sm:flex-nowrap flex-wrap h-full mt-[150px]">
+      <div className="flex justify-center gap-6 w-full max-w-[1600px] sm:flex-nowrap flex-wrap h-full mt-[75px]">
         <div className="w-full flex flex-col gap-4 sm:h-auto h-full">
           <div
-            className="w-full bg-[#F3F4F8] p-6 sm:p-10 rounded-lg border border-neutral-100 shadow-md shadow-neutral-200 h-full border-t-2 border-t-indigo-600"
+            className="w-full bg-white p-6 sm:p-10 rounded-lg border border-neutral-100 shadow-md shadow-neutral-200 h-full border-t-2 border-t-[#5BB5A2]"
             id="my-cards"
           >
             <h1 className="font-semibold text-2xl">Minhas Cartas</h1>
@@ -159,7 +159,7 @@ const page = () => {
             </div>
           </div>
           <div
-            className="w-full bg-[#F3F4F8] p-6 sm:p-10 rounded-lg border border-neutral-100 border-t-2 border-t-indigo-600 shadow-md shadow-neutral-200 h-full"
+            className="w-full bg-white p-6 sm:p-10 rounded-lg border border-neutral-100 border-t-2 border-t-[#5BB5A2] shadow-md shadow-neutral-200 h-full"
             id="ranking"
           >
             <h1 className="font-semibold text-2xl">Minha Classificação</h1>
@@ -257,7 +257,7 @@ const page = () => {
         </div>
 
         <div
-          className="w-full bg-white p-6 rounded-lg border border-neutral-100 shadow-md shadow-neutral-200 h-full border-t-2 border-t-indigo-600"
+          className="w-full bg-white p-6 rounded-lg border border-neutral-100 shadow-md shadow-neutral-200 h-full border-t-2 border-t-[#5BB5A2]"
           id="my-club"
         >
           <h1 className="font-semibold text-2xl">Meu Clube</h1>
@@ -344,13 +344,13 @@ const page = () => {
             </div>
             <div className="h-full flex flex-col justify-end mt-48">
               <div
-                className="rounded-full bg-indigo-600 text-white px-4 py-2 text-center cursor-pointer transition-all duration-300 hover:bg-indigo-800"
+                className="rounded-xl bg-[#5BB5A2] text-white px-4 py-3 text-center cursor-pointer transition-all duration-300 hover:bg-indigo-800"
                 onClick={() => setShowChangeClubname(true)}
               >
                 Renomear meu Clube
               </div>
               <div
-                className="mt-4 rounded-full text-indigo-600 border border-indigo-600 px-4 py-2 text-center cursor-pointer"
+                className="mt-4 rounded-xl text-[#5BB5A2] border border-[#5BB5A2] px-4 py-2 text-center cursor-pointer"
                 onClick={() => setShowChangeBadge(true)}
               >
                 Editar meu Emblema

@@ -88,9 +88,9 @@ const page = () => {
             <div className="w-full flex justify-between items-center">
               <div className="w-[100px] flex justify-center text-2xl">
                 {user.id === player2 ? (
-                  <span>{player2Score ? `${player2Score}` : "0"}</span>
-                ) : (
                   <span>{player1Score ? `${player1Score}` : "0"}</span>
+                ) : (
+                  <span>{player2Score ? `${player2Score}` : "0"}</span>
                 )}
               </div>
               <div className="w-full flex justify-end">

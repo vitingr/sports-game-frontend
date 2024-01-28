@@ -122,7 +122,7 @@ const page = () => {
     myCardsLoading === false &&
     playersDataLoading === false &&
     playersData && (
-      <div className="flex justify-center gap-6 w-full max-w-[1600px] sm:flex-nowrap flex-wrap h-full mt-[75px]">
+      <div className="flex justify-center gap-6 w-full max-w-[1600px] sm:flex-nowrap flex-wrap h-full sm:mt-[3em] mt-[150px]">
         <div className="w-full flex flex-col gap-4 sm:h-auto h-full">
           <div
             className="w-full bg-white p-6 sm:p-10 rounded-lg border border-neutral-100 shadow-md shadow-neutral-200 h-full border-t-2 border-t-[#5BB5A2]"
@@ -136,7 +136,7 @@ const page = () => {
             </p>
             <div>
               {myCards && myCards.findUserCards ? (
-                <div className="flex flex-wrap gap-2 mt-8 w-full">
+                <div className="flex flex-wrap gap-2 mt-8 w-full justify-center">
                   {myCards.findUserCards
                     .slice(0, 8)
                     .map((card: GeneratedCardProps, index: number) => (

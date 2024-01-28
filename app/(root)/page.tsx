@@ -27,7 +27,7 @@ export default function Home() {
       className="w-full flex flex-col items-center"
     >
       {/* <Hero /> */}
-      <section className="w-full max-w-[1050px] flex justify-between gap-10 pt-[150px] pb-[75px] sm:flex-nowrap flex-wrap p-6 sm:p-0 mt-[50px] sm:mt-0">
+      <section className="w-full max-w-[1050px] flex justify-between gap-10 pt-[150px] pb-[75px] sm:flex-nowrap flex-wrap p-6 sm:p-0 mt-[50px] sm:mt-[150px]">
         <div className="w-full flex flex-col items-center">
           <div className="">
             <h1 className="text-5xl font-bold">Seja Bem-Vindo</h1>

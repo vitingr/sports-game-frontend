@@ -4,22 +4,53 @@ import React, { useState } from "react";
 import Popup from "./config/Popup";
 import { GeneratedCardProps } from "@/types";
 import Image from "next/image";
+import { infoUser } from "@/contexts/UserContext";
+import { useMutation } from "@apollo/client";
+import { QUICK_SELL_CARD } from "@/graphql/mutations";
+import { toast } from "react-toastify";
+import ToastMessage from "./config/ToastMessage";
 
 const CardActions = ({
   cardData,
   showState,
   showSellingOptions,
+  refetch
 }: {
   cardData: GeneratedCardProps;
   showState: any;
   showSellingOptions: any;
-}) => { 
+  refetch: any;
+}) => {
+  const { user } = infoUser();
+
+  const [quickSellCard] = useMutation(QUICK_SELL_CARD);
+
+  const handleQuickSellCard = async () => {
+    try {
+      await quickSellCard({
+        variables: {
+          ownerId: user.id,
+          cardId: cardData.id,
+          price: Number(cardData.quickSellValue),
+        },
+      });
+      await refetch().then(() => {
+        toast.success("A carta foi vendida!");
+        showState(false);
+      })
+    } catch (error) {
+      console.log(error)
+      toast.error("Não foi possível realizar a venda rápida");
+    }
+  };
+
   return (
     <Popup
       state={showState}
       title={`Informações de ${cardData.name}`}
       description="Aqui é possível ver algumas informações do jogador de maneira detalhada, como sua velocidade, finalizaçao, defesa, físico, preço, liga, clube, etc. Boa análise!"
     >
+      <ToastMessage />
       <div className="flex justify-between gap-10 pt-8 pb-8 max-h-[1000px] overflow-y-scroll">
         <div className="w-full flex justify-center">
           <Image
@@ -114,7 +145,7 @@ const CardActions = ({
         </div>
       </div>
       <div
-        className="bg-indigo-600 text-white rounded-xl py-3 px-4 text-center cursor-pointer mt-10"
+        className="bg-[#5BB5A2] text-white rounded-xl py-3 px-4 text-center cursor-pointer mt-10"
         onClick={() => {
           showState(false);
           showSellingOptions(true);
@@ -122,7 +153,13 @@ const CardActions = ({
       >
         Vender Jogador no Mercado
       </div>
-      <div className="text-indigo-600 border border-indigo-600 rounded-xl py-3 px-4 text-center cursor-pointer mt-6">
+      <div
+        className="text-[#5BB5A2] border border-[#5BB5A2] rounded-xl py-3 px-4 text-center cursor-pointer mt-6"
+        onClick={async (e: React.SyntheticEvent) => {
+          e.preventDefault();
+          await handleQuickSellCard();
+        }}
+      >
         Venda Rápida
       </div>
     </Popup>

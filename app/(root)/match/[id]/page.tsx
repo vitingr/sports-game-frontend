@@ -1,5 +1,6 @@
 "use client";
 
+import ToastMessage from "@/components/config/ToastMessage";
 import { infoUser } from "@/contexts/UserContext";
 import { socket } from "@/contexts/WebSocketContext";
 import Image from "next/image";
@@ -25,8 +26,13 @@ const page = () => {
     }
   };
 
+  const handleCancelMatch = async () => {
+    toast.error("Você não pode cancelar essa partida")
+  }
+
   return (
-    <div className="bg-white rounded-xl border-neutral-100 shadow-sm shadow-neutral-200 p-10 flex flex-col items-center mt-[3m] max-w-[800px] w-full">
+    <div className="bg-white rounded-xl border-neutral-100 shadow-sm shadow-neutral-200 p-10 flex flex-col items-center mt-[150px] sm:mt-0 max-w-[800px] w-full">
+      <ToastMessage />
       <h1 className="text-3xl font-bold w-full transition-all duration-300 hover:text-[#5BB5A2] cursor-default mt-4">
         Encontramos uma partida para você!
       </h1>
@@ -79,7 +85,7 @@ const page = () => {
       >
         Aceitar partida
       </button>
-      <button className="w-full mt-6 text-[#5BB5A2] border border-[#5BB5A2] py-3 rounded-xl">
+      <button className="w-full mt-6 text-[#5BB5A2] border border-[#5BB5A2] py-3 rounded-xl" onClick={() => handleCancelMatch()}>
         Cancelar partida
       </button>
     </div>

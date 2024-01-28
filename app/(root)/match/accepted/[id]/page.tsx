@@ -65,9 +65,8 @@ const page = () => {
     currentLineup &&
     currentLineup.findUserCurrentLineup &&
     availableCards && (
-      <div>
-        {matchCurrentTurn}
-        <div className="w-full p-6 border border-neutral-200 rounded-xl shadow-sm shadow-neutral-100 bg-white">
+      <div className="w-full">
+        <div className="w-full p-6 border border-neutral-200 rounded-xl shadow-sm shadow-neutral-100 bg-white mt-[150px] sm:mt-0">
           <div className="w-full flex justify-between">
             <div className="w-full flex justify-between items-center">
               <div className="w-full flex justify-start">

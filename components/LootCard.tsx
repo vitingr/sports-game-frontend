@@ -1,10 +1,38 @@
+"use client"
+
+import { infoUser } from "@/contexts/UserContext";
 import { GeneratedCardProps } from "@/types";
+import { useMutation } from "@apollo/client";
 import Image from "next/image";
 import React from "react";
+import { toast } from "react-toastify";
+import ToastMessage from "./config/ToastMessage";
+import { QUICK_SELL_CARD } from "@/graphql/mutations";
 
 const LootCard = ({ cardData }: { cardData: GeneratedCardProps }) => {
+
+  const { user } = infoUser();
+
+  const [quickSellCard] = useMutation(QUICK_SELL_CARD);
+
+  const handleQuickSellCard = async () => {
+    try {
+      await quickSellCard({
+        variables: {
+          ownerId: user.id,
+          cardId: cardData.id,
+          price: cardData.price,
+        },
+      });
+      toast.success("A carta foi vendida!");
+    } catch (error) {
+      toast.error("Não foi possível realizar a venda rápida");
+    }
+  };
+
   return (
     <div className=" border-b border-neutral-200 flex gap-2 justify-between items-center">
+      <ToastMessage />
       <Image
         src={cardData.cardImage}
         alt="Card Image"
@@ -42,7 +70,10 @@ const LootCard = ({ cardData }: { cardData: GeneratedCardProps }) => {
           </span>
         </h2>
       </div>
-      <div className="text-white bg-[#5BB5A2] rounded-xl py-2 w-[200px] text-sm text-center cursor-pointer transition-all duration-200 hover:bg-[#57ac99]">
+      <div className="text-white bg-[#5BB5A2] rounded-xl py-2 w-[200px] text-sm text-center cursor-pointer transition-all duration-200 hover:bg-[#57ac99]" onClick={async (e: React.SyntheticEvent) => {
+        e.preventDefault()
+        await handleQuickSellCard()
+      }}>
         Venda Rápida
       </div>
     </div>

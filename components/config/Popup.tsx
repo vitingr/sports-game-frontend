@@ -10,7 +10,7 @@ const Popup = ({
   handleSubmit,
 }: PopupProps) => {
   return (
-    <div className="popup-wrapper z-[999]">
+    <div className="popup-wrapper z-[999] sm:mt-0 sm-[75px]">
       <div className="glassmorphism">
         <div className="max-w-[800px] w-full p-10 bg-white rounded-xl">
           <div className="flex justify-between items-center">

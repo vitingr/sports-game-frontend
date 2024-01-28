@@ -46,6 +46,7 @@ const PlayerCard = ({
           cardData={cardData}
           showState={setShowPlayerInfo}
           showSellingOptions={setShowSellingOptions}
+          refetch={refetch}
         />
       )}
 

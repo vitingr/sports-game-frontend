@@ -173,7 +173,7 @@ const page = () => {
   return (
     playersDataLoading === false &&
     playersData && (
-      <div className="w-full flex flex-col items-center gap-6 max-w-[1250px] mt-[3em]">
+      <div className="w-full flex flex-col items-center gap-6 max-w-[1250px] mt-[150px] sm:mt-[3em]">
         <ToastMessage />
         <section className="w-full mt-[2.5em]">
           <Image

@@ -393,3 +393,22 @@ export const BUY_BADGE = gql`
     }
   }
 `
+
+export const QUICK_SELL_CARD = gql `
+  mutation (
+    $ownerId: String!
+    $cardId: String!
+    $price: Float!
+  ) {
+    quickSellCard(
+      quickSellCard: {
+        ownerId: $ownerId
+        cardId: $cardId
+        price: $price
+      }
+    ) {
+      id
+      currency
+    }
+  }
+`

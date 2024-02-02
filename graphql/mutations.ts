@@ -343,11 +343,7 @@ export const CREATE_BADGE = gql`
 `;
 
 export const CHANGE_CLUB_BADGE = gql`
-  mutation (
-    $userId: String!
-    $clubBadge: String!
-    $badgeImage: String!
-  ) {
+  mutation ($userId: String!, $clubBadge: String!, $badgeImage: String!) {
     changeClubBadge(
       changeClubBadge: {
         userId: $userId
@@ -358,23 +354,15 @@ export const CHANGE_CLUB_BADGE = gql`
       id
     }
   }
-`
+`;
 
 export const SELL_BADGE = gql`
-  mutation (
-    $id: String!
-    $price: Float!
-    $ownerId: String!
-  ) {
-    sellBadge(sellBadge: {
-      id: $id
-      price: $price
-      ownerId: $ownerId
-    }) {
+  mutation ($id: String!, $price: Float!, $ownerId: String!) {
+    sellBadge(sellBadge: { id: $id, price: $price, ownerId: $ownerId }) {
       id
     }
   }
-`
+`;
 
 export const BUY_BADGE = gql`
   mutation (
@@ -383,32 +371,51 @@ export const BUY_BADGE = gql`
     $newOwnerId: String!
     $price: Float!
   ) {
-    buyBadge(buyBadge: {
-      id: $id
-      ownerId: $ownerId
-      newOwnerId: $newOwnerId
-      price: $price
-    }) {
+    buyBadge(
+      buyBadge: {
+        id: $id
+        ownerId: $ownerId
+        newOwnerId: $newOwnerId
+        price: $price
+      }
+    ) {
       id
     }
   }
-`
+`;
 
-export const QUICK_SELL_CARD = gql `
-  mutation (
-    $ownerId: String!
-    $cardId: String!
-    $price: Float!
-  ) {
+export const QUICK_SELL_CARD = gql`
+  mutation ($ownerId: String!, $cardId: String!, $price: Float!) {
     quickSellCard(
-      quickSellCard: {
-        ownerId: $ownerId
-        cardId: $cardId
-        price: $price
-      }
+      quickSellCard: { ownerId: $ownerId, cardId: $cardId, price: $price }
     ) {
       id
       currency
     }
   }
-`
+`;
+
+export const PICK_STARTER_PACK = gql`
+  mutation ($userId: String!, $league: String!) {
+    pickStarterTeam(pickStarterTeam: { userId: $userId, type: $league }) {
+      cardImage
+      name
+      club
+      league
+      type
+      overall
+      minValue
+      maxValue
+      quickSellValue
+      position
+    }
+  }
+`;
+
+export const FINISH_CLUB_SETUP = gql`
+  mutation ($id: String!, $clubname: String!) {
+    finishClubSetup(clubSetup: { id: $id, clubname: $clubname }) {
+      id
+    }
+  }
+`;

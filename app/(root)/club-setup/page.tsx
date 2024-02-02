@@ -2,13 +2,23 @@
 
 import ToastMessage from "@/components/config/ToastMessage";
 import { infoUser } from "@/contexts/UserContext";
+import { FINISH_CLUB_SETUP, PICK_STARTER_PACK } from "@/graphql/mutations";
+import { useMutation } from "@apollo/client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const page = () => {
   const { user } = infoUser();
 
+  const router = useRouter()
+
   const [step, setStep] = useState<number>(1);
+
+  // Mutations
+  const [pickStarterTeam] = useMutation(PICK_STARTER_PACK);
+  const [finishClubSetup] = useMutation(FINISH_CLUB_SETUP)
 
   // Validation Status
   const [nationStatus, setNationStatus] = useState<boolean>(false);
@@ -21,8 +31,39 @@ const page = () => {
     setStep(currentStep + 1);
   };
 
+  const chooseLeague = async (league: string) => {
+    try {
+      await pickStarterTeam({
+        variables: {
+          userId: user.id,
+          league: league,
+        },
+      });
+
+      nextStep()
+    } catch (error) {
+      console.log(error)
+      toast.error("Não foi possível escolher essa liga.");
+    }
+  };
+
+  const createClub = async () => {
+    try {
+      await finishClubSetup({
+        variables: {
+          id: user.id,
+          clubname: newClubname
+        }
+      }).then(() => {
+        router.push("/my-club")
+      })
+    } catch (error) {
+      toast.error("Não foi possível finalizar a criação do clube.")
+    }
+  }
+
   return (
-    <div className="flex flex-col items-center gap-6 w-full max-w-[1050px] bg-white p-10 rounded-xl shadow-md shadow-neutral-200 border border-neutral-100">
+    <div className="flex flex-col items-center gap-6 w-full max-w-[1050px] sm:mt-[50px] mt-[150px] bg-white p-10 rounded-xl shadow-md shadow-neutral-200 border border-neutral-100">
       <ToastMessage />
       {step === 1 && (
         <div className="flex flex-col w-full items-center">
@@ -40,9 +81,11 @@ const page = () => {
             <div className="flex gap-4 w-full justify-between items-center">
               <div
                 className={`w-full flex flex-col items-center  p-6 cursor-pointer rounded-xl ${
-                  checked === "brasil" ? "bg-indigo-500" : "bg-neutral-100"
+                  checked === "Brasileirão Série A"
+                    ? "bg-indigo-500"
+                    : "bg-neutral-100"
                 }`}
-                onClick={() => setChecked("brasil")}
+                onClick={() => setChecked("Brasileirão Série A")}
               >
                 <Image
                   src={"/assets/brasil.png"}
@@ -53,9 +96,11 @@ const page = () => {
               </div>
               <div
                 className={`w-full flex flex-col items-center  p-6 cursor-pointer rounded-xl ${
-                  checked === "argentina" ? "bg-indigo-500" : "bg-neutral-100"
+                  checked === "Liga Argentina"
+                    ? "bg-indigo-500"
+                    : "bg-neutral-100"
                 }`}
-                onClick={() => setChecked("argentina")}
+                onClick={() => setChecked("Liga Argentina")}
               >
                 <Image
                   src={"/assets/argentina.png"}
@@ -66,9 +111,11 @@ const page = () => {
               </div>
               <div
                 className={`w-full flex flex-col items-center  p-6 cursor-pointer rounded-xl ${
-                  checked === "uruguai" ? "bg-indigo-500" : "bg-neutral-100"
+                  checked === "Liga Uruguai"
+                    ? "bg-indigo-500"
+                    : "bg-neutral-100"
                 }`}
-                onClick={() => setChecked("uruguai")}
+                onClick={() => setChecked("Liga Uruguai")}
               >
                 <Image
                   src={"/assets/uruguai.png"}
@@ -81,9 +128,11 @@ const page = () => {
             <div className="flex gap-4 w-full justify-between items-center">
               <div
                 className={`w-full flex flex-col items-center  p-6 cursor-pointer rounded-xl ${
-                  checked === "usa" ? "bg-indigo-500" : "bg-neutral-100"
+                  checked === "Major League Soccer"
+                    ? "bg-indigo-500"
+                    : "bg-neutral-100"
                 }`}
-                onClick={() => setChecked("usa")}
+                onClick={() => setChecked("Major League Soccer")}
               >
                 <Image
                   src={"/assets/usa.png"}
@@ -94,9 +143,11 @@ const page = () => {
               </div>
               <div
                 className={`w-full flex flex-col items-center  p-6 cursor-pointer rounded-xl ${
-                  checked === "mexico" ? "bg-indigo-500" : "bg-neutral-100"
+                  checked === "Liga Mexicana"
+                    ? "bg-indigo-500"
+                    : "bg-neutral-100"
                 }`}
-                onClick={() => setChecked("mexico")}
+                onClick={() => setChecked("Liga Mexicana")}
               >
                 <Image
                   src={"/assets/mexico.png"}
@@ -107,9 +158,11 @@ const page = () => {
               </div>
               <div
                 className={`w-full flex flex-col items-center  p-6 cursor-pointer rounded-xl ${
-                  checked === "colombia" ? "bg-indigo-500" : "bg-neutral-100"
+                  checked === "Liga Colômbia"
+                    ? "bg-indigo-500"
+                    : "bg-neutral-100"
                 }`}
-                onClick={() => setChecked("colombia")}
+                onClick={() => setChecked("Liga Colômbia")}
               >
                 <Image
                   src={"/assets/colombia.png"}
@@ -122,9 +175,11 @@ const page = () => {
             <div className="flex gap-4 w-full justify-between items-center">
               <div
                 className={`w-full flex flex-col items-center  p-6 cursor-pointer rounded-xl ${
-                  checked === "chile" ? "bg-indigo-500" : "bg-neutral-100"
+                  checked === "Liga Chile"
+                    ? "bg-indigo-500"
+                    : "bg-neutral-100"
                 }`}
-                onClick={() => setChecked("chile")}
+                onClick={() => setChecked("Liga Chile")}
               >
                 <Image
                   src={"/assets/chile.png"}
@@ -135,9 +190,11 @@ const page = () => {
               </div>
               <div
                 className={`w-full flex flex-col items-center  p-6 cursor-pointer rounded-xl ${
-                  checked === "equador" ? "bg-indigo-500" : "bg-neutral-100"
+                  checked === "Liga Equatoriana"
+                    ? "bg-indigo-500"
+                    : "bg-neutral-100"
                 }`}
-                onClick={() => setChecked("equador")}
+                onClick={() => setChecked("Liga Equatoriana")}
               >
                 <Image
                   src={"/assets/equador.png"}
@@ -148,9 +205,11 @@ const page = () => {
               </div>
               <div
                 className={`w-full flex flex-col items-center  p-6 cursor-pointer rounded-xl ${
-                  checked === "paraguai" ? "bg-indigo-500" : "bg-neutral-100"
+                  checked === "Liga Paraguai"
+                    ? "bg-indigo-500"
+                    : "bg-neutral-100"
                 }`}
-                onClick={() => setChecked("paraguai")}
+                onClick={() => setChecked("Liga Paraguai")}
               >
                 <Image
                   src={"/assets/paraguai.png"}
@@ -163,9 +222,11 @@ const page = () => {
             <div className="flex gap-4 w-full justify-between items-center">
               <div
                 className={`w-full flex flex-col items-center  p-6 cursor-pointer rounded-xl ${
-                  checked === "peru" ? "bg-indigo-500" : "bg-neutral-100"
+                  checked === "Liga Peruana"
+                    ? "bg-indigo-500"
+                    : "bg-neutral-100"
                 }`}
-                onClick={() => setChecked("peru")}
+                onClick={() => setChecked("Liga Peruana")}
               >
                 <Image
                   src={"/assets/peru.png"}
@@ -176,9 +237,11 @@ const page = () => {
               </div>
               <div
                 className={`w-full flex flex-col items-center  p-6 cursor-pointer rounded-xl ${
-                  checked === "venezuela" ? "bg-indigo-500" : "bg-neutral-100"
+                  checked === "Liga Venezuelana"
+                    ? "bg-indigo-500"
+                    : "bg-neutral-100"
                 }`}
-                onClick={() => setChecked("venezuela")}
+                onClick={() => setChecked("Liga Venezuelana")}
               >
                 <Image
                   src={"/assets/venezuela.png"}
@@ -189,9 +252,11 @@ const page = () => {
               </div>
               <div
                 className={`w-full flex flex-col items-center  p-6 cursor-pointer rounded-xl ${
-                  checked === "bolivia" ? "bg-neutral-100" : "bg-neutral-100"
+                  checked === "Liga Boliviana"
+                    ? "bg-indigo-500"
+                    : "bg-neutral-100"
                 }`}
-                onClick={() => setChecked("bolivia")}
+                onClick={() => setChecked("Liga Boliviana")}
               >
                 <Image
                   src={"/assets/bolivia.png"}
@@ -204,7 +269,7 @@ const page = () => {
             {checked !== "" ? (
               <button
                 type="button"
-                onClick={() => nextStep()}
+                onClick={async () => await chooseLeague(checked)}
                 className="bg-indigo-500 text-white rounded-full py-3 w-full cursor-pointer mt-16"
               >
                 Próxima Etapa
@@ -212,7 +277,6 @@ const page = () => {
             ) : (
               <button
                 type="button"
-                onClick={() => nextStep()}
                 className="bg-neutral-200 py-3 rounded-full w-full cursor-not-allowed mt-16"
               >
                 Próxima Etapa
@@ -222,7 +286,7 @@ const page = () => {
         </div>
       )}
 
-      {step === 2 && (
+      {/* {step === 2 && (
         <div className="flex flex-col w-full items-center">
           <h1 className="text-3xl font-bold w-full transition-all duration-300 hover:text-indigo-600 cursor-default mt-4">
             Escolha um emblema para o seu clube
@@ -241,9 +305,9 @@ const page = () => {
             Próxima Etapa
           </button>
         </div>
-      )}
+      )} */}
 
-      {step === 3 && (
+      {step === 2 && (
         <div className="flex flex-col w-full items-center">
           <h1 className="text-3xl font-bold w-full transition-all duration-300 hover:text-indigo-600 cursor-default mt-4">
             Escolha um nome para o seu clube
@@ -259,7 +323,7 @@ const page = () => {
             Nome Atual: <span className="text-lg">{user.clubname}</span>
           </h2>
 
-          <label htmlFor="clubname">Novo nome</label>
+          <label htmlFor="clubname" className="w-full">Novo nome</label>
           <input
             defaultValue={user.clubname}
             type="text"
@@ -273,7 +337,7 @@ const page = () => {
 
           <button
             type="button"
-            onClick={() => nextStep()}
+            onClick={() => createClub()}
             className="bg-indigo-500 text-white rounded-full py-3 w-full cursor-pointer mt-16"
           >
             Próxima Etapa

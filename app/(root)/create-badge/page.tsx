@@ -24,7 +24,7 @@ const page = () => {
     let photoDatabase;
 
     if (image !== "") {
-      const imageUpload = await fetch("/api/upload", {
+      const imageUpload = await fetch("/api/uploadBadge", {
         method: "POST",
         body: JSON.stringify({
           path: image,
@@ -38,9 +38,9 @@ const page = () => {
             variables: {
               badgeImage: photoDatabase.url as string,
               clubname: badgeInfo.clubname,
-              maxValue: Number(badgeInfo.maxValue),
-              minValue: Number(badgeInfo.minValue),
-              quickSellValue: Number(badgeInfo.quickSellValue),
+              maxValue: Number(1000),
+              minValue: Number(350),
+              quickSellValue: Number(350),
             },
           });
           toast.success("O emblema foi criado com sucesso!");
@@ -73,7 +73,7 @@ const page = () => {
           className="outline-none px-2 py-1 border border-neutral-200"
         />
 
-        <div>
+        {/* <div>
           <p>maxValue</p>
           <input
             type="number"
@@ -110,7 +110,7 @@ const page = () => {
               setBadgeInfo({ ...badgeInfo, quickSellValue: e.target.value })
             }
           />
-        </div>
+        </div> */}
 
         <div
           className="w-full text-white cursor-pointer bg-indigo-600"

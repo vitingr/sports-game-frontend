@@ -5,7 +5,7 @@ import React from "react";
 const LootBadge = ({ badgeData }: { badgeData: GeneratedBadgeProps }) => {
   return (
     <div className=" border-b border-neutral-200 flex gap-2 justify-between items-center">
-      <div className="w-[145px] h-[175px] flex items-center justify-center">
+      <div className="w-[200px] h-[150px] flex items-center justify-center">
         <img
           src={badgeData.badgeImage}
           alt="Card Image"

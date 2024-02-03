@@ -7,6 +7,7 @@ import { UserContextProps, UserProps } from "@/types";
 import { checkIsPublicRoute } from "@/utils/check-route";
 import { useMutation, useQuery } from "@apollo/client";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const UserContext = createContext<UserContextProps | any>(undefined);
@@ -14,11 +15,13 @@ const UserContext = createContext<UserContextProps | any>(undefined);
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const path = usePathname();
 
+  const router = useRouter()
+
   const isPublic = checkIsPublicRoute(path);
 
   // Data Hooks Providers
   const [data, setData] = useState<any>([]);
-  const [user, setUser] = useState<UserProps[]>([]);
+  const [user, setUser] = useState<UserProps[] | any>([]);
 
   // GraphQL Queries
   const [createUser] = useMutation(CREATE_PLAYER);
@@ -66,7 +69,9 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
             password: "",
           },
         });
-        await fetchAndUpdateUser();
+        await fetchAndUpdateUser().then(() => {
+          router.push('/club-setup')
+        })
       } else {
         await fetchAndUpdateUser();
       }
@@ -88,6 +93,12 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
       getUserInfo();
     }
   }, [playerDataLoading, data]);
+
+  useEffect(() => {
+    if (user.newUser === true) {
+      router.push('/club-setup')
+    }
+  }, [user])
 
   return isPublic || (data.id && user) ? (
     <UserContext.Provider

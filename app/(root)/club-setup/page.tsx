@@ -6,19 +6,19 @@ import { FINISH_CLUB_SETUP, PICK_STARTER_PACK } from "@/graphql/mutations";
 import { useMutation } from "@apollo/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const page = () => {
-  const { user } = infoUser();
+  const { user, getUserInfo } = infoUser();
 
-  const router = useRouter()
+  const router = useRouter();
 
   const [step, setStep] = useState<number>(1);
 
   // Mutations
   const [pickStarterTeam] = useMutation(PICK_STARTER_PACK);
-  const [finishClubSetup] = useMutation(FINISH_CLUB_SETUP)
+  const [finishClubSetup] = useMutation(FINISH_CLUB_SETUP);
 
   // Validation Status
   const [nationStatus, setNationStatus] = useState<boolean>(false);
@@ -40,9 +40,8 @@ const page = () => {
         },
       });
 
-      nextStep()
+      nextStep();
     } catch (error) {
-      console.log(error)
       toast.error("Não foi possível escolher essa liga.");
     }
   };
@@ -52,15 +51,27 @@ const page = () => {
       await finishClubSetup({
         variables: {
           id: user.id,
-          clubname: newClubname
-        }
-      }).then(() => {
-        router.push("/my-club")
-      })
+          clubname: newClubname,
+        },
+      });
+
+      await getUserInfo().then(() => {
+        router.push("/my-club");
+      });
     } catch (error) {
-      toast.error("Não foi possível finalizar a criação do clube.")
+      toast.error("Não foi possível finalizar a criação do clube.");
     }
-  }
+  };
+
+  useEffect(() => {
+    if (user.id !== undefined && user.id !== "") {
+      if (user.newUser === true) {
+        return;
+      } else {
+        router.push("/my-club");
+      }
+    }
+  }, []);
 
   return (
     <div className="flex flex-col items-center gap-6 w-full max-w-[1050px] sm:mt-[50px] mt-[150px] bg-white p-10 rounded-xl shadow-md shadow-neutral-200 border border-neutral-100">
@@ -175,9 +186,7 @@ const page = () => {
             <div className="flex gap-4 w-full justify-between items-center">
               <div
                 className={`w-full flex flex-col items-center  p-6 cursor-pointer rounded-xl ${
-                  checked === "Liga Chile"
-                    ? "bg-indigo-500"
-                    : "bg-neutral-100"
+                  checked === "Liga Chile" ? "bg-indigo-500" : "bg-neutral-100"
                 }`}
                 onClick={() => setChecked("Liga Chile")}
               >
@@ -286,27 +295,6 @@ const page = () => {
         </div>
       )}
 
-      {/* {step === 2 && (
-        <div className="flex flex-col w-full items-center">
-          <h1 className="text-3xl font-bold w-full transition-all duration-300 hover:text-indigo-600 cursor-default mt-4">
-            Escolha um emblema para o seu clube
-          </h1>
-          <p className="text-[#717171]">
-            Nossa plataforma oferece alguns emblemas iniciais para você escolher
-            para seu clube, abaixo você pode ver eles e escolher o emblema de
-            sua preferência para montar o seu clube.
-          </p>
-
-          <button
-            type="button"
-            onClick={() => nextStep()}
-            className="bg-indigo-500 text-white rounded-full py-3 w-full cursor-pointer mt-16"
-          >
-            Próxima Etapa
-          </button>
-        </div>
-      )} */}
-
       {step === 2 && (
         <div className="flex flex-col w-full items-center">
           <h1 className="text-3xl font-bold w-full transition-all duration-300 hover:text-indigo-600 cursor-default mt-4">
@@ -323,7 +311,9 @@ const page = () => {
             Nome Atual: <span className="text-lg">{user.clubname}</span>
           </h2>
 
-          <label htmlFor="clubname" className="w-full">Novo nome</label>
+          <label htmlFor="clubname" className="w-full">
+            Novo nome
+          </label>
           <input
             defaultValue={user.clubname}
             type="text"

@@ -140,7 +140,7 @@ const page = () => {
                   {myCards.findUserCards
                     .slice(0, 8)
                     .map((card: GeneratedCardProps, index: number) => (
-                      <PlayerCard cardData={card} key={index} small={true} />
+                      <PlayerCard cardData={card} refetch={refetchMyCards} key={index} small={true} />
                     ))}
                 </div>
               ) : (

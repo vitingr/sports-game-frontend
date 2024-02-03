@@ -41,7 +41,6 @@ const page = () => {
             userId: user.id,
           },
         });
-        console.log(data)
         await getUserInfo()
         setLoot(data)
         setShowLoot(true)
@@ -50,7 +49,6 @@ const page = () => {
         toast.error("Você não tem dinheiro suficiente para abrir esse pacote");
       }
     } catch (error) {
-      console.log(error);
       throw new Error("ERRO! Não foi possível abrir o pacote");
     }
   };
@@ -71,7 +69,6 @@ const page = () => {
         toast.error("Você não tem dinheiro suficiente para abrir esse pacote");
       }
     } catch (error) {
-      console.log(error);
       throw new Error("ERRO! Não foi possível abrir o pacote");
     }
   };
@@ -92,7 +89,6 @@ const page = () => {
         toast.error("Você não tem dinheiro suficiente para abrir esse pacote");
       }
     } catch (error) {
-      console.log(error);
       throw new Error("ERRO! Não foi possível abrir o pacote");
     }
   };
@@ -113,7 +109,6 @@ const page = () => {
         toast.error("Você não tem dinheiro suficiente para abrir esse pacote");
       }
     } catch (error) {
-      console.log(error);
       throw new Error("ERRO! Não foi possível abrir o pacote");
     }
   };
@@ -134,7 +129,6 @@ const page = () => {
         toast.error("Você não tem dinheiro suficiente para abrir esse pacote");
       }
     } catch (error) {
-      console.log(error);
       throw new Error("ERRO! Não foi possível abrir o pacote");
     }
   };
@@ -155,7 +149,6 @@ const page = () => {
         toast.error("Você não tem dinheiro suficiente para abrir esse pacote");
       }
     } catch (error) {
-      console.log(error);
       throw new Error("ERRO! Não foi possível abrir o pacote");
     }
   };

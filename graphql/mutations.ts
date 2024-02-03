@@ -389,7 +389,7 @@ export const QUICK_SELL_CARD = gql`
     quickSellCard(
       quickSellCard: { ownerId: $ownerId, cardId: $cardId, price: $price }
     ) {
-      id
+      id  
       currency
     }
   }

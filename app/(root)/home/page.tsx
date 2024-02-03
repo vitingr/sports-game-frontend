@@ -51,7 +51,7 @@ const page = () => {
         toast.success("Buscando partida");
       });
     } catch (error) {
-      console.log(error);
+    throw new Error("Não foi possível buscar uma partida")
     }
   };
 
@@ -64,7 +64,7 @@ const page = () => {
         toast.success("Buscando partida");
       });
     } catch (error) {
-      console.log(error);
+      throw new Error("Não foi possível parar de buscar uma partida")
     }
   };
 

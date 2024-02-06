@@ -389,7 +389,7 @@ export const QUICK_SELL_CARD = gql`
     quickSellCard(
       quickSellCard: { ownerId: $ownerId, cardId: $cardId, price: $price }
     ) {
-      id  
+      id
       currency
     }
   }
@@ -415,6 +415,14 @@ export const PICK_STARTER_PACK = gql`
 export const FINISH_CLUB_SETUP = gql`
   mutation ($id: String!, $clubname: String!) {
     finishClubSetup(clubSetup: { id: $id, clubname: $clubname }) {
+      id
+    }
+  }
+`;
+
+export const REMOVE_LINEUP_PLAYER = gql`
+  mutation ($lineupId: String!, $position: String!) {
+    removeLineupPlayer(removeLineupPlayer: { lineupId: $lineupId, position: $position }) {
       id
     }
   }

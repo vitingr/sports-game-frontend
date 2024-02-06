@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from "react";
 import Popup from "../config/Popup";
 import { infoUser } from "@/contexts/UserContext";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { GET_USER_CARDS } from "@/graphql/queries";
 import { GeneratedCardProps } from "@/types";
 import ChangeLineupCard from "./ChangeLineupCard";
+import ToastMessage from "../config/ToastMessage";
+import { toast } from "react-toastify";
+import { REMOVE_LINEUP_PLAYER } from "@/graphql/mutations";
 
 const ChangePlayer = ({
   state,
   lineupIndex,
   indexData,
   lineupId,
-  handleRefetch
+  handleRefetch,
 }: {
   state: any;
   lineupIndex: number;
   indexData: GeneratedCardProps;
   lineupId: string;
-  handleRefetch: any
+  handleRefetch: any;
 }) => {
   const { user } = infoUser();
+
+  const [removePlayer] = useMutation(REMOVE_LINEUP_PLAYER);
 
   const {
     data: myCards,
@@ -33,6 +38,28 @@ const ChangePlayer = ({
   });
 
   const [position, setPosition] = useState<string[]>([]);
+
+  const removeCurrentCard = async () => {
+    try {
+      const position = `player${lineupIndex}`;
+
+      if (position) {
+        await removePlayer({
+          variables: {
+            lineupId: lineupId,
+            position: position,
+          },
+        });
+
+        state(false);
+      } else {
+        toast.error("Erro ao estabelecer uma conexão com o servidor");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Não foi possível remover o jogador dessa posição");
+    }
+  };
 
   useEffect(() => {
     switch (lineupIndex) {
@@ -79,6 +106,7 @@ const ChangePlayer = ({
         state={state}
         description="Escolha um jogador para ocupar essa posição na sua formação atual"
       >
+        <ToastMessage />
         {myCards && myCards.findUserCards ? (
           <div className="flex flex-wrap gap-4 py-8 w-full h-[650px] overflow-y-scroll">
             {myCards.findUserCards.map(
@@ -101,6 +129,12 @@ const ChangePlayer = ({
             Você ainda não encontrou nenhuma carta!
           </span>
         )}
+        <div
+          className="w-full p-4 bg-emerald-500 text-white rounded-xl mt-10 text-center cursor-pointer transition-all duration-300 hover:bg-emerald-600"
+          onClick={async () => await removeCurrentCard()}
+        >
+          Remover Jogador
+        </div>
       </Popup>
     )
   );

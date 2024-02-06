@@ -65,13 +65,13 @@ const page = () => {
 
   useEffect(() => {
     if (user.id !== undefined && user.id !== "") {
-      if (user.newUser === true) {
-        return;
-      } else {
+      if (user.newUser === false) {
         router.push("/my-club");
+      } else {
+        return
       }
     }
-  }, []);
+  }, [user]);
 
   return (
     <div className="flex flex-col items-center gap-6 w-full max-w-[1050px] sm:mt-[50px] mt-[150px] bg-white p-10 rounded-xl shadow-md shadow-neutral-200 border border-neutral-100">

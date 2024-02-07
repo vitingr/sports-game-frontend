@@ -65,7 +65,7 @@ const page = () => {
     currentLineup &&
     currentLineup.findUserCurrentLineup &&
     availableCards && (
-      <div className="w-full">
+      <div className="w-full flex flex-col items-center max-w-[1250px] mt-[50px]">
         <div className="w-full p-6 border border-neutral-200 rounded-xl shadow-sm shadow-neutral-100 bg-white mt-[150px] sm:mt-0">
           <div className="w-full flex justify-between">
             <div className="w-full flex justify-between items-center">
@@ -88,9 +88,9 @@ const page = () => {
             <div className="w-full flex justify-between items-center">
               <div className="w-[100px] flex justify-center text-2xl">
                 {user.id === player2 ? (
-                  <span>{player1Score ? `${player1Score}` : "0"}</span>
-                ) : (
                   <span>{player2Score ? `${player2Score}` : "0"}</span>
+                ) : (
+                  <span>{player1Score ? `${player1Score}` : "0"}</span>
                 )}
               </div>
               <div className="w-full flex justify-end">
@@ -119,7 +119,7 @@ const page = () => {
 
         <div>
           {matchCurrentTurn !== user.id ? (
-            <h1>Espere o usuário escolher a carta dele</h1>
+            <h1 className="mt-20 text-2xl">Espere o usuário escolher a carta dele</h1>
           ) : (
             <div>
               <p>Escolha uma carta:</p>

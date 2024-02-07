@@ -3,6 +3,8 @@
 import ToastMessage from "@/components/config/ToastMessage";
 import { BRASILEIRAO_QUIZ } from "@/constants/brasileirao-quiz";
 import { infoUser } from "@/contexts/UserContext";
+import { COMPLETE_QUIZ } from "@/graphql/mutations";
+import { useMutation } from "@apollo/client";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,9 +13,11 @@ import { toast } from "react-toastify";
 
 const page = () => {
 
-  const {user} = infoUser()
+  const {user, getUserInfo} = infoUser()
 
   const router = useRouter()
+  
+  const [finishQuiz] = useMutation(COMPLETE_QUIZ)
 
   const [activeQuestion, setActiveQuestion] = useState<number>(0);
   const [checked, setChecked] = useState<boolean>(false);
@@ -33,7 +37,6 @@ const page = () => {
         toast.success("Você acertou a questão!");
       } else {
         setActiveQuestion(0);
-        setShowResult(true);
         setChecked(false);
         toast.error("Questão errada!");
         router.push("/challenges")
@@ -42,6 +45,17 @@ const page = () => {
       setActiveQuestion(0);
       setShowResult(true);
       setChecked(false);
+
+      await finishQuiz({
+        variables: {
+          userId: user.id,
+          quiz: "brasileirao",
+          prize: 500
+        }
+      }).then(async () => {
+        toast.info("Você finalizou o quiz do Brasileirão")
+        await getUserInfo()
+      })
     }
   };
 
@@ -95,7 +109,7 @@ const page = () => {
               )}
             </div>
           ) : (
-            <div>
+            <div className="w-full flex flex-col items-center">
               <h1 className="text-2xl text-emerald-600 cursor-default">Parabéns, você concluiu o Quiz!</h1>
               <p className="mt-2">
                 Como forma de premiar você, iremos recompensa-lo com alguns
@@ -115,7 +129,7 @@ const page = () => {
                 </p>
               </div>
 
-              <Link href={"/challenges"} className="text-center w-full rounded-xl bg-emerald-500 transition-all duration-300 hover:bg-emerald-600 text-white cursor-pointer p-3">Voltar ao menu</Link>
+              <Link href={"/challenges"} className="mt-10 text-center w-full rounded-xl bg-emerald-500 transition-all duration-300 hover:bg-emerald-600 text-white cursor-pointer p-3">Voltar ao menu</Link>
             </div>
           )}
         </div>

@@ -5,6 +5,7 @@ import { infoUser } from "@/contexts/UserContext";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { GrValidate } from "react-icons/gr";
 
 const page = () => {
   const { user } = infoUser();
@@ -21,6 +22,14 @@ const page = () => {
           <div className="w-[300px] bg-[#fafafa] border-t-2 border-emerald-600 h-[300px] p-6 flex flex-col justify-between">
             <div>
               <h2 className="text-xl">Quiz do Brasileirão</h2>
+              {user?.quizCompleted?.includes("brasileirao") && (
+                <div className="flex items-center gap-2 mb-6">
+                  <GrValidate size={10} className="green-icon cursor-pointer" />
+                  <h3 className="text-emerald-500 text-xs">
+                    Você já realizou esse quiz
+                  </h3>
+                </div>
+              )}
               <p className="text-sm text-[#717171]">
                 Responda um quiz para ganhar recompensas e melhorar o seu time
               </p>
@@ -40,15 +49,32 @@ const page = () => {
             </div>
 
             <div className="h-full flex justify-end items-end">
-              <Link href={"/challenges/brasileirao"} className="mt-6 w-full p-3 text-center bg-emerald-500 text-white cursor-pointer rounded-lg transition-all duration-300 hover:bg-emerald-600">
-                Fazer Desafio
-              </Link>
+              {user?.quizCompleted?.includes("brasileirao") ? (
+                <div className="mt-6 w-full p-3 text-center bg-neutral-300 text-white cursor-not-allowed rounded-lg">
+                  Fazer Desafio
+                </div>
+              ) : (
+                <Link
+                  href={"/challenges/brasileirao"}
+                  className="mt-6 w-full p-3 text-center bg-emerald-500 text-white cursor-pointer rounded-lg transition-all duration-300 hover:bg-emerald-600"
+                >
+                  Fazer Desafio
+                </Link>
+              )}
             </div>
           </div>
 
           <div className="w-[300px] bg-[#fafafa] border-t-2 border-emerald-600 h-[300px] p-6 flex flex-col justify-between">
             <div>
               <h2 className="text-xl">Quiz Global</h2>
+              {user?.quizCompleted?.includes("global") && (
+                <div className="flex items-center gap-2 mb-6">
+                  <GrValidate size={10} className="green-icon cursor-pointer" />
+                  <h3 className="text-emerald-500 text-xs">
+                    Você já realizou esse quiz
+                  </h3>
+                </div>
+              )}
               <p className="text-sm text-[#717171]">
                 Responda um quiz para ganhar recompensas e melhorar o seu time
               </p>
@@ -68,9 +94,18 @@ const page = () => {
             </div>
 
             <div className="h-full flex justify-end items-end">
-              <Link href={"/challenges/global"} className="mt-6 w-full p-3 text-center bg-emerald-500 text-white cursor-pointer rounded-lg transition-all duration-300 hover:bg-emerald-600">
-                Fazer Desafio
-              </Link>
+              {user?.quizCompleted?.includes("global") ? (
+                <div className="mt-6 w-full p-3 text-center bg-neutral-300 text-white rounded-lg cursor-not-allowed">
+                  Fazer Desafio
+                </div>
+              ) : (
+                <Link
+                  href={"/challenges/global"}
+                  className="mt-6 w-full p-3 text-center bg-emerald-500 text-white cursor-pointer rounded-lg transition-all duration-300 hover:bg-emerald-600"
+                >
+                  Fazer Desafio
+                </Link>
+              )}
             </div>
           </div>
         </div>

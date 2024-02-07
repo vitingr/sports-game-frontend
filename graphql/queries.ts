@@ -31,6 +31,7 @@ export const GET_PLAYER = gql`
       loses
       searchingMatch
       currentLineup
+      quizCompleted
     }
   }
 `;

@@ -1,168 +1,120 @@
 export const GLOBAL_QUIZ = {
-  totalQuestions: 5,
+  totalQuestions: 7,
 
   questions: [
     {
       id: 1,
 
-      question: "Já passou pela sua cabeça fazer um FOR sem FOR?",
+      question: "Quem é o maior campeão Escocês?",
 
       answers: [
-        "Sempre me vejo pensando",
-        "Já passou, mas não fiz",
-        "Acho uma idéia abstrata e complexa",
-        "Já conheço alguém que fez",
-        "Sim, se trata de uma situação recorrente",
+        "Celtic",
+        "Rangers",
+        "Aberdeen",
+        "Ibis",
+        "União Barbarense",
       ],
 
-      points: [20, 40, 60, 80, 100],
+      correctAnswer: "Rangers"
     },
 
     {
       id: 2,
 
-      question: "Qual dessas características mais se assemelha com você?",
+      question: "Quantos títulos da OFC Champions League, tem o Auckland City?",
 
       answers: [
-        "Perfeccionista nas atividades",
-        "É muito rigído com relação ao cumprimento de regras",
-        "Simples e Direto sobre a opinião com as coisas",
-        "É muito rígido com si mesmo",
-        "Costuma pensar demais nas coisas",
+        "8 títulos",
+        "9 títulos",
+        "10 títulos",
+        "11 títulos",
+        "12 títulos",
       ],
 
-      points: [20, 40, 60, 80, 100],
+      correctAnswer: "11 títulos"
     },
 
     {
       id: 3,
 
-      question: "O que mais te incomoda no cotidiano",
+      question: "Quantas seleções já ganharam a Copa do Mundo?",
 
       answers: [
-        "Ambiente de Trabalho / Escola Desagradável",
-        "Problemas Familiares",
-        "Problemas no Relacionamento",
-        "Problemas Financeiros",
-        "Não compreendo a origem do que me incomoda",
+        "6 seleções",
+        "7 seleções ",
+        "8 seleções",
+        "9 seleções",
+        "10 seleções",
       ],
 
-      points: [20, 40, 60, 80, 100],
+      correctAnswer: "8 seleções"
     },
 
     {
       id: 4,
 
       question:
-        "Quando você se encontra em uma situação desafiadora, qual a sua maior dificuldade?",
+        "Qual foi o Clube que mais sofreu gols do Cristiano Ronaldo?",
 
       answers: [
-        "Dificuldade em entender meus sentimentos sobre a situação",
-        "Dificuldade em verbalizar o problema",
-        "Dificuldade em agir sobre situação",
-        "Costumo me desanimar e ficar deprimido",
-        "Não fazer loucuras",
+        "Alavés",
+        "Valência",
+        "Getafe",
+        "Atlético de Madrid",
+        "Sevilla",
       ],
 
-      points: [20, 40, 60, 80, 100],
+      correctAnswer: "Sevilla"
     },
 
     {
       id: 5,
 
-      question: "Você se considera uma pessoa:",
+      question: "Quem é o maior artilheiro da Seleção Francesa?",
 
       answers: [
-        "Extrovertida",
-        "Introvertida",
-        "Ambivertida",
-        "Prefiro não dizer",
-        "Não sei dizer",
+        "Thierry Henry",
+        "Michel Platini",
+        "Jean-Pierre Papin",
+        "Olivier Giroud",
+        "just Fontaine",
       ],
 
-      points: [20, 40, 60, 80, 100],
+      correctAnswer: "Olivier Giroud"
     },
 
     {
       id: 6,
 
       question:
-        "Você sente impulso de fazer coisas que não queira fazer? Como ofender uma pessoa e depois dizer que foi brincadeira?",
+        "Qual é o pior país classificado no Ranking da FIFA até a data de fevereiro de 2024?",
 
       answers: [
-        "Nunca senti algo parecido",
-        "Algumas Vezes",
-        "Não me lembro",
-        "Já senti, mas não fiz nada",
-        "Muitas Vezes",
+        "Guam",
+        "Anguilla",
+        "San Marino",
+        "Turks and Caicos",
+        "Eritrea",
       ],
 
-      points: [20, 40, 60, 80, 100],
+      correctAnswer: "Eritrea"
     },
 
     {
       id: 7,
 
       question:
-        "Sente-se tímido e não consegue falar em público ou se expressar.",
+        "Quem fez o primeiro gol do Brasil em Copas?",
 
       answers: [
-        "Nunca me ocorreu",
-        "Depende do dia",
-        "Sempre tive dificuldade em me expressar",
-        "As vezes",
-        "Muitas Vezes",
+        "Preguinho",
+        "Harmógenes",
+        "Nilo",
+        "Carvalho Leite",
+        "Zé Luis",
       ],
 
-      points: [20, 40, 60, 80, 100],
-    },
-
-    {
-      id: 8,
-
-      question: "Como você costuma enfrentar seus medos?",
-
-      answers: [
-        "Encaro-os como desafios e uma oportunidade de melhorar",
-        " Aceito os meus medos e convivo com eles",
-        "Procuro conversar com outras pessoas sobre eles",
-        "Sempre guardo eles para mim",
-        "Fico perturbado e tento pular da ponte",
-      ],
-
-      points: [20, 40, 60, 80, 100],
-    },
-
-    {
-      id: 9,
-
-      question: "Como você lida com opiniões e feedbacks?",
-
-      answers: [
-        "Se for algo bom sem problemas",
-        "Independentemente, sempre levo-os como uma oportunidade melhorar",
-        "Não ligo, fico com minha própria opinião",
-        "Escuto, porém dependendo da resposta não gosto",
-        "Se for algo ruim, xingo o cara e fico revoltado",
-      ],
-
-      points: [20, 40, 60, 80, 100],
-    },
-
-    {
-      id: 10,
-
-      question: "Você acredita que possui uma relação saudável consigo mesmo?",
-
-      answers: [
-        "Com Certeza",
-        "Muitas vezes, porém as vezes me perco",
-        "Não sei o que dizer",
-        "é uma tarefa complicada, mas as vezes sim",
-        "Nunca",
-      ],
-
-      points: [20, 40, 60, 80, 100],
+      correctAnswer: "Preguinho"
     },
   ],
 };

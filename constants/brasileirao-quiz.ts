@@ -1,5 +1,5 @@
 export const BRASILEIRAO_QUIZ = {
-  totalQuestions: 5,
+  totalQuestions: 7,
 
   questions: [
     {

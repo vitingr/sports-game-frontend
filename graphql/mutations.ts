@@ -429,3 +429,13 @@ export const REMOVE_LINEUP_PLAYER = gql`
     }
   }
 `;
+
+export const COMPLETE_QUIZ = gql`
+  mutation ($userId: String!, $quiz: String!, $prize: Float!) {
+    completeQuiz(
+      completeQuiz: { userId: $userId, quiz: $quiz, prize: $prize }
+    ) {
+      id
+    }
+  }
+`;

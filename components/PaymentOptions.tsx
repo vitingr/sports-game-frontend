@@ -45,7 +45,6 @@ const PaymentOptions = ({
   const [openBronzePack] = useMutation(OPEN_BRONZE_PACK);
 
   const handleOpenPack = async (method: string) => {
-    console.log(`${user.id}, ${method}`);
     if (packType === "players_pack") {
       await players_pack(method);
       showState(false);
@@ -194,6 +193,7 @@ const PaymentOptions = ({
         toast.error("Você não tem dinheiro suficiente para abrir esse pacote");
       }
     } catch (error) {
+      console.log(error)
       throw new Error("ERRO! Não foi possível abrir o pacote");
     }
   };
@@ -207,36 +207,42 @@ const PaymentOptions = ({
       <ToastMessage />
       <div className="mt-10 flex gap-12 items-center justify-between w-full py-12">
         <div className="w-full flex justify-center items-center">
-          <h2
-            className="preco-produto-loja flex items-center gap-2 p-6 bg-slate-300 rounded-xl w-full justify-center cursor-pointer"
-            onClick={async () => {
-              await handleOpenPack("coins");
-            }}
-          >
-            <Image
-              src={"/assets/coins.png"}
-              alt="Price Icon"
-              width={25}
-              height={25}
-            />
-            {coins}
-          </h2>
+          <div className="flex flex-col w-full items-center">
+            <h3 className="mb-2 text-xl">Pagar com moedas</h3>
+            <h2
+              className="preco-produto-loja flex items-center gap-2 p-6 bg-slate-300 rounded-xl w-full justify-center cursor-pointer"
+              onClick={async () => {
+                await handleOpenPack("coins");
+              }}
+            >
+              <Image
+                src={"/assets/coins.png"}
+                alt="Price Icon"
+                width={25}
+                height={25}
+              />
+              {coins}
+            </h2>
+          </div>
         </div>
         <div className="w-full flex justify-center items-center">
-          <h2
-            className="preco-produto-loja flex items-center gap-2 p-6 bg-slate-300 rounded-xl w-full justify-center cursor-pointer"
-            onClick={async () => {
-              await handleOpenPack("fut-points");
-            }}
-          >
-            <Image
-              src={"/assets/points.png"}
-              alt="Price Icon"
-              width={25}
-              height={25}
-            />
-            {futpoints}
-          </h2>
+          <div className="flex flex-col w-full items-center">
+            <h3 className="text-xl mb-2">Pagar com Futpoints</h3>
+            <h2
+              className="preco-produto-loja flex items-center gap-2 p-6 bg-slate-300 rounded-xl w-full justify-center cursor-pointer"
+              onClick={async () => {
+                await handleOpenPack("fut-points");
+              }}
+            >
+              <Image
+                src={"/assets/points.png"}
+                alt="Price Icon"
+                width={25}
+                height={25}
+              />
+              {futpoints}
+            </h2>
+          </div>
         </div>
       </div>
     </Popup>

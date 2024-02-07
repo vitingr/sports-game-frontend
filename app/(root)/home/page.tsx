@@ -86,7 +86,7 @@ const page = () => {
     steps: [
       {
         popover: {
-          title: "Bem-Vindo ao seu Clube",
+          title: "Bem-Vindo ao Menu Principal",
           description:
             "Apresentaremos a você todas as funcionalidades dessa seção. Boa sorte ao montar o seu clube!",
           side: "top",
@@ -323,7 +323,7 @@ const page = () => {
         </section>
 
         <section className="w-full mt-[6.5em] flex gap-10 justify-between sm:flex-nowrap flex-wrap">
-          {user.currentLineup !== "" ? (
+          {user.currentLineup !== "" && user.currentLineup && user.currentLineup !== undefined && user.currentLineup !== null ? (
             <div
               className="bg-white p-16 border border-neutral-100 shadow-md shadow-neutral-300 w-full flex flex-col items-center justify-center text-3xl font-bold uppercase cursor-pointer rounded-xl"
               onClick={async () => await handleSearchMatch()}

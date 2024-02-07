@@ -33,10 +33,9 @@ const page = () => {
   const [createCard] = useMutation(CREATE_CARD);
 
   const handleCreateCard = async () => {
-
-    let quickSellValue = await getQuickSellValue(cardInfo.overall)
-    let maxValue = await getMaxValue(cardInfo.overall)
-    let minValue = await getMinValue(cardInfo.overall)
+    let quickSellValue = await getQuickSellValue(cardInfo.overall);
+    let maxValue = await getMaxValue(cardInfo.overall);
+    let minValue = await getMinValue(cardInfo.overall);
 
     let photoDatabase;
 
@@ -150,6 +149,16 @@ const page = () => {
           <option value="Chapecoense">Chapecoense</option>
           <option value="Coritiba">Coritiba</option>
           <option value="Sport Recife">Sport Recife</option>
+          <option value="Valez Sarsfield">Velez Sarsfield</option>
+          <option value="Estudiantes">Estudiantes</option>
+          <option value="Talleres">Talleres</option>
+          <option value="Bolívar">Bolívar</option>
+          <option value="The Strongest">The Strongest</option>
+          <option value="Banfield">Banfield</option>
+          <option value="Lanús">Lanús</option>
+          <option value="Blooming">Blooming</option>
+          <option value="Deportivo Táchira">Deportivo Táchira</option>
+          <option value="Independiente">Independiente</option>
         </select>
 
         <select
@@ -167,6 +176,8 @@ const page = () => {
           <option value="Liga Paraguai">Liga Paraguai</option>
           <option value="Liga Chile">Liga Chile</option>
           <option value="Liga Colômbia">Liga Colômbia</option>
+          <option value="Liga Boliviana">Liga Boliviana</option>
+          <option value="Liga Venezuelana">Liga Venezuelana</option>
           <option value="Idolos">Idolos</option>
         </select>
 

@@ -80,13 +80,13 @@ const ChangePlayer = ({
         setPosition(["Lateral Direito", "Lateral Esquerdo", "Zagueiro"]);
         break;
       case 6:
-        setPosition(["Meio-Campo", "Volante", "Meia Armador"]);
+        setPosition(["Meio Campo", "Volante", "Meia Armador"]);
         break;
       case 7:
-        setPosition(["Meio-Campo", "Volante", "Meia Armador"]);
+        setPosition(["Meio Campo", "Volante", "Meia Armador"]);
         break;
       case 8:
-        setPosition(["Meio-Campo", "Volante", "Meia Armador"]);
+        setPosition(["Meio Campo", "Volante", "Meia Armador"]);
         break;
       case 9:
         setPosition(["Ponta Direita", "Ponta Esquerda", "Atacante"]);

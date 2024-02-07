@@ -50,8 +50,9 @@ const ChangePlayer = ({
             position: position,
           },
         });
-
-        state(false);
+        await refetchMyCards().then(() => {
+          state(false);
+        })
       } else {
         toast.error("Erro ao estabelecer uma conexão com o servidor");
       }

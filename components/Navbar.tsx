@@ -15,6 +15,7 @@ import { BsShop } from "react-icons/bs";
 import { LuFileSpreadsheet } from "react-icons/lu";
 import { infoUser } from "@/contexts/UserContext";
 import { MdNewReleases } from "react-icons/md";
+import { FiTarget } from "react-icons/fi";
 import Image from "next/image";
 
 const Navbar = () => {
@@ -24,7 +25,7 @@ const Navbar = () => {
 
   return (
     <header className="fixed bg-white w-full flex flex-col items-center z-50">
-      <div className="max-w-[1600px] flex justify-between gap-6 w-full p-6">
+      <div className="max-w-[1600px] flex justify-between gap-6 w-full p-8 sm:p-6">
         <Link
           href={"/"}
           className="font-extrabold text-3xl w-full flex justify-left items-center sm:justify-center cursor-pointer"
@@ -59,6 +60,13 @@ const Navbar = () => {
           >
             <BsShop size={20} className="gray-icon" />
             <p className="text-[#717171] text-sm text-center mt-1">Mercado</p>
+          </Link>
+          <Link
+            href={"/challenges"}
+            className="p-2 flex flex-col items-center justify-center w-[65px] h-[55px] rounded-xl transition-all duration-300 hover:bg-[#f8f8f8]"
+          >
+            <FiTarget size={20} className="gray-icon" />
+            <p className="text-[#717171] text-sm text-center mt-1">Desafios</p>
           </Link>
           <Link
             href={"/lineups"}

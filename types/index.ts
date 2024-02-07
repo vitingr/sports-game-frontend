@@ -48,6 +48,7 @@ export interface UserProps {
   loses: number;
   searchingMatch: boolean;
   currentLineup: string;
+  quizCompleted: string[];
 }
 
 export interface InviteProps {

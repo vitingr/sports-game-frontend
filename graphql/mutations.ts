@@ -207,8 +207,8 @@ export const SELECT_LINEUP = gql`
 `;
 
 export const OPEN_PLAYERS_PACK = gql`
-  mutation ($userId: String!) {
-    openPlayersPack(id: $userId) {
+  mutation ($userId: String!, $method: String!) {
+    openPlayersPack(openPack: { userId: $userId, method: $method }) {
       cardImage
       name
       club
@@ -226,8 +226,8 @@ export const OPEN_PLAYERS_PACK = gql`
 `;
 
 export const OPEN_RARE_GOLD_PACK = gql`
-  mutation ($userId: String!) {
-    openRareGoldPack(id: $userId) {
+  mutation ($userId: String!, $method: String!) {
+    openRareGoldPack(openPack: { userId: $userId, method: $method }) {
       cardImage
       name
       club
@@ -245,8 +245,8 @@ export const OPEN_RARE_GOLD_PACK = gql`
 `;
 
 export const OPEN_GOLD_PACK = gql`
-  mutation ($userId: String!) {
-    openGoldPack(id: $userId) {
+  mutation ($userId: String!, $method: String!) {
+    openGoldPack(openPack: { userId: $userId, method: $method }) {
       cardImage
       name
       club
@@ -264,8 +264,8 @@ export const OPEN_GOLD_PACK = gql`
 `;
 
 export const OPEN_RARE_SILVER_PACK = gql`
-  mutation ($userId: String!) {
-    openRareSilverPack(id: $userId) {
+  mutation ($userId: String!, $method: String!) {
+    openRareSilverPack(openPack: { userId: $userId, method: $method }) {
       cardImage
       name
       club
@@ -283,8 +283,8 @@ export const OPEN_RARE_SILVER_PACK = gql`
 `;
 
 export const OPEN_SILVER_PACK = gql`
-  mutation ($userId: String!) {
-    openSilverPack(id: $userId) {
+  mutation ($userId: String!, $method: String!) {
+    openSilverPack(openPack: { userId: $userId, method: $method }) {
       cardImage
       name
       club
@@ -302,8 +302,8 @@ export const OPEN_SILVER_PACK = gql`
 `;
 
 export const OPEN_BRONZE_PACK = gql`
-  mutation ($userId: String!) {
-    openBronzePack(id: $userId) {
+  mutation ($userId: String!, $method: String!) {
+    openBronzePack(openPack: { userId: $userId, method: $method }) {
       cardImage
       name
       club
@@ -422,7 +422,9 @@ export const FINISH_CLUB_SETUP = gql`
 
 export const REMOVE_LINEUP_PLAYER = gql`
   mutation ($lineupId: String!, $position: String!) {
-    removeLineupPlayer(removeLineupPlayer: { lineupId: $lineupId, position: $position }) {
+    removeLineupPlayer(
+      removeLineupPlayer: { lineupId: $lineupId, position: $position }
+    ) {
       id
     }
   }

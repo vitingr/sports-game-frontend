@@ -51,7 +51,7 @@ const page = () => {
         toast.success("Buscando partida");
       });
     } catch (error) {
-    throw new Error("Não foi possível buscar uma partida")
+      throw new Error("Não foi possível buscar uma partida");
     }
   };
 
@@ -64,7 +64,7 @@ const page = () => {
         toast.success("Buscando partida");
       });
     } catch (error) {
-      throw new Error("Não foi possível parar de buscar uma partida")
+      throw new Error("Não foi possível parar de buscar uma partida");
     }
   };
 
@@ -72,7 +72,7 @@ const page = () => {
     try {
       await updateHomeDriver({
         variables: {
-          id: user.id,
+          id: user.id as string,
         },
       });
     } catch (error) {
@@ -316,14 +316,20 @@ const page = () => {
                   </li>
                 ))}
             </ul>
-            <div className="text-white py-3 w-full bg-[#5BB5A2] rounded-xl cursor-pointer text-center mt-28" onClick={() => setShowWorldRanking(true)}>
+            <div
+              className="text-white py-3 w-full bg-[#5BB5A2] rounded-xl cursor-pointer text-center mt-28"
+              onClick={() => setShowWorldRanking(true)}
+            >
               Ver Ranking Completo
             </div>
           </div>
         </section>
 
         <section className="w-full mt-[6.5em] flex gap-10 justify-between sm:flex-nowrap flex-wrap">
-          {user.currentLineup !== "" && user.currentLineup && user.currentLineup !== undefined && user.currentLineup !== null ? (
+          {user.currentLineup !== "" &&
+          user.currentLineup &&
+          user.currentLineup !== undefined &&
+          user.currentLineup !== null ? (
             <div
               className="bg-white p-16 border border-neutral-100 shadow-md shadow-neutral-300 w-full flex flex-col items-center justify-center text-3xl font-bold uppercase cursor-pointer rounded-xl"
               onClick={async () => await handleSearchMatch()}

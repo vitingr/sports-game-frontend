@@ -1,13 +1,17 @@
 "use client";
 
+import ToastMessage from "@/components/config/ToastMessage";
 import LineupCard from "@/components/lineups/LineupCard";
 import { infoUser } from "@/contexts/UserContext";
+import { DELETE_USER_LINEUP } from "@/graphql/mutations";
 import { GET_LINEUP } from "@/graphql/queries";
 import { GeneratedCardProps } from "@/types";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 const page = () => {
   const { user } = infoUser();
@@ -15,13 +19,15 @@ const page = () => {
   const pathname = usePathname().split("/");
   const query = pathname[3];
 
-  const [lineupInfo, setLineupInfo] = useState<GeneratedCardProps[]>([])
+  const router = useRouter()
+
+  const [lineupInfo, setLineupInfo] = useState<GeneratedCardProps[]>([]);
 
   const {
     data: lineupData,
     loading: lineupDataLoading,
     refetch: refetchLineupData,
-    error: errorLineup
+    error: errorLineup,
   } = useQuery(GET_LINEUP, {
     variables: {
       id: query,
@@ -29,12 +35,42 @@ const page = () => {
     skip: !query,
   });
 
+  const [removeLineup] = useMutation(DELETE_USER_LINEUP)
+
+  const deleteLineup = async (lineupId: string) => {
+    try {
+      if (user.id !== undefined) {
+        await removeLineup({
+          variables: {
+            lineupId: lineupId,
+            userId: user.id as string
+          }
+        }).then(() => {
+          toast.success("O elenco foi removido com sucesso!")
+          router.push("/lineups")
+        }).catch((error) => {
+          toast.error("Não foi possível remover essa lineup do banco de dados")
+        })
+      }
+    } catch (error) {
+      toast.error("Não foi possível deletar essa lineup")
+    }
+  }
+
   return (
     lineupDataLoading === false && (
       <div className="flex flex-col w-full items-center max-w-[1050px] mt-[2em] p-10 h-full">
-        <h1 className="text-4xl font-bold transition-all duration-300 hover:text-indigo-600 cursor-default w-full text-center py-6">
-          Minha Escalação
-        </h1>
+        <ToastMessage />
+        <div className="flex justify-between items-center w-full max-w-[650px]">
+          <h1 className="text-4xl font-bold transition-all flex justify-center duration-300 hover:text-emerald-500 cursor-default w-full text-center py-6">
+            Minha Escalação
+          </h1>
+          <div className="flex justify-end">
+            <FaRegTrashAlt size={20} className="gray-icon cursor-pointer" onClick={async () => {
+              await deleteLineup(lineupData.findLineup.id)
+            }} />
+          </div>
+        </div>
         <Image
           src={"/assets/lineup.png"}
           alt="Lineup Image"

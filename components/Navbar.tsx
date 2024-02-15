@@ -142,13 +142,13 @@ const Navbar = () => {
         </div>
 
         {showMenu && (
-          <div className="z-20 fixed right-0 bg-[#fff] shadow-md h-[605px] sm:h-[650px] w-[350px] border border-[#f7f7f7] translate-y-2 transition-all rounded-lg sm:mt-[25px] mt-[25px] lg:left-[64%]">
+          <div className="z-20 fixed right-0 bg-[#fff] shadow-md h-[650px] sm:h-[700px] w-[350px] border border-[#f7f7f7] translate-y-2 transition-all rounded-lg sm:mt-[25px] mt-[25px] lg:left-[64%]">
             <div className="p-10">
               <h1 className="text-3xl font-bold text-center">
                 Olá, {data.username}
               </h1>
             </div>
-            <div className="w-full flex gap-4 p-6 bg-[#f7f7f7] items-center">
+            <div className="w-full flex gap-4 p-6 -mt-4 sm:-mt-0 bg-[#f7f7f7] items-center">
               <img
                 src="https://cdn-icons-png.flaticon.com/512/6075/6075725.png"
                 className="w-[50px] h-[50px] selection:bg-transparent"
@@ -210,6 +210,15 @@ const Navbar = () => {
               >
                 <LuFileSpreadsheet size={27.5} className="gray-icon" />
                 <h3 className="text-[#717171] w-full text-lg">Elencos</h3>
+              </Link>
+              <Link
+                href={"/challenges"}
+                className="flex w-full justify-between items-center gap-8 cursor-pointer"
+                id="challenges"
+                onClick={() => setShowMenu(false)}
+              >
+                <FiTarget size={27.5} className="gray-icon" />
+                <h3 className="text-[#717171] w-full text-lg">Desafios</h3>
               </Link>
               <Link
                 href={"/my-club"}

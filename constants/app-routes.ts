@@ -6,6 +6,7 @@ export const APP_ROUTES = {
       shop: "shop",
       market: "market",
       myclub: "my-club",
+      challenges: "challenges"
   },
   public: {
       home: "/",

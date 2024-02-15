@@ -139,8 +139,16 @@ export const BUY_CARD = gql`
 `;
 
 export const DELETE_USER_LINEUP = gql`
-  mutation ($id: String!) {
-    deleteUserLineup(id: $id) {
+  mutation (
+    $lineupId: String!
+    $userId: String!
+  ) {
+    deleteUserLineup(
+      deleteUserLineup: {
+        lineupId: $lineupId
+        userId: $userId
+      }
+    ) {
       name
     }
   }

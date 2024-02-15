@@ -9,7 +9,7 @@ import { useMutation } from "@apollo/client";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const page = () => {
@@ -65,6 +65,15 @@ const page = () => {
     setSelectedAnswerIndex(index);
     setSelectedAnswerText(answer);
   };
+
+  useEffect(() => {
+    if (user.id !== undefined && user.id !== "") {
+      if (user?.quizCompleted.includes("global")) {
+        router.push("/challenges")
+        toast.error("Não é possível realizar o mesmo quiz mais de uma vez")
+      }
+    }
+  }, [user])
 
   return (
     <div className="flex items-center gap-6 w-full max-w-[550px] sm:mt-[2em] flex-col mt-[150px]">

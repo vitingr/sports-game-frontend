@@ -32,6 +32,7 @@ export const GET_PLAYER = gql`
       searchingMatch
       currentLineup
       quizCompleted
+      dmeCompleted
     }
   }
 `;

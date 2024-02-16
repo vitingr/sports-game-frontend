@@ -139,15 +139,9 @@ export const BUY_CARD = gql`
 `;
 
 export const DELETE_USER_LINEUP = gql`
-  mutation (
-    $lineupId: String!
-    $userId: String!
-  ) {
+  mutation ($lineupId: String!, $userId: String!) {
     deleteUserLineup(
-      deleteUserLineup: {
-        lineupId: $lineupId
-        userId: $userId
-      }
+      deleteUserLineup: { lineupId: $lineupId, userId: $userId }
     ) {
       name
     }
@@ -444,6 +438,47 @@ export const COMPLETE_QUIZ = gql`
       completeQuiz: { userId: $userId, quiz: $quiz, prize: $prize }
     ) {
       id
+    }
+  }
+`;
+
+export const COMPLETE_DME_CHALLENGE_1 = gql`
+  mutation (
+    $player1: String!
+    $player2: String!
+    $player3: String!
+    $userId: String!
+  ) {
+    completeChallenge1(completeChallenge1: {
+      player1: $player1
+      player2: $player2
+      player3: $player3
+      userId: $userId
+    }) {
+      id
+    }
+  }
+`;
+
+export const COMPLETE_DME_CHALLENGE_2 = gql`
+  mutation (
+    $player1: String!
+    $player2: String!
+    $player3: String!
+    $userId: String!
+  ) {
+    completeChallenge2(completeChallenge2: {
+      player1: $player1
+      player2: $player2
+      player3: $player3
+      userId: $userId
+    }) {
+      cardImage
+      name
+      club
+      league
+      type
+      position
     }
   }
 `;

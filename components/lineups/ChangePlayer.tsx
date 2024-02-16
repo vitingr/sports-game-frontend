@@ -41,8 +41,6 @@ const ChangePlayer = ({
 
   const removeCurrentCard = async () => {
     try {
-      const position = `player${lineupIndex}`;
-
       if (position) {
         await removePlayer({
           variables: {

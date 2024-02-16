@@ -36,7 +36,7 @@ const ChangeClubBadge = ({ state }: { state: any }) => {
         state={state}
       >
         <ToastMessage />
-        <div className="w-full h-[650px] overflow-y-scroll flex flex-wrap gap-10">
+        <div className="w-full h-full max-h-[650px] overflow-y-scroll flex flex-wrap gap-10">
           {getUserBadges.findUserBadges.map(
             (badge: GeneratedBadgeProps, index: number) => (
               <Badge

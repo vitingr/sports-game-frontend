@@ -59,7 +59,7 @@ const PlayersMarket = () => {
           SellingCards.findSellingCards.map(
             (card: GeneratedCardProps, index: number) => (
               <div
-                className="w-[225px] h-[300px] rounded-xl flex flex-col items-center"
+                className="w-[200px] h-[300px] rounded-xl flex flex-col items-center"
                 key={index}
               >
                 <Image
@@ -71,7 +71,7 @@ const PlayersMarket = () => {
                 />
                 <div className="w-full flex flex-col items-center">
                   <h1 className="font-bold">{card.name}</h1>
-                  <p className="text-sm text-[#717171]">
+                  <p className="text-sm text-[#717171] h-[40px] overflow-hidden text-center">
                     {card.club} - {card.league}
                   </p>
                   <div className="flex gap-2 items-center mt-2">

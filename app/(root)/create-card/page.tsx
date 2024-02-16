@@ -198,6 +198,7 @@ const page = () => {
           <option value="Idolo">Idolo</option>
           <option value="TOTW">TOTW</option>
           <option value="Ones to Watch">Ones to Watch</option>
+          <option value="SBC">SBC</option>
         </select>
 
         <select

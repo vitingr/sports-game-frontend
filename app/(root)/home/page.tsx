@@ -368,7 +368,8 @@ const page = () => {
         </section>
 
         <section className="w-full mt-[6.5em] flex justify-around gap-10 sm:flex-nowrap flex-wrap">
-          <div
+          <Link
+            href={"/shop"}
             className="bg-white rounded-xl p-8 border border-neutral-100 shadow-md shadow-neutral-300 flex flex-col items-center w-full h-[300px] cursor-pointer transition-all duration-300 hover:scale-105"
             id="shop"
           >
@@ -378,8 +379,9 @@ const page = () => {
               esteja precisando de algo, considere ela.
             </p>
             <RiShoppingCartLine size={50} className="gray-icon mt-10" />
-          </div>
-          <div
+          </Link>
+          <Link
+            href={"/market"}
             className="bg-white rounded-xl p-8 border border-neutral-100 shadow-md shadow-neutral-300 flex flex-col items-center w-full h-[300px] cursor-pointer transition-all duration-300 hover:scale-105"
             id="market"
           >
@@ -389,8 +391,9 @@ const page = () => {
               excelente maneira de melhorar seu time.
             </p>
             <BsShop size={50} className="gray-icon mt-10" />
-          </div>
-          <div
+          </Link>
+          <Link
+            href={"/lineups"}
             className="bg-white rounded-xl p-8 border border-neutral-100 shadow-md shadow-neutral-300 flex flex-col items-center w-full h-[300px] cursor-pointer transition-all duration-300 hover:scale-105"
             id="lineups"
           >
@@ -400,7 +403,7 @@ const page = () => {
               reforçe para buscar o maior número de vitórias possível.
             </p>
             <FiUser size={50} className="gray-icon mt-10" />
-          </div>
+          </Link>
         </section>
 
         <section
@@ -411,15 +414,15 @@ const page = () => {
             <h1 className="text-3xl font-bold">
               Desafios de Montagem de Elenco
             </h1>
-            <p className="text-[#717171] text-justify">
+            <p className="text-[#717171] text-justify mb-10">
               Nos Desafios de montagem de elenco é possível trocar cartas de
               jogadores que você já possui com base em alguns requisitos. Você
               poderá receber, futcoins, pacotes e excelentes recompensas para
               completar seu time ao realizar esses desafios. Boa sorte!
             </p>
-            <div className="mt-20 bg-[#5BB5A2] text-white rounded-xl w-full py-3 cursor-pointer text-center">
+            <Link href={"/dme"} className="mt-20 bg-[#5BB5A2] text-white rounded-xl w-full py-3 px-4 cursor-pointer text-center">
               Ver Todos os Desafios
-            </div>
+            </Link>
           </div>
           <div className="w-full justify-center items-center sm:flex hidden">
             <Image

@@ -49,6 +49,7 @@ export interface UserProps {
   searchingMatch: boolean;
   currentLineup: string;
   quizCompleted: string[];
+  dmeCompleted: string[];
 }
 
 export interface InviteProps {

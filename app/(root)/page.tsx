@@ -113,7 +113,7 @@ export default function Home() {
         className="bg-[#5bb5a252] p-16 w-full flex flex-col items-center mt-[8em] mb-[10em] overflow-hidden"
       >
         <div className="max-w-[1050px] w-full flex flex-col">
-          <h1>baby baby</h1>
+          <h1>testes testes</h1>
         </div>
 
       </div>

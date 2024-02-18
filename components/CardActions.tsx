@@ -30,6 +30,7 @@ const CardActions = ({
       await quickSellCard({
         variables: {
           ownerId: user.id,
+          playerId: cardData.playerId,
           cardId: cardData.id,
           price: Number(cardData.quickSellValue),
         },

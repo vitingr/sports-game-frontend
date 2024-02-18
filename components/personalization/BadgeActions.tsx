@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Popup from "../config/Popup";
 import { useMutation } from "@apollo/client";
-import { CHANGE_CLUB_BADGE, SELL_BADGE } from "@/graphql/mutations";
+import { CHANGE_CLUB_BADGE, QUICK_SELL_BADGE, SELL_BADGE } from "@/graphql/mutations";
 import { toast } from "react-toastify";
 import { infoUser } from "@/contexts/UserContext";
 import ToastMessage from "../config/ToastMessage";
@@ -20,12 +20,32 @@ const BadgeActions = ({
 }) => {
   const { user, getUserInfo } = infoUser();
 
+  const [quickSellBadge] = useMutation(QUICK_SELL_BADGE)
+
   const [changeClubBadge] = useMutation(CHANGE_CLUB_BADGE);
   const [sellClubBadge] = useMutation(SELL_BADGE);
 
   const [sellBadge, setSellBadge] = useState<boolean>(false);
   const [useBadge, setUseBadge] = useState<boolean>(false);
   const [badgeValue, setBadgeValue] = useState<string>();
+
+  const handleQuickSellBadge = async () => {
+    try {
+      await quickSellBadge({
+        variables: {
+          badgeId: currentBadge.id,
+          ownerId: user.id,
+          price: currentBadge.quickSellValue
+        }
+      })
+      await getUserInfo().then(() => {
+        toast.success("O emblema do clube foi vendido com sucesso!");
+        state(false);
+      });
+    } catch (error) { 
+      toast.error("Não foi possível realizar a venda rápida do emblema")
+    }
+  }
 
   const handleChangeClubBadge = async () => {
     try {
@@ -121,11 +141,14 @@ const BadgeActions = ({
             </p>
 
             <button
-              className="w-full mt-16 bg-[#5BB5A2] text-white py-3 rounded-xl"
+              className="w-full mt-16 bg-[#5BB5A2] text-white py-2 rounded-2xl"
               type="submit"
             >
               Vender Emblema
             </button>
+            <div className="w-full mt-6 text-[#5BB5A2] border border-[#5BB5A2] py-2 rounded-2xl">
+              Venda Rápida
+            </div>
           </form>
         </Popup>
       )}

@@ -387,9 +387,9 @@ export const BUY_BADGE = gql`
 `;
 
 export const QUICK_SELL_CARD = gql`
-  mutation ($ownerId: String!, $cardId: String!, $price: Float!) {
+  mutation ($ownerId: String!, $playerId: String!, $cardId: String!, $price: Float!) {
     quickSellCard(
-      quickSellCard: { ownerId: $ownerId, cardId: $cardId, price: $price }
+      quickSellCard: { ownerId: $ownerId, playerId: $playerId, cardId: $cardId, price: $price }
     ) {
       id
       currency
@@ -482,3 +482,21 @@ export const COMPLETE_DME_CHALLENGE_2 = gql`
     }
   }
 `;
+
+export const QUICK_SELL_BADGE = gql `
+  mutation (
+    $badgeId: String!
+    $ownerId: String!
+    $price: Float!
+  ) {
+    quickSellBadge (
+      quickSellBadge: {
+        badgeId: $badgeId
+        ownerId: $ownerId
+        price: $price
+      }
+    ) {
+      id
+    }
+  }
+`

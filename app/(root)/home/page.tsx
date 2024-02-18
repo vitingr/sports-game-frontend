@@ -291,7 +291,7 @@ const page = () => {
             <h1 className="text-xl font-semibold">Ranking Global</h1>
             <ul className="list-none mt-6">
               {playersData.getAllUsers
-                .slice(0, 4)
+                .slice(0, 5)
                 .map((player: UserProps, index: number) => (
                   <li
                     className="py-2 mb-2 border-b border-neutral-100 tracking-wider flex justify-between w-full"
@@ -317,7 +317,7 @@ const page = () => {
                 ))}
             </ul>
             <div
-              className="text-white py-3 w-full bg-[#5BB5A2] rounded-xl cursor-pointer text-center mt-28"
+              className="text-white py-3 w-full bg-[#5BB5A2] rounded-xl cursor-pointer text-center mt-10"
               onClick={() => setShowWorldRanking(true)}
             >
               Ver Ranking Completo

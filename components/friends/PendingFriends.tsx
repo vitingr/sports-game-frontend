@@ -76,7 +76,7 @@ const PendingFriends = () => {
                 alt="Team Badge"
                 width={45}
                 height={45}
-                className="rounded-full"
+                className="rounded-lg"
               />
               <div className="w-full flex flex-col justify-center">
                 <h1 className="font-semibold">{player.clubname}</h1>

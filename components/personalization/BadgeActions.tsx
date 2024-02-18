@@ -38,7 +38,7 @@ const BadgeActions = ({
           price: currentBadge.quickSellValue
         }
       })
-      await getUserInfo().then(() => {
+      await refetch().then(() => {
         toast.success("O emblema do clube foi vendido com sucesso!");
         state(false);
       });
@@ -146,7 +146,7 @@ const BadgeActions = ({
             >
               Vender Emblema
             </button>
-            <div className="w-full mt-6 text-[#5BB5A2] border border-[#5BB5A2] py-2 rounded-2xl">
+            <div className="w-full mt-6 text-[#5BB5A2] border border-[#5BB5A2] py-2 rounded-2xl text-center cursor-pointer" onClick={async () => await handleQuickSellBadge()}>
               Venda Rápida
             </div>
           </form>

@@ -36,7 +36,7 @@ const SellCard = ({
             playerId: cardData.id,
             price: Number(cardValue)
           },
-        })
+        })   
         await refetch().then(() => {
           showPlayerState(false);
           showState(false);

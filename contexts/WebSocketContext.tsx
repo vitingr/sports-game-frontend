@@ -7,8 +7,8 @@ import { infoUser } from "./UserContext";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
-export const socket = io("https://pifa-nest-api.onrender.com"); 
-// export const socket = io("http://localhost:3030");
+// export const socket = io("https://pifa-nest-api.onrender.com"); 
+export const socket = io("http://localhost:3030");
 export const WebSocketContext = createContext<Socket | any>(socket);
 
 export const WebSocketProvider = ({
